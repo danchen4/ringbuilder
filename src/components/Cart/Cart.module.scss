@@ -1,0 +1,16 @@
+@import '../../sass/abstracts/abstracts';
+
+.Cart {
+}
+
+.cartCard {
+  border: 1px solid $color-black;
+}
+
+.cartRow {
+  display: flex;
+}
+
+.cartImage {
+  width: 20rem;
+}

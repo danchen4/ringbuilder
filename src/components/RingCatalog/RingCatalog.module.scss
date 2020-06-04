@@ -1,0 +1,27 @@
+@import '../../sass/abstracts/abstracts';
+
+.RingCatalog {
+  margin-top: 4rem;
+  width: 100%;
+  @include clearfix;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.productName {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

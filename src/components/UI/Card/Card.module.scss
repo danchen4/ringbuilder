@@ -1,0 +1,23 @@
+@import '../../../sass/abstracts/abstracts';
+
+$width: 2rem;
+
+.Card {
+  float: left;
+  width: calc(32% - #{$width});
+  margin: 0 1rem;
+  padding: 2rem;
+  background-color: $color-white;
+  border: 1px solid $color-grey-light-3;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-smooth-sm;
+
+  margin-bottom: 2rem;
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,32 @@
+@import '../../../sass/abstracts/abstracts';
+
+.imageGallery {
+}
+
+.mainImage {
+  max-width: 20rem;
+}
+
+.gallery {
+  display: inline-block;
+  margin: 1rem 0;
+  @include clearfix;
+}
+
+.galleryImage {
+  float: left;
+  width: 4rem;
+  padding: 0.2rem;
+
+  &__Selected {
+    border: 2px solid $color-primary-dark;
+  }
+
+  &__Unselected {
+    border: 1px solid $color-grey-light-3;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+}

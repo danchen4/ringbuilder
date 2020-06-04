@@ -1,0 +1,35 @@
+@import '../../../sass/abstracts/abstracts';
+
+.imageGallery {
+  display: flex;
+  align-items: center;
+}
+
+.mainImage {
+  width: 85%;
+}
+
+.gallery {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.galleryImage {
+  width: 100%;
+  padding: 0.2rem;
+
+  &__Selected {
+    border: 2px solid $color-primary-dark;
+  }
+
+  &__Unselected {
+    border: 1px solid $color-grey-light-1;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}

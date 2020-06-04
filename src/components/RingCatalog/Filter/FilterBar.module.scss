@@ -1,0 +1,13 @@
+@import '../../../sass/abstracts/abstracts';
+
+.FilterBar {
+  width: 100%;
+  height: 5rem;
+  margin: 2rem 0;
+  border: 1px solid $color-grey-dark-2;
+}
+
+.filterGroup {
+  display: inline-block;
+  margin: 0 2rem;
+}
