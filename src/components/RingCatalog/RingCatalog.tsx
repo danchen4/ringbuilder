@@ -5,97 +5,76 @@ import Card from '../UI/Card/Card';
 import CatalogImageGallery from './CatalogImageGallery/CatalogImageGallery';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import { formatCurrency, ringDataToArray } from '../../helper';
+import { formatCurrency, ringDataToArray, filterArrayObject } from '../../helper';
 import { RING_PRICE_SORT } from '../../constants/rings';
 
-import FilterBar from './Filter/FilterBar';
+import FilterBar from './RingCatalogFilter/RingCatalogFilter';
 
-interface Props {}
+interface RingCatalogProps {}
 
-const RingCatalog = (props: Props) => {
+const RingCatalog: React.FC<RingCatalogProps> = () => {
   const [catalog, setCatalog] = useState<any[]>([]);
-  const [ringStyleFilter, setRingStyleFilter] = useState(null);
-  const [ringShapeFilter, setRingShapeFilter] = useState(null);
-  const [sortPriceFilter, setSortPriceFilter] = useState(null);
-
   const { url } = useRouteMatch();
+
+  const [ringStyleFilter, setRingStyleFilter] = useState('All');
+  const [ringShapeFilter, setRingShapeFilter] = useState('All');
+  // filters rules for ring style and ring center shape
+  const filters = {
+    style(style: string) {
+      return style === ringStyleFilter || ringStyleFilter === 'All';
+    },
+    center(center: string) {
+      return center === ringShapeFilter || ringShapeFilter === 'All';
+    },
+  };
 
   useEffect(() => {
     async function fetch() {
       // const queryParams = ringStyleFilter.query
       //   ? `?orderBy="${ringStyleFilter.query}"&equalTo="${ringStyleFilter.style}"`
       //   : '';
-
       const url = 'https://ring-commerce.firebaseio.com/ringCatalog.json';
       const response = await axios.get(url);
       const catalog = response.data;
-      // catalog looks like
-      // catalog: {
-      //ER12876: {
-      // accent_weight: 0.27
-      // band_thickness: 1.5
-      // ...
-      // }
-      // }
-
-      // convert to array
       const ringCatalog = ringDataToArray(catalog);
 
-      const sortedCatalog = ringCatalog.sort((a, b) => {
-        if (sortPriceFilter === RING_PRICE_SORT.HIGHTOLOW) {
-          return b.price - a.price;
-        }
-        return a.price - b.price;
-      });
-
-      const filteredCatalog = sortedCatalog.filter((ring) => {
-        if (ringStyleFilter && ringShapeFilter) {
-          return ring.style === ringStyleFilter && ring.center === ringShapeFilter;
-        }
-        if (ringStyleFilter) {
-          return ring.style === ringStyleFilter;
-        }
-        if (ringShapeFilter) {
-          return ring.center === ringShapeFilter;
-        }
-        return true;
-
-        // return ring.style === ringStyleFilter || ring.center === ringShapeFilter;
-      });
-
+      // filter the array based on selection
+      const filteredCatalog = filterArrayObject(ringCatalog, filters);
       setCatalog(filteredCatalog);
     }
     fetch();
-  }, [ringStyleFilter, ringShapeFilter, sortPriceFilter]);
+  }, [ringStyleFilter, ringShapeFilter]);
 
-  const checkedStyleHandler = (e: any) => {
-    let target = e.target;
-    if (target.value === 'All') {
-      target.value = null;
-    }
-    setRingStyleFilter(target.value);
+  const filterStyleHandler = (e: any) => {
+    let styleValue = e.target.value;
+    setRingStyleFilter(styleValue);
   };
 
-  const checkedShapeHandler = (e: any) => {
-    let target = e.target;
-    if (target.value === 'All') {
-      target.value = null;
-    }
-    setRingShapeFilter(target.value);
+  const filterShapeHandler = (e: any) => {
+    let shapeValue = e.target.value;
+    setRingShapeFilter(shapeValue);
   };
 
   const selectSortHandler = (e: any) => {
-    let target = e.target;
-    console.log(target.value);
-    setSortPriceFilter(target.value);
+    let sortValue = e.target.value;
+    const catalogCopy = [...catalog];
+    const sortedCatalog = catalogCopy.sort((a, b) => {
+      if (sortValue === RING_PRICE_SORT.HIGHTOLOW) {
+        return b.price - a.price;
+      }
+      return a.price - b.price;
+    });
+    setCatalog(sortedCatalog);
   };
 
   return (
     <div className={classes.RingCatalog}>
       <FilterBar
-        checkedStyle={checkedStyleHandler}
-        checkedShape={checkedShapeHandler}
+        filterStyle={filterStyleHandler}
+        filterShape={filterShapeHandler}
         selectSort={selectSortHandler}
+        ringStyleSelected={ringStyleFilter}
+        ringShapeSelected={ringShapeFilter}
       />
       {catalog.map((product) => {
         return (

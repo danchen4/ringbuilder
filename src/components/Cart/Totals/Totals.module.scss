@@ -1,0 +1,18 @@
+@import '../../../sass/abstracts/abstracts';
+
+.Totals {
+  margin: 1rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.column {
+  align-self: center;
+}
+
+.price {
+  font-size: 2rem;
+}

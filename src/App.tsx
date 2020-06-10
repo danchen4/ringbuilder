@@ -15,6 +15,10 @@ const RingProduct = React.lazy(() => {
   return import('./components/RingProduct/RingProduct');
 });
 
+const DiamondCatalog = React.lazy(() => {
+  return import('./components/DiamondCatalog/DiamondCatalog');
+});
+
 const Cart = React.lazy(() => {
   return import('./components/Cart/Cart');
 });
@@ -22,8 +26,9 @@ const Cart = React.lazy(() => {
 function App() {
   const routes = (
     <Switch>
-      <Route exact path="/catalog" render={() => <RingCatalog />} />
-      <Route path="/catalog/:sku" render={() => <RingProduct />} />
+      <Route exact path="/rings" render={() => <RingCatalog />} />
+      <Route path="/rings/:sku" render={() => <RingProduct />} />
+      <Route exact path="/diamonds" render={() => <DiamondCatalog />} />
       <Route exact path="/cart" render={() => <Cart />} />
       {/* <Route exact path="/" component={RingCatalog} /> */}
     </Switch>

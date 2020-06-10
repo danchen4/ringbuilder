@@ -32,6 +32,15 @@ export interface RingData {
   gallery: string[];
 }
 
+// catalog looks like
+// catalog: {
+//ER12876: {
+// accent_weight: 0.27
+// band_thickness: 1.5
+// ...
+// }
+// }
+
 export function ringDataToArray(catalog: RingDataFromDatabase[]): RingData[] {
   let ringCatalog = [];
   for (let product in catalog) {

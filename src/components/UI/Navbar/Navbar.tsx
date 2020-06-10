@@ -4,13 +4,13 @@ import classes from './Navbar.module.scss';
 
 export const Navbar = () => {
   return (
-    <div className={classes.navbar}>
+    <div className={classes.Navbar}>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/rings">Rings</Link>
         </li>
         <li>
-          <Link to="/catalog">Catalog</Link>
+          <Link to="/diamonds">Diamonds</Link>
         </li>
         <li>
           <Link to="/cart">Cart</Link>

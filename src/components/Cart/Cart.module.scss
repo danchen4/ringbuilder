@@ -1,16 +1,28 @@
 @import '../../sass/abstracts/abstracts';
 
 .Cart {
+  margin: 2rem 0;
 }
 
-.cartCard {
-  border: 1px solid $color-black;
+.card {
+  border-top: 1px solid $color-black;
+  border-bottom: 1px solid $color-black;
 }
 
-.cartRow {
-  display: flex;
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.column {
+  padding: 1rem 0;
+  align-self: center;
 }
 
 .cartImage {
   width: 20rem;
+}
+
+.price {
+  font-size: 2rem;
 }

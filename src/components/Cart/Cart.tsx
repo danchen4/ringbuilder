@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import classes from './Cart.module.scss';
-import Card from '../UI/Card/Card';
+
+import { formatCurrency } from '../../helper/formatCurrency';
+import Totals from './Totals/Totals';
 
 interface CartProps {}
 
@@ -43,23 +45,31 @@ const Cart: React.FC<CartProps> = () => {
   let cartCard = <p>You're cart is empty</p>;
   if (sampleCart.length) {
     cartCard = (
-      <div className={classes.cartCard}>
-        {sampleCart.map((cartitem: any) => {
-          return (
-            <div className={classes.cartRow} key={cartitem.sku}>
-              <img className={classes.cartImage} src={cartitem.image} alt="ring" />
-              <div className={classes.cartDesc}>
-                <p>{cartitem.sku}</p>
-                <p>{cartitem.name}</p>
+      <>
+        <div className={classes.card}>
+          {sampleCart.map((cartitem: any) => {
+            return (
+              <div className={classes.grid} key={cartitem.sku}>
+                <div className={classes.column}>
+                  <img className={classes.cartImage} src={cartitem.image} alt="ring" />
+                </div>
+                <div className={classes.column}>
+                  <div className={classes.cartDesc}>
+                    <p>SKU: {cartitem.sku}</p>
+                    <p>Name: {cartitem.name}</p>
+                    <p>{cartitem.style} Ring</p>
+                    <button className={classes.cartRemove}>remove</button>
+                  </div>
+                </div>
+                <div className={classes.column}>
+                  <span className={classes.price}>{formatCurrency(cartitem.price)}</span>
+                </div>
               </div>
-              <div className={classes.cartPrice}>
-                <p>{cartitem.price}</p>
-              </div>
-              <button className={classes.cartRemove}>X</button>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+        <Totals />
+      </>
     );
   }
 

@@ -1,7 +1,8 @@
 @import '../../../sass/abstracts/abstracts';
 
-.navbar {
+.Navbar {
   ul {
+    padding: 0 2rem;
     list-style: none;
     display: flex;
     background-color: $color-grey-dark-1;
