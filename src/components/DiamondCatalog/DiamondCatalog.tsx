@@ -3,7 +3,7 @@ import axios from 'axios';
 import classes from './DiamondCatalog.module.scss';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import { diamondDataToArray } from '../../helper/diamondDataToArray';
+import { diamondDataToTable } from '../../helper';
 import DiamondTable from './DiamondTable/DiamondTable';
 
 
@@ -22,7 +22,7 @@ export const DiamondCatalog: React.FC<DiamondCatalogProps> = () => {
       const url = 'https://ring-commerce.firebaseio.com/diamondCatalog.json';
       const response = await axios.get(url);
       const catalog = response.data;
-      const diamondCatalog = diamondDataToArray(catalog);
+      const diamondCatalog = diamondDataToTable(catalog);
       // console.log(diamondCatalog);
       setCatalog(diamondCatalog);
     }

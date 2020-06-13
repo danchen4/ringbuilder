@@ -1,0 +1,29 @@
+@import '../../sass/abstracts/abstracts';
+
+.DiamondProduct {
+  margin-top: 4rem;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'left right';
+  gap: 1rem;
+}
+
+.description {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.data {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.label {
+  font-weight: 600;
+  padding-right: 0.4rem;
+}

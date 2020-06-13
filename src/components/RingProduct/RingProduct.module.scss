@@ -1,6 +1,10 @@
 @import '../../sass/abstracts/abstracts';
 
 .RingProduct {
+  margin-top: 2rem;;
+}
+
+.grid {
   margin-top: 4rem;
   width: 100%;
 
@@ -9,9 +13,9 @@
   grid-template-areas: 'left right';
   gap: 1rem;
 
-  & > div {
-    // border: 1px solid orangered;
-  }
+  // & > div {
+  //   // border: 1px solid orangered;
+  // }
 }
 
 .description {

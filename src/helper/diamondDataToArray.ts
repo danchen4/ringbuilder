@@ -1,7 +1,6 @@
-import { formatCurrency} from './formatCurrency'
-
-const DIAMOND_COST_MARKUP = 1.5;
-
+import { formatCurrency } from './formatCurrency'
+import { costMarkup } from './costMarkup';
+import { DIAMOND_COST_MARKUP } from '../constants'
 
 export interface DiamondDataFromDatabase {
   carats: number,
@@ -33,8 +32,7 @@ export interface DiamondTableData {
   price: string,
 }
 
-
-export function diamondDataToArray(catalog: DiamondDataFromDatabase[]): DiamondTableData[] {
+export function diamondDataToTable(catalog: DiamondDataFromDatabase[]): DiamondTableData[] {
   let diamondTable = [];
   for (let product in catalog) {
     diamondTable.push({
@@ -45,8 +43,32 @@ export function diamondDataToArray(catalog: DiamondDataFromDatabase[]): DiamondT
       clarity: catalog[product].clarity,
       cut: catalog[product].cut,
       report: catalog[product].lab,
-      price: formatCurrency(Math.ceil((catalog[product].cost * DIAMOND_COST_MARKUP) / 10) * 10),
+      price: formatCurrency(costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP)),
     });
   }
   return diamondTable;
+}
+
+export function diamondDataToProductObj(catalog: DiamondDataFromDatabase[]): any {
+  let diamondProductObj = {};
+  for (let product in catalog) {
+    diamondProductObj = {
+      lab: { label: 'Lab', value: catalog[product].lab },
+      certNumber: { label: 'Certificate Number', value: catalog[product].certNumber },
+      shape: { label: 'Shape', value: catalog[product].shape },
+      carats: { label: 'Carats', value: catalog[product].carats },
+      color: { label: 'Color', value: catalog[product].color },
+      clarity: { label: 'Clarity', value: catalog[product].clarity },
+      cut: { label: 'Cut', value: catalog[product].cut },
+      symmetry: { label: 'Symmetry', value: catalog[product].symmetry },
+      polish: { label: 'Polish', value: catalog[product].polish },
+      length: { label: 'Length', value: catalog[product].length + 'mm' },
+      width: { label: 'Width', value: catalog[product].width + 'mm' },
+      depth: { label: 'Depth', value: catalog[product].depth + 'mm' },
+      tablePer: { label: 'Table %', value: (catalog[product].tableper * 100).toFixed(2) + '%' },
+      depthPer: { label: 'Depth %', value: (catalog[product].depthper * 100).toFixed(2) + '%' },
+      price: { label: 'Price', value: formatCurrency(costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP)) },
+    };
+  }
+  return diamondProductObj;
 }

@@ -1,0 +1,57 @@
+@import '../../sass/abstracts/abstracts';
+
+.ProgressBar {
+  padding: 0 2rem;
+
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr 2fr;
+  // gap: 0.4rem;
+
+  // align-items: center;
+    border: 1px solid $color-grey-light-3;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 60px;
+  padding: 1rem 0.5rem;
+
+  // background-color: $color-grey-light-2;
+  clip-path: polygon(0 0, 100% 0, 140% 100%, 0% 100%);
+
+}
+
+.arrow {
+  position: absolute;
+  right: 0rem;
+  width: 6rem;
+  height: 6rem;
+  transform: rotate(45deg) skew(25deg, 25deg);
+  border-top: 1px solid $color-grey-light-3;
+  border-right: 1px solid $color-grey-light-3;
+  z-index: 10;
+
+}
+
+.step {
+  width: 10%;
+  font-size: 3rem;
+  color: $color-grey-dark-3;
+}
+
+.content {
+  width: 60%;
+}
+
+.content_last {
+  width: 90%;
+}
+
+.image {
+  width: 30%;
+}

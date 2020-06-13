@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './ProductImageGallery.module.scss';
 import cn from 'classnames';
 // import MetalSelection from '../MetalSelection/MetalSelection';
-import { METAL } from '../../../constants/rings';
+import { METAL } from '../../../constants';
 
 export enum ImageGalleryIndex {
   first,

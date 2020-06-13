@@ -1,0 +1,1 @@
+export const DIAMOND_COST_MARKUP = 1.5;

@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import classes from './ProductMetalSelection.module.scss';
-import { METAL, METAL_SHORTNAME } from '../../../constants/rings';
+import { METAL, METAL_SHORTNAME } from '../../../constants';
 
 interface ProductMetalSelectionProps {
   /** A   string to indicate the selected metal */

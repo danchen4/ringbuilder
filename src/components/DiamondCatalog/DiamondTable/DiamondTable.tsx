@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import classes from './DiamondTable.module.scss'
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -24,7 +25,7 @@ export interface DiamondTableData {
 
 
 interface Column {
-  id: 'shape' | 'carats' | 'color' | 'clarity' | 'cut' | 'report' | 'price';
+  id: 'shape' | 'carats' | 'color' | 'clarity' | 'cut' | 'report' | 'price' | 'view';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -41,6 +42,7 @@ const columns: Column[] = [
   { id: 'cut', label: 'Cut', minWidth: MIN_WIDTH },
   { id: 'report', label: 'Report', minWidth: MIN_WIDTH },
   { id: 'price', label: 'Price', minWidth: MIN_WIDTH },
+  { id: 'view', label: 'View', minWidth: MIN_WIDTH },
 ];
 
 const useStyles = makeStyles({
@@ -61,6 +63,7 @@ export const DiamondTable: React.FC<DiamondTableProps> = ({ diamondArray}) => {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const { url } = useRouteMatch();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -93,7 +96,7 @@ export const DiamondTable: React.FC<DiamondTableProps> = ({ diamondArray}) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.certNumber}>
                   {columns.map((column) => {
-                    const value = row[column.id];
+                    const value = column.id === 'view' ? <Link to={`${url}/${row.certNumber}`}>View</Link> : row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}

@@ -9,25 +9,25 @@ export interface CartItem {
   price: number;
 }
 
-export interface AddtoCartAction {
+export interface AddToCartAction {
   type: ActionTypes.addToCart;
   payload: CartItem;
 }
 
-export interface RemoveFromCart {
+export interface RemoveFromCartAction {
   type: ActionTypes.removeFromCart;
   /** sku of item to remove */
   payload: string;
 }
 
-export const addToCart = (cartItem: CartItem): AddtoCartAction => {
+export const addToCart = (cartItem: CartItem): AddToCartAction => {
   return {
     type: ActionTypes.addToCart,
     payload: cartItem,
   };
 };
 
-export const removeFromCart = (sku: string): RemoveFromCart => {
+export const removeFromCart = (sku: string): RemoveFromCartAction => {
   return {
     type: ActionTypes.removeFromCart,
     payload: sku,

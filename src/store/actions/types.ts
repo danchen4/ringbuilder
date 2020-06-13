@@ -1,12 +1,18 @@
-import { AddtoCartAction, RemoveFromCart } from './cart';
+import { AddToCartAction , RemoveFromCartAction } from './cart';
+import { AddRingAction, RemoveRingAction, AddDiamondAction, RemoveDiamondAction } from './ringbuilder'
 
 export enum ActionTypes {
   fetchRingStart,
   fetchRingSuccess,
   fetchRingFail,
-  fetchRings,
+  fetchRingProduct,
   addToCart,
   removeFromCart,
+  addRing,
+  removeRing,
+  addDiamond,
+  removeDiamond,
 }
 
-export type CartActions = AddtoCartAction | RemoveFromCart;
+export type CartActions = AddToCartAction | RemoveFromCartAction;
+export type RingBuilderActions = AddRingAction | RemoveRingAction | AddDiamondAction | RemoveDiamondAction

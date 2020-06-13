@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import classes from './RingCatalog.module.scss';
 import Card from '../UI/Card/Card';
-import CatalogImageGallery from './CatalogImageGallery/CatalogImageGallery';
+
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { formatCurrency, ringDataToArray, filterArrayObject } from '../../helper';
 import { RING_PRICE_SORT } from '../../constants/rings';
 
 import FilterBar from './RingCatalogFilter/RingCatalogFilter';
+import CatalogImageGallery from './CatalogImageGallery/CatalogImageGallery';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 interface RingCatalogProps {}
 
@@ -29,21 +31,20 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
   };
 
   useEffect(() => {
-    async function fetch() {
+    (async function () {
       // const queryParams = ringStyleFilter.query
       //   ? `?orderBy="${ringStyleFilter.query}"&equalTo="${ringStyleFilter.style}"`
       //   : '';
       const url = 'https://ring-commerce.firebaseio.com/ringCatalog.json';
       const response = await axios.get(url);
-      const catalog = response.data;
-      const ringCatalog = ringDataToArray(catalog);
+      const data = response.data;
+      const ringCatalog = ringDataToArray(data);
 
       // filter the array based on selection
       const filteredCatalog = filterArrayObject(ringCatalog, filters);
       setCatalog(filteredCatalog);
-    }
-    fetch();
-  }, [ringStyleFilter, ringShapeFilter]);
+    })();
+  }, [ringStyleFilter, ringShapeFilter, filters]);
 
   const filterStyleHandler = (e: any) => {
     let styleValue = e.target.value;
@@ -69,6 +70,7 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
 
   return (
     <div className={classes.RingCatalog}>
+      <ProgressBar />
       <FilterBar
         filterStyle={filterStyleHandler}
         filterShape={filterShapeHandler}
