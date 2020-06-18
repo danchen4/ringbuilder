@@ -18,7 +18,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ header, values, name, selected,
   return (
     <div>
       <h5>{header}</h5>
-      <div className={classes.radioGroup}>
+      <div className={classes.RadioGroup}>
         {values.map((value: string, index: number) => {
           return (
             <div className="radioButton" key={value}>

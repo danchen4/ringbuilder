@@ -6,7 +6,6 @@ import RadioGroup from '../../UI/RadioGroup/RadioGroup';
 
 interface RingCatalogFilterProps {
   /** Handler callback function for filtering ring style*/
-
   filterStyle(e: any): void;
   /** Handler callback function for filtering ring center stone shape*/
   filterShape(e: any): void;

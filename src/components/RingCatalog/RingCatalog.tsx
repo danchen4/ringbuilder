@@ -8,7 +8,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { formatCurrency, ringDataToArray, filterArrayObject } from '../../helper';
 import { RING_PRICE_SORT } from '../../constants/rings';
 
-import FilterBar from './RingCatalogFilter/RingCatalogFilter';
+import RingCatalogFilter from './RingCatalogFilter/RingCatalogFilter';
 import CatalogImageGallery from './CatalogImageGallery/CatalogImageGallery';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
@@ -20,40 +20,38 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
 
   const [ringStyleFilter, setRingStyleFilter] = useState('All');
   const [ringShapeFilter, setRingShapeFilter] = useState('All');
-  // filters rules for ring style and ring center shape
-  const filters = {
-    style(style: string) {
-      return style === ringStyleFilter || ringStyleFilter === 'All';
-    },
-    center(center: string) {
-      return center === ringShapeFilter || ringShapeFilter === 'All';
-    },
-  };
 
   useEffect(() => {
     (async function () {
-      // const queryParams = ringStyleFilter.query
-      //   ? `?orderBy="${ringStyleFilter.query}"&equalTo="${ringStyleFilter.style}"`
-      //   : '';
       const url = 'https://ring-commerce.firebaseio.com/ringCatalog.json';
       const response = await axios.get(url);
       const data = response.data;
       const ringCatalog = ringDataToArray(data);
 
+      // filters rules for ring style and ring center shape
+      const filters = {
+        style(style: string) {
+          return style === ringStyleFilter || ringStyleFilter === 'All';
+        },
+        center(center: string) {
+          return center === ringShapeFilter || ringShapeFilter === 'All';
+        },
+      };
+
       // filter the array based on selection
       const filteredCatalog = filterArrayObject(ringCatalog, filters);
       setCatalog(filteredCatalog);
     })();
-  }, [ringStyleFilter, ringShapeFilter, filters]);
+  }, [ringStyleFilter, ringShapeFilter]);
 
   const filterStyleHandler = (e: any) => {
-    let styleValue = e.target.value;
-    setRingStyleFilter(styleValue);
+    let target = e.target;
+    setRingStyleFilter(target.value);
   };
 
   const filterShapeHandler = (e: any) => {
-    let shapeValue = e.target.value;
-    setRingShapeFilter(shapeValue);
+    let target = e.target;
+    setRingShapeFilter(target.value);
   };
 
   const selectSortHandler = (e: any) => {
@@ -71,7 +69,7 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
   return (
     <div className={classes.RingCatalog}>
       <ProgressBar />
-      <FilterBar
+      <RingCatalogFilter
         filterStyle={filterStyleHandler}
         filterShape={filterShapeHandler}
         selectSort={selectSortHandler}

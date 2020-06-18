@@ -1,6 +1,6 @@
 import { ActionTypes } from './types';
 import { RingBuilderRingData, RingBuilderDiamondData } from '../reducers/ringbuilder'
-
+import { Dispatch } from 'redux';
 
 export interface AddRingAction {
   type: ActionTypes.addRing;
@@ -27,6 +27,7 @@ export interface RemoveDiamondAction {
 }
 
 export const addRing = (ringData: RingBuilderRingData): AddRingAction => {
+  localStorage.setItem('ringData', JSON.stringify(ringData));
   return {
     type: ActionTypes.addRing,
     payload: ringData,
@@ -41,6 +42,7 @@ export const removeRing = (sku: string): RemoveRingAction => {
 };
 
 export const addDiamond = (diamondData: RingBuilderDiamondData): AddDiamondAction => {
+  localStorage.setItem('diamondData', JSON.stringify(diamondData));
   return {
     type: ActionTypes.addDiamond,
     payload: diamondData,
@@ -53,3 +55,11 @@ export const removeDiamond = (certNumber: number): RemoveDiamondAction => {
     payload: certNumber,
   };
 };
+
+export const ringBuilderCheckData = () => (dispatch: Dispatch) => {
+  const ringData = localStorage.getItem('ringData');
+  const diamondData = localStorage.getItem('diamondData');
+
+  if (ringData) dispatch(addRing(JSON.parse(ringData)));
+  if (diamondData) dispatch(addDiamond(JSON.parse(diamondData)));
+}

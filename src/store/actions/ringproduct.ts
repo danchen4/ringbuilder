@@ -1,6 +1,8 @@
 import { ActionTypes } from './types';
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Dispatch } from 'redux';
+import { ringDataToArray } from '../../helper';
+import { RingData } from '../reducers/ringproduct';
 
 interface RingDataFromDatabase {
   sku: string;
@@ -23,35 +25,51 @@ interface RingDataFromDatabase {
   image_rg_3: string;
 }
 
-const fetchRingStart = () => {
+export interface FetchRingStart {
+  type: ActionTypes.fetchRingStart;
+}
+
+export interface FetchRingFail {
+  type: ActionTypes.fetchRingFail;
+  payload: AxiosError;
+}
+
+export interface FetchRingSuccess {
+  type: ActionTypes.fetchRingSuccess;
+  payload: RingData;
+}
+
+export const fetchRingStart = (): FetchRingStart => {
   return {
     type: ActionTypes.fetchRingStart,
   };
 };
 
-const fetchRingFail = (err: AxiosError) => {
+export const fetchRingFail = (err: AxiosError): FetchRingFail => {
   return {
     type: ActionTypes.fetchRingFail,
     payload: err,
   };
 };
 
-const fetchRingSuccess = (rings: any) => {
+export const fetchRingSuccess = (rings: any) => {
   return {
     type: ActionTypes.fetchRingSuccess,
     payload: rings,
   };
 };
 
-const fetchRingProduct = (sku: string) => async (dispatch: Dispatch) => {
+export const fetchRingProduct = (sku: string) => async (dispatch: Dispatch) => {
   const queryParams = `?orderBy="sku"&equalTo="${sku}"`
   const url = 'https://ring-commerce.firebaseio.com/ringCatalog.json';
-  
   dispatch(fetchRingStart());
 
   try {
     const response = await axios.get(url + queryParams);
-    dispatch(fetchRingSuccess(response.data));
+    const data = await response.data;
+
+    const ringCatalog = ringDataToArray(data); 
+    dispatch(fetchRingSuccess(ringCatalog[0]));
   } catch (err) {
     dispatch(fetchRingFail(err));
   }

@@ -1,0 +1,15 @@
+@import '../../../sass/abstracts/abstracts';
+
+.CheckboxGroup {
+  display: flex;
+}
+
+.CheckboxGroup > * {
+    &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+.checkbox {
+
+}

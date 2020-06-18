@@ -7,8 +7,9 @@ import { addDiamond } from '../../store/actions'
 import classes from './DiamondProduct.module.scss';
 
 import { diamondDataToProductObj } from '../../helper';
-
 import { RingBuilderDiamondData } from '../../store/reducers/ringbuilder';
+import ProgressBar from '../ProgressBar/ProgressBar';
+
 
 interface DiamondProductProps {
 
@@ -76,6 +77,8 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({ }) => {
 
   return (
     <div className={classes.DiamondProduct}>
+      <ProgressBar />
+      <div className={classes.grid}>
       <div>Image</div>
       <div className={classes.description}>
         <h3>Diamond Details</h3>
@@ -84,8 +87,9 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({ }) => {
         }) : null}
       </div>
       <button className={classes.addToCart} onClick={addToRingHandler}>
-        Add To Ring
+          Add To Ring
       </button>
+      </div>
     </div>
   );
 }

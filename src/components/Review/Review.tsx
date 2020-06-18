@@ -4,7 +4,7 @@ import classes from './Review.module.scss'
 
 import { addToCart } from '../../store/actions'
 import { ringDataToArray } from '../../helper';
-
+import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 interface ReviewProps {
 
@@ -33,6 +33,7 @@ export const Review: React.FC<ReviewProps> = ({ }) => {
 
   return (
     <div>
+      <ProgressBar />
     <h1>Review Page</h1>
       <p>{ringData ? ringData.sku : null}</p>
       <p>{diamondData? diamondData.certNumber : null}</p>

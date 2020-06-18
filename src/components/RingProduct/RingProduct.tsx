@@ -1,26 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
+// Router
+import { useParams, useHistory } from 'react-router-dom';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchRingProduct, addRing, } from '../../store/actions';
+import { RingBuilderRingData } from '../../store/reducers/ringbuilder';
+
+// CSS
 import classes from './RingProduct.module.scss';
 
 import { formatCurrency, ringDataToArray } from '../../helper';
+// Components
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery';
 import ProductMetalSelection from './ProductMetalSelection/ProductMetalSelection';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import Spinner from '../UI/Spinner/Spinner';
+import Backdrop from '../UI/BackDrop/Backdrop';
 
+// Helpers, constants
 import { METAL } from '../../constants';
 
-import { addToCart, addRing, CartItem } from '../../store/actions';
-import { RingBuilderRingData } from '../../store/reducers/ringbuilder';
+
 
 interface RingProductProps {}
 
 const RingProduct: React.FC<RingProductProps> = () => {
-  const [ringData, setRingData] = useState<any>({ gallery: [], metals: [] });
+  // const [ringData, setRingData] = useState<any>({ gallery: [], metals: [] });
   const [metal, setMetal] = useState(METAL.WHITE);
+
   const diamondData = useSelector((state: any) => state.ringBuilder.diamondData);
+  const ringData = useSelector((state: any) => state.ringProduct.ringProductData);
+  const loading = useSelector((state: any) => state.ringProduct.loading);
 
   const dispatch = useDispatch();
   let { sku } = useParams();
@@ -31,15 +44,8 @@ const RingProduct: React.FC<RingProductProps> = () => {
   };
 
   useEffect(() => {
-    (async function () {
-      const queryParams = `?orderBy="sku"&equalTo="${sku}"`
-      const url = 'https://ring-commerce.firebaseio.com/ringCatalog.json';
-      const response = await axios.get(url + queryParams);
-      const data = await response.data;
-      const ringCatalog = ringDataToArray(data);
-      setRingData(ringCatalog[0]);
-    })();
-  });
+     dispatch(fetchRingProduct(sku))
+  }, [dispatch, sku]);
 
   const metalChangeHandler = (metal: string) => {
     setMetal(metal);
@@ -51,7 +57,7 @@ const RingProduct: React.FC<RingProductProps> = () => {
       image: ringData.gallery,
       name: ringData.name,
       style: ringData.style,
-      metal: ringData.metal,
+      metal: metal,
       price: ringData.price,
     }
 
@@ -64,30 +70,39 @@ const RingProduct: React.FC<RingProductProps> = () => {
     }
   };
 
-  return (
-    <div className={classes.RingProduct}>
+  let ringProduct = (
+    <React.Fragment>
+      <Backdrop />
+      <Spinner />
+    </React.Fragment>
+    
+  )
+  if (!loading) {
+    ringProduct = (<div className={classes.RingProduct}>
       <ProgressBar />
       <div className={classes.grid}>
-      <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
-      <div className={classes.description}>
-        <h3>{ringData.name}</h3>
-        <p>
-          {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
+        <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
+        <div className={classes.description}>
+          <h3>{ringData.name}</h3>
+          <p>
+            {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
         </p>
-        <p>{ringData.description}</p>
-        <ProductMetalSelection
-          selectedMetal={metal}
-          metals={ringData.metals}
-          metalChange={metalChangeHandler}
-        />
-        <p className={classes.price}>{formatCurrency(ringData.price)}</p>
-        <button className={classes.addToCart} onClick={addToRingHandler}>
-          Add To Ring
+          <p>{ringData.description}</p>
+          <ProductMetalSelection
+            selectedMetal={metal}
+            metals={ringData.metals}
+            metalChange={metalChangeHandler}
+          />
+          <p className={classes.price}>{formatCurrency(ringData.price)}</p>
+          <button className={classes.addToCart} onClick={addToRingHandler}>
+            Add To Ring
         </button>
         </div>
       </div>
-    </div>
-  );
+    </div>)
+  }
+
+  return ringProduct;
 };
 
 export default RingProduct;
