@@ -16,14 +16,14 @@ interface SliderProps {
   /** maximum value of slider */
   max: number;
   /** Marks indicate predetermined values to which the user can move the slider.  Requires an array of objects with value and label key */
-  marks?: Marks[];
-
+  marks: Marks[];
+  /** Object with key value pairs of mark values and filter values*/
   range: {[key: string]: string};
-/** Handler callback function for filtering diamond color*/
-  changed(colorRange:any): void
+  /** Handler callback function for filtering data*/
+  changed(filterMinMax:any): void
 }
 
-export const DiscreteRangeSlider: React.FC<SliderProps> = ({ min, max, marks, range, changed }) => {
+export const DiscreteRangeSlider: React.FC<SliderProps> = React.memo(({ min, max, marks, range, changed }) => {
   const [value, setValue] = React.useState<number[]>([min, max]);
 
   useEffect(() => {
@@ -31,22 +31,18 @@ export const DiscreteRangeSlider: React.FC<SliderProps> = ({ min, max, marks, ra
       // Due to the ability to overlap the endpoints in the slider, need to get the lowest and highest value of the range
       const valueSorted = value;
       valueSorted.sort();
-      const colorRange = {
-        minColor: range[valueSorted[0]],
-        maxColor: range[valueSorted[1]],
+      const sortedRange = {
+        min: range[valueSorted[0]],
+        max: range[valueSorted[1]],
       }
-      changed(colorRange)
+      changed(sortedRange)
     }, 300);
     return () => {
       clearTimeout(timer);
     };
   }, [changed, range, value]);
 
-  function valuetext(value: number) {
-    return `${value}`;
-  }
-
-  const handleChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (event: any, newValue: number | number[]) => {
     const values = newValue as number[];
     setValue(values);
   };
@@ -55,10 +51,7 @@ export const DiscreteRangeSlider: React.FC<SliderProps> = ({ min, max, marks, ra
     <div className={classes.DiscreteRangeSlider}>
       <Slider
         aria-labelledby="range-slider"
-        // valueLabelDisplay="auto"
-        // getAriaValueText={valuetext}
-        // defaultValue={30}
-        onChange={handleChange}
+        onChange={handleSliderChange}
         value={value}
         step={null}
         marks={marks}
@@ -67,6 +60,6 @@ export const DiscreteRangeSlider: React.FC<SliderProps> = ({ min, max, marks, ra
       />
     </div>
   );
-}
+})
 
 export default DiscreteRangeSlider

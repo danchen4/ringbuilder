@@ -9,31 +9,39 @@ import DiamondCatalogFilter from './DiamondCatalogFilter/DiamondCatalogFilter';
 import DiamondTable from './DiamondTable/DiamondTable';
 import ProgressBar from '../ProgressBar/ProgressBar';
 // Misc.
-import { diamondDataToTable, filterArrayObject } from '../../helper';
+import { diamondDataToTableArray, filterArrayObject, costMarkup } from '../../helper';
+import { DIAMOND_COST_MARKUP } from '../../constants';
 
 
 interface DiamondCatalogProps {}
 
-interface ColorRange {
-  minColor: string,
-  maxColor: string,
+interface FilterNumRange {
+  min: number,
+  max: number,
+}
+
+interface FilterStringRange {
+  min: string,
+  max: string,
 }
 
 export const DiamondCatalog: React.FC<DiamondCatalogProps> = () => {
   const [catalog, setCatalog] = useState<any[]>([]);
   const [shapeFilter, setShapeFilter] = useState<string[]>([]);
-  const [colorRange, setColorRange] = useState<ColorRange>({minColor: 'D', maxColor: 'H'});
+  const [priceRange, setPriceRange] = useState<FilterNumRange>({ min: 0, max: 99999 });
+  const [colorRange, setColorRange] = useState<FilterStringRange>({min: 'D', max: 'H'});
+  const [clarityRange, setClarityRange] = useState<FilterStringRange>({min: 'VS1', max: 'SI2'});
   const { url } = useRouteMatch();
 
   useEffect(() => {
-    async function fetch() {
+    (async function () {
       // const queryParams = ringStyleFilter.query
       //   ? `?orderBy="${ringStyleFilter.query}"&equalTo="${ringStyleFilter.style}"`
       //   : '';
       const url = 'https://ring-commerce.firebaseio.com/diamondCatalog.json';
       const response = await axios.get(url);
       const catalog = response.data;
-      const diamondCatalog = diamondDataToTable(catalog);
+      const diamondCatalog = diamondDataToTableArray(catalog);
 
       // filters rules for ring style and ring center shape
       const filters = {
@@ -43,41 +51,58 @@ export const DiamondCatalog: React.FC<DiamondCatalogProps> = () => {
           if (!shapeFilter.includes(shape) && shapeFilter.length) matched = false;
           return matched;
         },
+        price(price: number) {
+          return price >= priceRange.min && price <= priceRange.max;
+        },
         color(color: string) {
           const diamondColorRange = ['D', 'E', 'F', 'G', 'H'];
-          const filteredRange = diamondColorRange.filter(color => colorRange.minColor <= color && color <= colorRange.maxColor);
+          const filteredRange = diamondColorRange.slice(diamondColorRange.indexOf(colorRange.min), diamondColorRange.indexOf(colorRange.max) + 1);
           return filteredRange.includes(color);
+        },
+        clarity(clarity: string) {
+          const diamondClarityRange = ['VS1', 'VS2', 'SI1', 'SI2']; //VS1 < VS2 < SI1 < SI2
+          const filteredRange = diamondClarityRange.slice(diamondClarityRange.indexOf(clarityRange.min), diamondClarityRange.indexOf(clarityRange.max) + 1);
+          return filteredRange.includes(clarity);
         }
       };
 
       const filteredCatalog = filterArrayObject(diamondCatalog, filters);
       setCatalog(filteredCatalog);
-    }
-    fetch();  
-  }, [shapeFilter, colorRange]);
+    })();
+  }, [shapeFilter, colorRange, clarityRange, priceRange]);
 
-  const filterShapeHandler = (filters:any) => {
-    // let target = e.target;
-    // setShapeFilter(target.value);  
+  const filterShapeHandler = useCallback((filters:any) => {
     const shapeFilterArray = [];
     for (let shape in filters) {
       if (filters[shape]) shapeFilterArray.push(shape)
     }
-    console.log('shapeFilterArray', shapeFilterArray);
+    // console.log('shapeFilterArray', shapeFilterArray);
     setShapeFilter(shapeFilterArray);
-  }
+  },[])
+
+  const filterPriceHandler = useCallback((priceRange: any) => {
+    console.log(priceRange);
+    setPriceRange(priceRange);
+  }, [])
 
   const filterColorHandler = useCallback((colorRange: any) => {
-    console.log(colorRange);
+    // console.log(colorRange);
     setColorRange(colorRange)
-  },[])
+  }, [])
+  
+  const filterClarityHandler = useCallback((clarityRange: any) => {
+    // console.log(clarityRange);
+    setClarityRange(clarityRange);
+  }, [])
 
   return (
     <div className={classes.DiamondCatalog}>
       <ProgressBar />
       <DiamondCatalogFilter
+        filterPrice={filterPriceHandler}
         filterShape={filterShapeHandler}
         filterColor={filterColorHandler}
+        filterClarity={filterClarityHandler}
       ></DiamondCatalogFilter>
       <h1>Diamond Page</h1>
       <DiamondTable diamondArray={catalog}/>

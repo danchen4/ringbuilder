@@ -1,0 +1,11 @@
+@import '../../../sass/abstracts/abstracts';
+
+.rangeInputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  font-size: 1.2rem;
+  width: 7rem;
+}

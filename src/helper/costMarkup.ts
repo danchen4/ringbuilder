@@ -1,3 +1,3 @@
-export function costMarkup(cost: number, markup: number) {
-  return Math.ceil(((cost * markup) / 10) * 10)
+export function costMarkup(cost: number, markup: number, rounding:number = 10) {
+  return Math.ceil(((cost * markup) / rounding)) * rounding
 }

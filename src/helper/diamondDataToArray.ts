@@ -29,10 +29,10 @@ export interface DiamondTableData {
   clarity: string,
   cut: string,
   report: string,
-  price: string,
+  price: number,
 }
 
-export function diamondDataToTable(catalog: DiamondDataFromDatabase[]): DiamondTableData[] {
+export function diamondDataToTableArray(catalog: DiamondDataFromDatabase[]): DiamondTableData[] {
   let diamondTable = [];
   for (let product in catalog) {
     diamondTable.push({
@@ -43,7 +43,7 @@ export function diamondDataToTable(catalog: DiamondDataFromDatabase[]): DiamondT
       clarity: catalog[product].clarity,
       cut: catalog[product].cut,
       report: catalog[product].lab,
-      price: formatCurrency(costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP)),
+      price: costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP),
     });
   }
   return diamondTable;
