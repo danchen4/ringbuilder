@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,OAAO,AAAC,CACN,UAAU,CAAE,IAAI,CACjB,AAED,AAAA,KAAK,AAAC,CACJ,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,OAAO,CAC9B,QAAQ,CAAE,IAAI,CACf,AAED,AAAA,YAAY,AAAC,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACpB",
+    "sources": [
+        "../../src/components/Review/Review.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "Review.module.min.css"
+}

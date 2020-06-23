@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 // Router
 import { useParams, useHistory } from 'react-router-dom';
-
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRingProduct, addRing, } from '../../store/actions';
 import { RingBuilderRingData } from '../../store/reducers/ringbuilder';
-
 // CSS
 import classes from './RingProduct.module.scss';
-
-import { formatCurrency, ringDataToArray } from '../../helper';
 // Components
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery';
 import ProductMetalSelection from './ProductMetalSelection/ProductMetalSelection';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import Spinner from '../UI/Spinner/Spinner';
 import Backdrop from '../UI/BackDrop/Backdrop';
-
 // Helpers, constants
 import { METAL } from '../../constants';
-
+import { formatCurrency, ringDataToArray } from '../../helper';
 
 
 interface RingProductProps {}
@@ -54,7 +48,7 @@ const RingProduct: React.FC<RingProductProps> = () => {
   const addToRingHandler = () => {
     const ringBuilderRingData: RingBuilderRingData = {
       sku: ringData.sku,
-      image: ringData.gallery,
+      gallery: ringData.gallery,
       name: ringData.name,
       style: ringData.style,
       metal: metal,
@@ -75,7 +69,6 @@ const RingProduct: React.FC<RingProductProps> = () => {
       <Backdrop />
       <Spinner />
     </React.Fragment>
-    
   )
   if (!loading) {
     ringProduct = (<div className={classes.RingProduct}>
@@ -94,9 +87,9 @@ const RingProduct: React.FC<RingProductProps> = () => {
             metalChange={metalChangeHandler}
           />
           <p className={classes.price}>{formatCurrency(ringData.price)}</p>
-          <button className={classes.addToCart} onClick={addToRingHandler}>
+          <button className={classes.addToRing} onClick={addToRingHandler}>
             Add To Ring
-        </button>
+          </button>
         </div>
       </div>
     </div>)

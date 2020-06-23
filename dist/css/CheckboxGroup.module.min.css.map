@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,cAAc,AAAC,CACb,OAAO,CAAE,IAAI,CACd,AAED,AACI,cADU,CAAG,CAAC,AACb,IAAK,CAAA,WAAW,CAAE,CACnB,YAAY,CAAE,IAAI,CACnB",
+    "sources": [
+        "../../src/components/UI/CheckboxGroup/CheckboxGroup.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "CheckboxGroup.module.min.css"
+}

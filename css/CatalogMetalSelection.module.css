@@ -1,0 +1,39 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.circle {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+}
+
+.circle_selected {
+  border: 1px solid #999;
+}
+
+.circle:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.wg {
+  background-color: #f5f5f5;
+}
+
+.yg {
+  background-color: #fff176;
+}
+
+.rg {
+  background-color: #ffab91;
+}
+
+.metalName {
+  color: #777;
+}
+/*# sourceMappingURL=CatalogMetalSelection.module.css.map */

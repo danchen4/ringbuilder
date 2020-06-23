@@ -54,11 +54,10 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
     setRingShapeFilter(target.value);
   };
 
-  const selectSortHandler = (e: any) => {
-    let sortValue = e.target.value;
+  const selectSortHandler = (value: any) => {
     const catalogCopy = [...catalog];
     const sortedCatalog = catalogCopy.sort((a, b) => {
-      if (sortValue === RING_PRICE_SORT.HIGHTOLOW) {
+      if (value === RING_PRICE_SORT.HIGHTOLOW) {
         return b.price - a.price;
       }
       return a.price - b.price;

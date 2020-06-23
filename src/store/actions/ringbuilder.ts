@@ -1,6 +1,7 @@
+import { Dispatch } from 'redux';
 import { ActionTypes } from './types';
 import { RingBuilderRingData, RingBuilderDiamondData } from '../reducers/ringbuilder'
-import { Dispatch } from 'redux';
+
 
 export interface AddRingAction {
   type: ActionTypes.addRing;
@@ -10,8 +11,6 @@ export interface AddRingAction {
 
 export interface RemoveRingAction {
   type: ActionTypes.removeRing;
-  /** sku of ring to remove */
-  payload?: string;
 }
 
 export interface AddDiamondAction {
@@ -22,8 +21,6 @@ export interface AddDiamondAction {
 
 export interface RemoveDiamondAction {
   type: ActionTypes.removeDiamond;
-  /** cert number of diamond to remove */
-  payload?: number;
 }
 
 export const addRing = (ringData: RingBuilderRingData): AddRingAction => {
@@ -34,10 +31,10 @@ export const addRing = (ringData: RingBuilderRingData): AddRingAction => {
   };
 };
 
-export const removeRing = (sku: string): RemoveRingAction => {
+export const removeRing = (): RemoveRingAction => {
+  localStorage.removeItem('ringData');
   return {
     type: ActionTypes.removeRing,
-    payload: sku,
   };
 };
 
@@ -49,10 +46,10 @@ export const addDiamond = (diamondData: RingBuilderDiamondData): AddDiamondActio
   };
 };
 
-export const removeDiamond = (certNumber: number): RemoveDiamondAction => {
+export const removeDiamond = (): RemoveDiamondAction => {
+  localStorage.removeItem('diamondData');
   return {
     type: ActionTypes.removeDiamond,
-    payload: certNumber,
   };
 };
 

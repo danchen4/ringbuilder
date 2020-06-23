@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,YAAY,AAAC,CACX,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,CAC/B,AAED,AAAA,MAAM,AAAC,CACL,SAAS,CAAE,MAAM,CACjB,KAAK,CAAE,IAAI,CACZ",
+    "sources": [
+        "../../src/components/UI/RangeSlider/RangeSlider.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "RangeSlider.module.min.css"
+}

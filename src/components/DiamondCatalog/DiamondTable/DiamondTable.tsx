@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
-import classes from './DiamondTable.module.scss'
+import React, { useState } from 'react'
+// Router
 import { Link, useRouteMatch } from 'react-router-dom';
-
+// CSS
+import classes from './DiamondTable.module.scss'
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -11,6 +13,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+// Misc
+import { formatCurrency } from '../../../helper';
+
 
 export interface DiamondTableData {
   certNumber: number,
@@ -22,7 +27,6 @@ export interface DiamondTableData {
   report: string,
   price: string,
 }
-
 
 interface Column {
   id: 'shape' | 'carats' | 'color' | 'clarity' | 'cut' | 'report' | 'price' | 'view';
@@ -41,7 +45,7 @@ const columns: Column[] = [
   { id: 'clarity', label: 'Clarity', minWidth: MIN_WIDTH },
   { id: 'cut', label: 'Cut', minWidth: MIN_WIDTH },
   { id: 'report', label: 'Report', minWidth: MIN_WIDTH },
-  { id: 'price', label: 'Price', minWidth: MIN_WIDTH },
+  { id: 'price', label: 'Price', minWidth: MIN_WIDTH, format: (value)=>formatCurrency(value)},
   { id: 'view', label: 'View', minWidth: MIN_WIDTH },
 ];
 
@@ -53,7 +57,6 @@ const useStyles = makeStyles({
     maxHeight: 440,
   },
 });
-
 
 interface DiamondTableProps {
   diamondArray: DiamondTableData[]
@@ -92,7 +95,7 @@ export const DiamondTable: React.FC<DiamondTableProps> = ({ diamondArray}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {diamondArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {diamondArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.certNumber}>
                   {columns.map((column) => {

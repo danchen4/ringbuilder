@@ -9,8 +9,8 @@ import DiamondCatalogFilter from './DiamondCatalogFilter/DiamondCatalogFilter';
 import DiamondTable from './DiamondTable/DiamondTable';
 import ProgressBar from '../ProgressBar/ProgressBar';
 // Misc.
-import { diamondDataToTableArray, filterArrayObject, costMarkup } from '../../helper';
-import { DIAMOND_COST_MARKUP } from '../../constants';
+import { diamondDataToTableArray, filterArrayObject } from '../../helper';
+
 
 
 interface DiamondCatalogProps {}

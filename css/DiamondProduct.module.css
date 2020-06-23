@@ -1,0 +1,97 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.DiamondProduct {
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'left right';
+  gap: 1rem;
+}
+
+.diamond_image {
+  width: 80%;
+}
+
+.diamond_details {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.diamond_details > * {
+  text-align: left;
+}
+
+.description {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.description > * {
+  margin-bottom: 2rem;
+}
+
+.data {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.label {
+  font-weight: 600;
+  padding-right: 0.4rem;
+}
+
+.addToRing {
+  padding: 1rem 2rem;
+  width: 50%;
+  background-color: #ffee58;
+  color: #333;
+  border: 2px solid #000;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-box-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.1);
+}
+
+.addToRing:hover {
+  background-color: #ffff8b;
+  color: #999;
+  -webkit-transform: translateY(-0.2rem);
+          transform: translateY(-0.2rem);
+  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.addToRing:focus {
+  outline: none;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-box-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.1);
+}
+/*# sourceMappingURL=DiamondProduct.module.css.map */

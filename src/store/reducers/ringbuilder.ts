@@ -2,7 +2,7 @@ import { ActionTypes, RingBuilderActions } from '../actions/types';
 
 export interface RingBuilderRingData {
   sku: string;
-  image: string[];
+  gallery: string[];
   name: string;
   style: string;
   metal: string;

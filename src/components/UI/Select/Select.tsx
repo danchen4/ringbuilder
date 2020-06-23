@@ -8,9 +8,13 @@ interface SelectOptions {
 }
 
 interface SelectProps {
+  /** Label for select group */
   header: string;
+  /** Array of select options with form {value: string, label: string} */
   values: SelectOptions[];
+  /** Name attribute of select group */
   name: string;
+  /** Handler callback for value selection */
   selected(e: any): void;
 }
 

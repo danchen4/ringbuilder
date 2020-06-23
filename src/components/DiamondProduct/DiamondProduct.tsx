@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+// Router
 import { useParams, useHistory } from 'react-router-dom'
+// Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { addDiamond } from '../../store/actions'
-
-import classes from './DiamondProduct.module.scss';
-
-import { diamondDataToProductObj } from '../../helper';
 import { RingBuilderDiamondData } from '../../store/reducers/ringbuilder';
+// CSS
+import classes from './DiamondProduct.module.scss';
+// Components
 import ProgressBar from '../ProgressBar/ProgressBar';
+// Misc
+import { diamondDataToProductObj, formatCurrency } from '../../helper';
+import ovalIcon from '../../images/Oval.svg';
+import roundIcon from '../../images/Round.svg';
+import ringIcon from '../../images/solitaire.svg';
 
 
 interface DiamondProductProps {
@@ -34,9 +40,9 @@ const initialState = {
 }
 
 export const DiamondProduct: React.FC<DiamondProductProps> = ({ }) => {
-  const [diamondData, setDiamondData] = useState<any>();
+  const [diamondData, setDiamondData] = useState<any>(initialState);
   const ringData = useSelector((state: any) => state.ringBuilder.ringData);
-  
+
   const dispatch = useDispatch();
   const onAddToRing = (diamondData: RingBuilderDiamondData) => {
     dispatch(addDiamond(diamondData))
@@ -73,22 +79,41 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({ }) => {
     } else { history.push({ pathname: '/review' }) }
   };
 
-  console.log('diamondData', diamondData);  
+  console.log('diamondData', diamondData);
+
+  let imageSource = '';
+  if (diamondData) {
+    imageSource = diamondData.shape.value === 'Round' ? roundIcon : ovalIcon
+  }
 
   return (
     <div className={classes.DiamondProduct}>
       <ProgressBar />
       <div className={classes.grid}>
-      <div>Image</div>
-      <div className={classes.description}>
-        <h3>Diamond Details</h3>
-        {diamondData ? Object.values(diamondData).map((detail:any) => {
-          return (<div key={detail.label} className={classes.data}><span className={classes.label}>{detail.label}: </span>{detail.value}</div>)
-        }) : null}
-      </div>
-      <button className={classes.addToCart} onClick={addToRingHandler}>
-          Add To Ring
-      </button>
+        <img className={classes.diamond_image} src={imageSource} alt="diamond" />
+        <div className={classes.description}>
+          <h2>{diamondData.carats.value} Carat {diamondData.shape.value} Diamond </h2>
+          <div className={classes.diamond_details}>
+            {diamondData ? Object.values(diamondData).map((detail: any) => {
+              return (
+                <>
+                  {detail.label === 'Price'
+                    ? null :
+                    <div
+                      key={detail.label}
+                      className={classes.data}>
+                      <span className={classes.label}>{detail.label}: </span>
+                      {detail.value}
+                    </div>
+                  }
+                </>)
+            }) : null}
+          </div>
+          <div className={classes.data}><span className={classes.label}> Price:</span> {formatCurrency(diamondData.price.value)}</div>
+          <button className={classes.addToRing} onClick={addToRingHandler}>
+            Add To Ring
+          </button>
+        </div>
       </div>
     </div>
   );

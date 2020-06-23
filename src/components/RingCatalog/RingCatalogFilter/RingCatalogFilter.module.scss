@@ -4,10 +4,24 @@
   width: 100%;
   height: 5rem;
   margin: 2rem 0;
-  border: 1px solid $color-grey-dark-2;
+  border-bottom: 1px solid $color-grey-light-2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.filterGroup {
-  display: inline-block;
-  margin: 0 2rem;
+.filter_group {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sort_group {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.filter {
+  padding: 0 2rem;
 }

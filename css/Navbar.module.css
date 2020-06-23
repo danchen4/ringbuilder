@@ -1,0 +1,30 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.Navbar ul {
+  padding: 0 2rem;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #777;
+}
+
+.Navbar li {
+  font-size: 1.2rem;
+  padding: 1rem 0;
+}
+
+.Navbar li:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.Navbar li a {
+  text-decoration: none;
+  color: #fff;
+}
+/*# sourceMappingURL=Navbar.module.css.map */

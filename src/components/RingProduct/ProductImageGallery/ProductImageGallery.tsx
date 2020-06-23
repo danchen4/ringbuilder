@@ -17,7 +17,7 @@ interface ImageGalleryProps {
   selectedMetal?: string;
 }
 
-const ImageGallery = ({ images, selectedMetal }: ImageGalleryProps) => {
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, selectedMetal } ) => {
   const [imageIndex, setImageIndex] = useState<ImageGalleryIndex>(0);
   const [imageGallery, setImageGallery] = useState<string[]>([]);
 

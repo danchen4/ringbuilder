@@ -7,8 +7,7 @@ import CheckboxGroup from '../../UI/CheckboxGroup/CheckboxGroup'
 import DiscreteRangeSlider from '../../UI/DiscreteRangeSlider/DiscreteRangeSlider'
 import RangeSlider from '../../UI/RangeSlider/RangeSlider'
 // Misc.
-import { diamondDataToTableArray, costMarkup } from '../../../helper';
-import { DIAMOND_COST_MARKUP } from '../../../constants';
+import { diamondDataToTableArray } from '../../../helper';
 
 const colorMarks = [
   { value: 10, label: 'D' },

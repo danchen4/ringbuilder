@@ -67,7 +67,7 @@ export function diamondDataToProductObj(catalog: DiamondDataFromDatabase[]): any
       depth: { label: 'Depth', value: catalog[product].depth + 'mm' },
       tablePer: { label: 'Table %', value: (catalog[product].tableper * 100).toFixed(2) + '%' },
       depthPer: { label: 'Depth %', value: (catalog[product].depthper * 100).toFixed(2) + '%' },
-      price: { label: 'Price', value: formatCurrency(costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP)) },
+      price: { label: 'Price', value: costMarkup(catalog[product].cost, DIAMOND_COST_MARKUP) },
     };
   }
   return diamondProductObj;

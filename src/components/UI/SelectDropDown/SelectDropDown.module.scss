@@ -1,0 +1,48 @@
+@import '../../../sass/abstracts/abstracts';
+
+.SelectDropDown {
+}
+
+.select_dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 3rem 1rem 2rem;
+  text-align: left;
+  // border: 1px solid orangered;
+}
+
+.select_group {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 20rem;
+  padding: 2rem 1rem 3rem 2rem;
+
+  background-color: $color-white;
+  border-left: 1px solid $color-grey-light-2;
+  border-bottom: 1px solid $color-grey-light-2;
+  border-right: 1px solid $color-grey-light-2;
+  z-index: 10;
+}
+
+.select_header {
+  color: $color-grey-dark-3;
+  font-weight: 500;
+}
+
+.icon_chevron {
+  margin-left: 1rem;
+  color: $color-primary-dark;
+}
+
+.select {
+  display: flex;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+
+  &:hover {
+    color: $color-primary;
+    cursor: pointer;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+// CSS
 import classes from './Card.module.scss';
 
 interface CardProps {}

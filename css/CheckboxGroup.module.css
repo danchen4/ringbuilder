@@ -1,0 +1,17 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.CheckboxGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.CheckboxGroup > *:not(:last-child) {
+  margin-right: 1rem;
+}
+/*# sourceMappingURL=CheckboxGroup.module.css.map */

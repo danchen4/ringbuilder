@@ -1,0 +1,34 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.DiamondCatalogFilter {
+  border: 1px solid orangered;
+  margin: 1rem 0;
+  padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.DiamondCatalogFilter > div {
+  text-align: left;
+}
+
+.FilterBar {
+  width: 100%;
+  height: 5rem;
+  margin: 2rem 0;
+  border: 1px solid #999;
+}
+
+.filterGroup {
+  display: inline-block;
+  margin: 0 2rem;
+}
+/*# sourceMappingURL=DiamondCatalogFilter.module.css.map */

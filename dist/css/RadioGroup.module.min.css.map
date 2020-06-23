@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,WAAW,AAAC,CACV,OAAO,CAAE,IAAI,CACb,MAAM,CAAE,MAAM,CACf,AAED,AAAA,YAAY,AAAC,CACX,OAAO,CAAE,YAAY,CACtB",
+    "sources": [
+        "../../src/components/UI/RadioGroup/RadioGroup.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "RadioGroup.module.min.css"
+}

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACmBA;;;;;;EAME",
+    "sources": [
+        "../src/components/UI/DiscreteRangeSlider/DiscreteRangeSlider.module.scss",
+        "../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "DiscreteRangeSlider.module.css"
+}

@@ -1,0 +1,50 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.imageGallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainImage {
+  width: 85%;
+}
+
+.gallery {
+  width: 15%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 1rem 0;
+}
+
+.galleryImage {
+  width: 100%;
+  padding: 0.2rem;
+}
+
+.galleryImage__Selected {
+  border: 2px solid #c9bc1f;
+}
+
+.galleryImage__Unselected {
+  border: 1px solid #f7f7f7;
+}
+
+.galleryImage:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+/*# sourceMappingURL=ProductImageGallery.module.css.map */

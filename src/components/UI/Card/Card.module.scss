@@ -8,9 +8,14 @@ $width: 2rem;
   margin: 0 1rem;
   padding: 2rem;
   background-color: $color-white;
-  border: 1px solid $color-grey-light-3;
-  border-radius: $border-radius-md;
-  box-shadow: $shadow-smooth-sm;
+
+  border: 1px solid $color-white;
+
+  &:hover {
+    border: 1px solid $color-grey-light-2;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-xxs;
+  }
 
   margin-bottom: 2rem;
 

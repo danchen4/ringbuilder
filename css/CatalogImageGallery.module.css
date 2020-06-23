@@ -1,0 +1,40 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.mainImage {
+  max-width: 20rem;
+}
+
+.gallery {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.gallery::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.galleryImage {
+  float: left;
+  width: 4rem;
+  padding: 0.2rem;
+}
+
+.galleryImage__Selected {
+  border: 2px solid #c9bc1f;
+}
+
+.galleryImage__Unselected {
+  border: 1px solid #d9d9d9;
+}
+
+.galleryImage:not(:last-child) {
+  margin-right: 0.5rem;
+}
+/*# sourceMappingURL=CatalogImageGallery.module.css.map */

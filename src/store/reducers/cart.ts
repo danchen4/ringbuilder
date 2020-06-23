@@ -1,5 +1,17 @@
 import { ActionTypes, CartActions } from '../actions/types';
-import { CartItem } from '../actions/cart';
+
+export interface CartItem {
+  sku: string;
+  image: string;
+  name: string;
+  style: string;
+  metal: string;
+  size: string,
+  price: number;
+  certNumber: number,
+  carats: number,
+  shape: string,
+}
 
 export interface CartState {
   cartItems: CartItem[];
@@ -14,13 +26,18 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
     case ActionTypes.addToCart:
       return {
         ...state,
-        cart: state.cartItems.push(action.payload),
+        cartItems: state.cartItems.concat(action.payload),
       };
     case ActionTypes.removeFromCart:
-      const updatedCart = state.cartItems.filter((cartItem) => cartItem.sku !== action.payload);
+      const updatedCart = state.cartItems.filter((cartItem) => cartItem.certNumber !== action.payload);
       return {
         ...state,
-        cart: updatedCart,
+        cartItems: updatedCart,
+      };
+    case ActionTypes.loadCart:
+      return {
+        ...state,
+        cartItems: action.payload,
       };
     default:
       return state;

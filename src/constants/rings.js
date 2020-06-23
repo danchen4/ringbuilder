@@ -19,3 +19,18 @@ export const RING_PRICE_SORT = {
   LOWTOHIGH: 'lowToHigh',
   HIGHTOLOW: 'highToLow',
 };
+
+export const RING_PRICE_SORT_LABEL = {
+  LOWTOHIGH: 'Price (Low to High)',
+  HIGHTOLOW: 'Price (High to Low)',
+};
+
+export const RING_SIZES = [
+  { value: '4', label: '4' },
+  { value: '5', label: '5' },
+  { value: '6', label: '6' },
+  { value: '7', label: '7' },
+  { value: '8', label: '8' },
+  { value: '9', label: '9' },
+  { value: '10', label: '10' },
+];

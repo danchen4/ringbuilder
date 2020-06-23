@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { loadCartFromLocal, removeFromCart } from '../../store/actions';
+import {CartItem} from '../../store/reducers/cart'
+// Router
+import { useHistory } from 'react-router';
+//CSS
 import classes from './Cart.module.scss';
-
-import { formatCurrency } from '../../helper/formatCurrency';
+// Components
 import Totals from './Totals/Totals';
+// Misc
+import { formatCurrency } from '../../helper/formatCurrency';
+
 
 interface CartProps {}
-
-interface CartItem {
-  sku: string;
-  name: string;
-  style: string;
-  metal: string;
-  price: number;
-}
 
 const sampleCart = [
   {
@@ -38,37 +38,60 @@ const sampleCart = [
 
 const Cart: React.FC<CartProps> = () => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
-  console.log(cartItems);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  useEffect(() => {});
+  useEffect(() => {
+    const cart = localStorage.getItem('cart');
+    if (cart) dispatch(loadCartFromLocal());
+  }, [dispatch])
+
+  const removeCartItemHandler = (certNumber: number) => {
+    dispatch(removeFromCart(certNumber));
+  }
+
+  const checkOutHandler = () => {
+    history.push({pathname:'/checkout'})
+  }
+
+  const subTotal = cartItems.reduce((subTotal: number, cartItem: CartItem) => {
+    return subTotal + cartItem.price;
+  }, 0);
+
+  console.log(cartItems)
 
   let cartCard = <p>You're cart is empty</p>;
-  if (sampleCart.length) {
+  if (cartItems.length) {
     cartCard = (
       <>
         <div className={classes.card}>
-          {sampleCart.map((cartitem: any) => {
+          {cartItems.map((cartItem: CartItem) => {
             return (
-              <div className={classes.grid} key={cartitem.sku}>
+              <div key={cartItem.certNumber} className={classes.grid}>
                 <div className={classes.column}>
-                  <img className={classes.cartImage} src={cartitem.image} alt="ring" />
+                  <img className={classes.cartImage} src={cartItem.image} alt="ring" />
                 </div>
                 <div className={classes.column}>
                   <div className={classes.cartDesc}>
-                    <p>SKU: {cartitem.sku}</p>
-                    <p>Name: {cartitem.name}</p>
-                    <p>{cartitem.style} Ring</p>
-                    <button className={classes.cartRemove}>remove</button>
+                    <h2>{cartItem.metal} {cartItem.name} {cartItem.style !== 'Solitaire' ? 'Diamond' : null} Ring</h2>
+                    <p>{cartItem.sku}</p>
+                    <p>Ring Size: {cartItem.size}</p>
+                    <br/>
+                    <p>{cartItem.carats} Carats {cartItem.shape} Diamond</p>
+                    <button className={classes.cartRemove} onClick={() => removeCartItemHandler(cartItem.certNumber)}>remove</button>
                   </div>
                 </div>
                 <div className={classes.column}>
-                  <span className={classes.price}>{formatCurrency(cartitem.price)}</span>
+                  <span className={classes.price}>{formatCurrency(cartItem.price)}</span>
                 </div>
               </div>
             );
           })}
         </div>
-        <Totals />
+        <Totals subTotal={subTotal} />
+        <button className={classes.addToCart} onClick={checkOutHandler}>
+          Checkout
+        </button>
       </>
     );
   }
