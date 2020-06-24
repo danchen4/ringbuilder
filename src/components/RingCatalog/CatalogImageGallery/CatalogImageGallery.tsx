@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
+// CSS
 import classes from './CatalogImageGallery.module.scss';
 import cn from 'classnames';
+// Components
 import CatalogMetalSelection from '../../RingCatalog/CatalogMetalSelection/CatalogMetalSelection';
+// Misc.
 import { METAL } from '../../../constants/rings';
 
-export enum ImageGalleryIndex {
-  first,
-  second,
-  third,
-}
-
 interface ImageGalleryProps {
-  /** An array of url paths to images */
+  /** An array of url paths of images */
   images: string[];
   /** An array of avaiable metals for each ring */
   metals: string[];
 }
 
 const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
-  const [imageIndex, setImageIndex] = useState<ImageGalleryIndex>(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const [metal, setMetal] = useState(METAL.WHITE);
   const [imageGallery, setImageGallery] = useState<string[]>([]);
 
@@ -28,7 +25,6 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
 
   const metalChangeHandler = (metal: string) => {
     setMetal(metal);
-    console.log(metal);
   };
 
   useEffect(() => {
@@ -44,17 +40,27 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
   }, [metal, images]);
 
   return (
-    <React.Fragment>
-      <img className={classes.mainImage} src={imageGallery[imageIndex]} alt="ring" />
-      <div className={classes.gallery}>
+    <div className={classes.CatalogImageGallery}>
+      <img
+        className={classes.CatalogImageGallery__mainImage}
+        src={imageGallery[imageIndex]}
+        alt="ring"
+      />
+      <div className={classes.CatalogImageGallery__gallery}>
         {imageGallery.map((image: string, index: number) => {
           return (
             <img
               key={index}
               className={
                 imageIndex === index
-                  ? cn(classes.galleryImage, classes.galleryImage__Selected)
-                  : cn(classes.galleryImage, classes.galleryImage__Unselected)
+                  ? cn(
+                      classes.CatalogImageGallery__image,
+                      classes.CatalogImageGallery__image_selected
+                    )
+                  : cn(
+                      classes.CatalogImageGallery__image,
+                      classes.CatalogImageGallery__image_unselected
+                    )
               }
               src={image}
               alt="ring"
@@ -68,7 +74,7 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
         metals={metals}
         metalChange={metalChangeHandler}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
+// CSS
 import cn from 'classnames';
 import classes from './CatalogMetalSelection.module.scss';
+// Misc.
 import { METAL } from '../../../constants/rings';
 
 interface CatalogMetalSelectionProps {
@@ -18,14 +20,13 @@ const CatalogMetalSelection: React.FC<CatalogMetalSelectionProps> = ({
   metalChange,
 }) => {
   return (
-    <div className={classes.metalSelection}>
+    <div className={classes.MetalSelection}>
       {metals.map((metal: string) => {
         return (
           <div
             key={metal}
-            className={cn({
-              [classes.circle]: true,
-              [classes.circle_selected]: metal === selectedMetal,
+            className={cn(classes.MetalSelection__options, {
+              [classes.MetalSelection__options_selected]: metal === selectedMetal,
               [classes.wg]: metal === METAL.WHITE,
               [classes.yg]: metal === METAL.YELLOW,
               [classes.rg]: metal === METAL.ROSE,
@@ -34,7 +35,7 @@ const CatalogMetalSelection: React.FC<CatalogMetalSelectionProps> = ({
           />
         );
       })}
-      <div className={classes.metalName}>{selectedMetal}</div>
+      <div className={classes.MetalSelection__name}>{selectedMetal}</div>
     </div>
   );
 };

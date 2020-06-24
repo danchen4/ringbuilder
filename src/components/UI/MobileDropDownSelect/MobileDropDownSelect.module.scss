@@ -1,0 +1,79 @@
+@import '../../../sass/abstracts/abstracts';
+
+$width: 1rem;
+
+.MobileDropDownSelect {
+  &__anchor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    text-align: left;
+    border-bottom: 1px solid $color-grey-light-2;
+
+    &_mobile {
+      border-bottom: none;
+    }
+  }
+
+  &__header {
+    color: $color-grey-dark-3;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  &__icon {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: $color-primary-dark;
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: space-evenly;
+    width: 100%;
+    padding: 2rem 1rem 2rem 2rem;
+
+    background-color: $color-white;
+    border-bottom: 1px solid $color-grey-light-2;
+  }
+
+  &__button {
+    width: calc(50% - #{$width});
+    margin: 0.5rem;
+
+    background-color: transparent;
+    color: $color-grey-dark-3;
+    border: 1px solid $color-grey-light-2;
+    padding: 1rem 3rem;
+
+    &_selected {
+      outline: 2px solid $color-primary-dark;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary-dark;
+    }
+  }
+}
+
+.fadeEnter {
+  opacity: 0;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  transition: all 0.1s ease-in;
+}
+
+.fadeExit {
+  opacity: 1;
+  /* transform: translateX(0%); */
+}
+
+.fadeExitActive {
+  opacity: 0;
+  /* transform: translateX(100%); */
+  transition: all 0.1s ease-out;
+}

@@ -15,11 +15,6 @@ export const RING_ATTRIBUTES = {
   CENTER: 'center_shape',
 };
 
-export const RING_PRICE_SORT = {
-  LOWTOHIGH: 'lowToHigh',
-  HIGHTOLOW: 'highToLow',
-};
-
 export const RING_PRICE_SORT_LABEL = {
   LOWTOHIGH: 'Price (Low to High)',
   HIGHTOLOW: 'Price (High to Low)',

@@ -5,36 +5,36 @@ md: 900 - 1200px: Tablet landscape
 [1200 - 1800px]: normal styling
 lg: 1800px +:  Big desktop
 */
-.mainImage {
+.CatalogImageGallery__mainImage {
   max-width: 20rem;
 }
 
-.gallery {
+.CatalogImageGallery__gallery {
   display: inline-block;
   margin: 1rem 0;
 }
 
-.gallery::after {
+.CatalogImageGallery__gallery::after {
   content: '';
   display: table;
   clear: both;
 }
 
-.galleryImage {
+.CatalogImageGallery__image {
   float: left;
-  width: 4rem;
+  width: 4.5rem;
   padding: 0.2rem;
 }
 
-.galleryImage__Selected {
+.CatalogImageGallery__image_selected {
   border: 2px solid #c9bc1f;
 }
 
-.galleryImage__Unselected {
+.CatalogImageGallery__image_unselected {
   border: 1px solid #d9d9d9;
 }
 
-.galleryImage:not(:last-child) {
-  margin-right: 0.5rem;
+.CatalogImageGallery__image:not(:last-child) {
+  margin-right: 1rem;
 }
 /*# sourceMappingURL=CatalogImageGallery.module.css.map */

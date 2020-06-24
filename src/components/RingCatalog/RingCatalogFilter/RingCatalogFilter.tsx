@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 // CSS
 import classes from './RingCatalogFilter.module.scss';
+import cn from 'classnames';
 //MISC
-import { RING_ATTRIBUTES, RING_PRICE_SORT, RING_PRICE_SORT_LABEL } from '../../../constants';
+import { RING_ATTRIBUTES, RING_PRICE_SORT_LABEL } from '../../../constants';
 // Components
-import Select from '../../UI/Select/Select';
 import CheckboxDropDown from '../../UI/CheckboxDropDown/CheckboxDropDown';
-import SelectDropDown from '../../UI/SelectDropDown/SelectDropDown';
+import SortDropDown from '../../UI/SortDropDown/SortDropDown';
+import MobileDropDownSelect from '../../UI/MobileDropDownSelect/MobileDropDownSelect';
 
 interface RingCatalogFilterProps {
   /** Handler callback function for filtering ring style*/
@@ -14,17 +15,14 @@ interface RingCatalogFilterProps {
   /** Handler callback function for filtering ring center stone shape*/
   filterShape(e: any): void;
   /** Handler callback function for price sort*/
-  selectSort(value: any): void;
-  /** Value of ring style radio button selected*/
+  selectSort(e: any): void;
+  /** Value of ring style selected*/
   ringStyleSelected: string;
-
+  /** Value of ring center shape selected*/
   ringShapeSelected: string;
 }
 
-const priceSortValues = [
-  { value: RING_PRICE_SORT.LOWTOHIGH, label: RING_PRICE_SORT_LABEL.LOWTOHIGH },
-  { value: RING_PRICE_SORT.HIGHTOLOW, label: RING_PRICE_SORT_LABEL.HIGHTOLOW },
-];
+const priceSortValues = [RING_PRICE_SORT_LABEL.LOWTOHIGH, RING_PRICE_SORT_LABEL.HIGHTOLOW];
 
 const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
   filterStyle,
@@ -33,34 +31,69 @@ const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
   ringStyleSelected,
   ringShapeSelected,
 }) => {
+  let desktopOutput = (
+    <div className={classes.FilterBar_desktop}>
+      <div className={cn(classes.FilterBar__filter, classes.FilterBar__filter_left)}>
+        <CheckboxDropDown
+          header="Style"
+          name={RING_ATTRIBUTES.STYLE}
+          values={['All', 'Halo', 'Pave', 'Solitaire']}
+          checked={filterStyle}
+          selected={ringStyleSelected}
+        />
+      </div>
+      <div className={cn(classes.FilterBar__filter, classes.FilterBar__filter_left)}>
+        <CheckboxDropDown
+          header="Diamond Shape"
+          name={RING_ATTRIBUTES.CENTER}
+          values={['All', 'Round', 'Oval']}
+          checked={filterShape}
+          selected={ringShapeSelected}
+        />
+      </div>
+      <div className={cn(classes.FilterBar__filter, classes.FilterBar__filter_right)}>
+        <SortDropDown
+          values={priceSortValues}
+          checked={selectSort}
+          defaultSortHeader={RING_PRICE_SORT_LABEL.LOWTOHIGH}
+        />
+      </div>
+    </div>
+  );
+
+  let mobileOutput = (
+    <div className={classes.FilterBar_mobile}>
+      <div className={cn(classes.FilterBar__filter)}>
+        <MobileDropDownSelect
+          header="Style"
+          values={['All', 'Halo', 'Pave', 'Solitaire']}
+          checked={filterStyle}
+          selected={ringStyleSelected}
+        />
+      </div>
+      <div className={cn(classes.FilterBar__filter)}>
+        <MobileDropDownSelect
+          header="Diamond Shape"
+          values={['All', 'Round', 'Oval']}
+          checked={filterShape}
+          selected={ringShapeSelected}
+        />
+      </div>
+      <div className={cn(classes.FilterBar__filter)}>
+        <MobileDropDownSelect
+          header="Sort"
+          values={priceSortValues}
+          checked={selectSort}
+          selected={ringShapeSelected}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div className={classes.FilterBar}>
-      <div className={classes.filter_group}>
-        <div className={classes.filter}>
-          <CheckboxDropDown
-            header="Ring Style"
-            name={RING_ATTRIBUTES.STYLE}
-            values={['All', 'Halo', 'Pave', 'Solitaire']}
-            checked={filterStyle}
-            selected={ringStyleSelected}
-          />
-        </div>
-        <div className={classes.filter}>
-          <CheckboxDropDown
-            header="Center Stone Shape"
-            name={RING_ATTRIBUTES.CENTER}
-            values={['All', 'Round', 'Oval']}
-            checked={filterShape}
-            selected={ringShapeSelected}
-          />
-        </div>
-      </div>
-      <div className={classes.sort_group}>
-        <div className={classes.filter}>
-          <SelectDropDown values={priceSortValues} checked={selectSort} />
-          {/* <Select header="Sort By" name="priceSort" values={optionValues} selected={selectSort} /> */}
-        </div>
-      </div>
+      {desktopOutput}
+      {mobileOutput}
     </div>
   );
 };

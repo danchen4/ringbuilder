@@ -6,10 +6,15 @@ $width: 2rem;
   float: left;
   width: calc(32% - #{$width});
   margin: 0 1rem;
-  padding: 2rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
   background-color: $color-white;
 
   border: 1px solid $color-white;
+
+  @include bp(tab-port) {
+    width: calc(50% - #{$width});
+  }
 
   &:hover {
     border: 1px solid $color-grey-light-2;
@@ -19,7 +24,7 @@ $width: 2rem;
 
   margin-bottom: 2rem;
 
-  &__Content {
+  &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;

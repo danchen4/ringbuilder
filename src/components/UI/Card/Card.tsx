@@ -1,13 +1,23 @@
 import React from 'react';
+// Router
+import { useHistory } from 'react-router-dom';
 // CSS
 import classes from './Card.module.scss';
 
-interface CardProps {}
+interface CardProps {
+  pathName?: string;
+}
 
-const Card: React.FC<CardProps> = ({ children }) => {
+const Card: React.FC<CardProps> = ({ pathName, children }) => {
+  const history = useHistory();
+
+  const clickedHandler = () => {
+    history.push({ pathname: pathName });
+  };
+
   return (
-    <div className={classes.Card}>
-      <div className={classes.Card__Content}>{children}</div>
+    <div className={classes.Card} onClick={clickedHandler}>
+      <div className={classes.Card__content}>{children}</div>
     </div>
   );
 };

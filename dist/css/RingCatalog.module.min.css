@@ -1,2 +1,2 @@
-.RingCatalog{margin-top:4rem;width:100%}.RingCatalog::after{content:'';display:table;clear:both}.RingCatalog h4{margin-top:0;margin-bottom:0.5rem}.RingCatalog p{margin-top:0;margin-bottom:0.5rem}.productName{font-size:1.7rem;font-weight:700}.price{font-size:1.2rem;font-weight:500}
+.RingCatalog{margin-top:4rem;width:100%}.RingCatalog::after{content:'';display:table;clear:both}.RingCatalog__name{font-size:1.7rem;font-weight:700}.RingCatalog__style{font-size:1.2rem}.RingCatalog__price{margin:0.5rem 0;color:#c9bc1f;font-size:1.6rem;font-weight:500}.RingCatalog__btn_text{text-decoration:none;color:#1976d2;font-size:1.4rem}.RingCatalog__btn_text:hover{color:#63a4ff}
 /*# sourceMappingURL=RingCatalog.module.min.css.map */

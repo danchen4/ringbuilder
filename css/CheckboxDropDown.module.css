@@ -1,0 +1,80 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.checkbox_dropdown {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 3rem 1rem 2rem;
+  text-align: left;
+}
+
+.checkbox_header {
+  color: #333;
+  font-weight: 500;
+}
+
+.icon_chevron {
+  margin-left: 1rem;
+  color: #c9bc1f;
+}
+
+.checkbox_group {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 20rem;
+  padding: 2rem 1rem 2rem 2rem;
+  background-color: #fff;
+  border-left: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  z-index: 10;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox > * {
+  cursor: pointer;
+}
+
+.checkbox_label {
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.fadeEnter {
+  opacity: 0;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+.fadeExit {
+  opacity: 1;
+  /* transform: translateX(0%); */
+}
+
+.fadeExitActive {
+  opacity: 0;
+  /* transform: translateX(100%); */
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+/*# sourceMappingURL=CheckboxDropDown.module.css.map */

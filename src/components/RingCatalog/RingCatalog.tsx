@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import classes from './RingCatalog.module.scss';
-import Card from '../UI/Card/Card';
-
+// Router
 import { Link, useRouteMatch } from 'react-router-dom';
-
+// CSS
+import classes from './RingCatalog.module.scss';
+// Misc.
 import { formatCurrency, ringDataToArray, filterArrayObject } from '../../helper';
-import { RING_PRICE_SORT } from '../../constants/rings';
-
+import { RING_PRICE_SORT_LABEL } from '../../constants/rings';
+// Components
 import RingCatalogFilter from './RingCatalogFilter/RingCatalogFilter';
 import CatalogImageGallery from './CatalogImageGallery/CatalogImageGallery';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import Card from '../UI/Card/Card';
 
 interface RingCatalogProps {}
 
@@ -54,10 +55,11 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
     setRingShapeFilter(target.value);
   };
 
-  const selectSortHandler = (value: any) => {
+  const selectSortHandler = (e: any) => {
+    const target = e.target;
     const catalogCopy = [...catalog];
     const sortedCatalog = catalogCopy.sort((a, b) => {
-      if (value === RING_PRICE_SORT.HIGHTOLOW) {
+      if (target.value === RING_PRICE_SORT_LABEL.HIGHTOLOW) {
         return b.price - a.price;
       }
       return a.price - b.price;
@@ -79,12 +81,16 @@ const RingCatalog: React.FC<RingCatalogProps> = () => {
         return (
           <Card key={product.sku}>
             <CatalogImageGallery images={product.gallery} metals={product.metals} />
-            <h4 className={classes.productName}>{product.name}</h4>
-            <p>
-              {product.style !== 'Solitaire' ? 'Diamond' : null} {product.style} Ring
-            </p>
-            <p className={classes.price}>{formatCurrency(product.price)}</p>
-            <Link to={`${url}/${product.sku}`}>Shop Now</Link>
+            <div className={classes.RingCatalog__description}>
+              <h4 className={classes.RingCatalog__name}>{product.name}</h4>
+              <p className={classes.RingCatalog__style}>
+                {product.style} {product.style !== 'Solitaire' ? 'Diamond' : null} Ring
+              </p>
+              <p className={classes.RingCatalog__price}>{formatCurrency(product.price)}</p>
+              <Link className={classes.RingCatalog__btn_text} to={`${url}/${product.sku}`}>
+                Shop Now
+              </Link>
+            </div>
           </Card>
         );
       })}

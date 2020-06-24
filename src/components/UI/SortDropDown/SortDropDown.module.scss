@@ -1,6 +1,6 @@
 @import '../../../sass/abstracts/abstracts';
 
-.CheckboxDropDown {
+.SortDropDown {
   &__anchor {
     position: relative;
     display: flex;
@@ -28,20 +28,22 @@
     z-index: 10;
   }
 
-  &__checkbox {
-    display: inline-block;
-    width: 50%;
-    margin-bottom: 0.5rem;
+  &__button {
+    display: flex;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
 
-    &_label {
-      padding-left: 1rem;
+    background-color: transparent;
+    border: none;
+    color: $color-grey-dark-3;
 
-      font-size: 1.2rem;
-      font-weight: 500;
+    &:hover {
+      color: $color-primary;
+      cursor: pointer;
     }
 
-    & > * {
-      cursor: pointer;
+    &:focus {
+      outline: none;
     }
   }
 }
@@ -70,3 +72,5 @@
   /* transform: translateX(100%); */
   transition: all 0.1s ease-out;
 }
+
+@import '../../../sass/abstracts/abstracts';

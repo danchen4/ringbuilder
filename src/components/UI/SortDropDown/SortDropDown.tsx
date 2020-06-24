@@ -1,41 +1,37 @@
 import React, { useState } from 'react';
 // CSS
-import classes from './CheckboxDropDown.module.scss';
+import classes from './SortDropDown.module.scss';
 import { CSSTransition } from 'react-transition-group';
 // Misc
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-interface CheckboxDropDownProps {
-  //** Header for the checkbox group */
-  header: string;
+interface SortDropDownProps {
   //** Array of strings for values*/
   values: string[];
-  //** Name property of checkbox to group by */
-  name: string;
-  //** checkbox that was selected */
-  selected: string;
-  //** Handler callback to determine checkbox selection */
+  //** Default sort order label */
+  defaultSortHeader: string;
+  //** Handler callback to determine sort sortion */
   checked(e: any): void;
 }
 
-const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
-  header,
-  values,
-  name,
-  selected,
-  checked,
-}) => {
+const SortDropDown: React.FC<SortDropDownProps> = ({ values, defaultSortHeader, checked }) => {
   const [showDropDown, setShowDropDown] = useState(false);
+  const [sortSelection, setSortSelection] = useState(defaultSortHeader);
+
+  const clickHandler = (e: any, label: string) => {
+    setSortSelection(label);
+    checked(e);
+  };
 
   return (
-    <div className={classes.CheckboxDropDown}>
+    <div className={classes.SortDropDown}>
       <div
-        className={classes.CheckboxDropDown__anchor}
+        className={classes.SortDropDown__anchor}
         onMouseEnter={() => setShowDropDown(true)}
         onMouseLeave={() => setShowDropDown(false)}
       >
-        <h3 className={classes.CheckboxDropDown__header}>{header}</h3>
+        <h3 className={classes.SortDropDown__header}>Sort: {sortSelection}</h3>
         <span>
           {showDropDown ? (
             <FontAwesomeIcon className={classes.icon_chevron} icon={faChevronUp} />
@@ -55,19 +51,17 @@ const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
             exit: classes.fadeExitActive,
           }}
         >
-          <div className={classes.CheckboxDropDown__dropdown}>
+          <div className={classes.SortDropDown__dropdown}>
             {values.map((value: string, index: number) => {
               return (
-                <div className={classes.CheckboxDropDown__checkbox} key={value}>
-                  <input
-                    type="checkbox"
-                    name={name}
-                    value={value}
-                    onChange={checked}
-                    checked={value === selected}
-                  />
-                  <label className={classes.CheckboxDropDown__checkbox_label}>{value}</label>
-                </div>
+                <input
+                  className={classes.SortDropDown__button}
+                  key={value}
+                  type="button"
+                  value={value}
+                  name={value}
+                  onClick={(e: any) => clickHandler(e, value)}
+                />
               );
             })}
           </div>
@@ -77,4 +71,4 @@ const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
   );
 };
 
-export default CheckboxDropDown;
+export default SortDropDown;
