@@ -1,11 +1,18 @@
 @import '../../../sass/abstracts/abstracts';
 
-.rangeInputs {
-  display: flex;
-  justify-content: space-between;
-}
+.RangeSlider {
+  &__rangeInputs {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.input {
-  font-size: 1.2rem;
-  width: 7rem;
+  &__input {
+    font-size: 1.2rem;
+    width: 7rem;
+
+    @include bp(tab-port) {
+      width: 8rem;
+      font-size: 1.4rem;
+    }
+  }
 }

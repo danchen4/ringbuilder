@@ -1,0 +1,18 @@
+@import '../../../sass/abstracts/abstracts';
+
+.DiamondTable {
+  &__link {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: $color-primary-dark;
+      padding: 0 0.5rem;
+    }
+
+    &:active,
+    &:hover {
+      text-decoration: underline;
+      color: $color-primary;
+    }
+  }
+}

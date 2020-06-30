@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // CSS
 import classes from './MobileDropDownSelect.module.scss';
 import cn from 'classnames';
@@ -8,56 +8,47 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 interface MobileDropDownSelectProps {
-  //** Header for the checkbox group */
+  //** Header for the button group */
   header: string;
   //** Array of strings for values*/
   values: string[];
-  //** Name property of checkbox to group by */
-  name?: string;
-  //** checkbox that was selected */
+  //** button that was clicked to determine which button to outline */
   selected: string;
+  //** name to use to toggle open close of dropdown*/
+  name?: string;
+  //** boolean to determine if dropdown should be shown*/
+  dropdown?: boolean;
   //** Handler callback to determine checkbox selection */
   checked(e: any): void;
-  //** Handler for toggling dropdown on mobile screens */
+  //** Handler callback to whether to toggle dropdown  */
+  toggle(name: any): void;
 }
 
-const MobileDropDownSelect: React.FC<MobileDropDownSelectProps> = ({
+export const MobileDropDownSelect: React.FC<MobileDropDownSelectProps> = ({
   header,
   values,
-  name,
   selected,
+  name,
+  dropdown,
   checked,
+  toggle,
 }) => {
-  const [showDropDown, setShowDropDown] = useState(false);
-
-  const toggleDropDownHandler = () => {
-    setShowDropDown(!showDropDown);
-  };
-
   return (
     <div className={classes.MobileDropDownSelect}>
       <div
         className={cn(classes.MobileDropDownSelect__anchor, {
-          [classes.MobileDropDownSelect__anchor_mobile]: showDropDown,
+          [classes.MobileDropDownSelect__anchor_mobile]: dropdown,
         })}
       >
         <h3 className={classes.MobileDropDownSelect__header}>{header}</h3>
-        {showDropDown ? (
-          <FontAwesomeIcon
-            className={classes.MobileDropDownSelect__icon_plus}
-            icon={faMinus}
-            onClick={toggleDropDownHandler}
-          />
-        ) : (
-          <FontAwesomeIcon
-            className={classes.MobileDropDownSelect__icon}
-            icon={faPlus}
-            onClick={toggleDropDownHandler}
-          />
-        )}
+        <FontAwesomeIcon
+          className={classes.MobileDropDownSelect__icon}
+          icon={dropdown ? faMinus : faPlus}
+          onClick={() => toggle(name)}
+        />
       </div>
       <CSSTransition
-        in={showDropDown}
+        in={dropdown}
         timeout={100}
         mountOnEnter
         unmountOnExit
@@ -78,6 +69,7 @@ const MobileDropDownSelect: React.FC<MobileDropDownSelectProps> = ({
                 key={value}
                 type="button"
                 value={value}
+                name={name}
                 onClick={checked}
               />
             );
@@ -87,5 +79,3 @@ const MobileDropDownSelect: React.FC<MobileDropDownSelectProps> = ({
     </div>
   );
 };
-
-export default MobileDropDownSelect;

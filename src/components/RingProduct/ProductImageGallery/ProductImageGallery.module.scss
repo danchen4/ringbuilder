@@ -1,35 +1,47 @@
 @import '../../../sass/abstracts/abstracts';
 
-.imageGallery {
+.ProductImageGallery {
   display: flex;
   align-items: center;
-}
 
-.mainImage {
-  width: 85%;
-}
-
-.gallery {
-  width: 15%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
-}
-
-.galleryImage {
-  width: 100%;
-  padding: 0.2rem;
-
-  &__Selected {
-    border: 2px solid $color-primary-dark;
+  @include bp(tab-port) {
+    flex-direction: column;
   }
 
-  &__Unselected {
-    border: 1px solid $color-grey-light-1;
+  &__mainImage {
+    width: 85%;
+    @include bp(tab-port) {
+      order: 1;
+    }
   }
 
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 15%;
+    margin: 1rem 0;
+
+    @include bp(tab-port) {
+      flex-direction: row;
+      order: 2;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    padding: 0.2rem;
+
+    &_selected {
+      border: 2px solid $color-primary-dark;
+    }
+
+    &_unselected {
+      border: 1px solid $color-grey-light-1;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 }

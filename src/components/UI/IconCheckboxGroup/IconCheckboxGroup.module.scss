@@ -1,0 +1,20 @@
+@import '../../../sass/abstracts/abstracts';
+
+.IconCheckboxGroup {
+  &__iconGroup {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+
+  &__checkbox {
+    display: none;
+    visibility: hidden;
+
+    & + label {
+      display: block;
+      top: -50%;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+  }
+}

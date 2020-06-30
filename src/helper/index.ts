@@ -4,3 +4,4 @@ export * from './filterArrayObject';
 export * from './diamondDataToArray';
 export * from './costMarkup';
 export * from './ringImageSelector';
+export * from './sortArrayObject';

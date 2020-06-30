@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchRingProduct, addRing, } from '../../store/actions';
+import { fetchRingProduct, addRing } from '../../store/actions';
 import { RingBuilderRingData } from '../../store/reducers/ringbuilder';
 // CSS
 import classes from './RingProduct.module.scss';
@@ -17,7 +17,6 @@ import Backdrop from '../UI/BackDrop/Backdrop';
 // Helpers, constants
 import { METAL } from '../../constants';
 import { formatCurrency, ringDataToArray } from '../../helper';
-
 
 interface RingProductProps {}
 
@@ -38,7 +37,7 @@ const RingProduct: React.FC<RingProductProps> = () => {
   };
 
   useEffect(() => {
-     dispatch(fetchRingProduct(sku))
+    dispatch(fetchRingProduct(sku));
   }, [dispatch, sku]);
 
   const metalChangeHandler = (metal: string) => {
@@ -53,14 +52,14 @@ const RingProduct: React.FC<RingProductProps> = () => {
       style: ringData.style,
       metal: metal,
       price: ringData.price,
-    }
+    };
 
-    onAddToRing(ringBuilderRingData)
+    onAddToRing(ringBuilderRingData);
     // if a diamond has not been selected, then direct to diamonds catalog page, else to review page
     if (!diamondData) {
       history.push({ pathname: '/diamonds' });
     } else {
-      history.push({ pathname: '/review' })
+      history.push({ pathname: '/review' });
     }
   };
 
@@ -69,30 +68,32 @@ const RingProduct: React.FC<RingProductProps> = () => {
       <Backdrop />
       <Spinner />
     </React.Fragment>
-  )
+  );
   if (!loading) {
-    ringProduct = (<div className={classes.RingProduct}>
-      <ProgressBar />
-      <div className={classes.grid}>
-        <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
-        <div className={classes.description}>
-          <h3>{ringData.name}</h3>
-          <p>
-            {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
-        </p>
-          <p>{ringData.description}</p>
-          <ProductMetalSelection
-            selectedMetal={metal}
-            metals={ringData.metals}
-            metalChange={metalChangeHandler}
-          />
-          <p className={classes.price}>{formatCurrency(ringData.price)}</p>
-          <button className={classes.addToRing} onClick={addToRingHandler}>
-            Add To Ring
-          </button>
+    ringProduct = (
+      <div className={classes.RingProduct}>
+        <ProgressBar />
+        <div className={classes.RingProduct__grid}>
+          <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
+          <div className={classes.RingProduct__content}>
+            <h2 className={classes.RingProduct__header}>{ringData.name}</h2>
+            <p className={classes.RingProduct__name}>
+              {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
+            </p>
+            <p className={classes.RingProduct__description}>{ringData.description}</p>
+            <ProductMetalSelection
+              selectedMetal={metal}
+              metals={ringData.metals}
+              metalChange={metalChangeHandler}
+            />
+            <p className={classes.RingProduct__price}>{formatCurrency(ringData.price)}</p>
+            <button className={classes.RingProduct__btn_shop} onClick={addToRingHandler}>
+              Add To Ring
+            </button>
+          </div>
         </div>
       </div>
-    </div>)
+    );
   }
 
   return ringProduct;

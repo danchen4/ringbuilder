@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
+//CSS
 import classes from './ProductImageGallery.module.scss';
 import cn from 'classnames';
-// import MetalSelection from '../MetalSelection/MetalSelection';
+// Misc
 import { METAL } from '../../../constants';
 
-export enum ImageGalleryIndex {
-  first,
-  second,
-  third,
-}
-
-interface ImageGalleryProps {
+interface ProductImageGalleryProps {
   /** An array of url paths to images */
   images: string[];
   /** The metal that is selected under product description*/
   selectedMetal?: string;
 }
 
-const ImageGallery: React.FC<ImageGalleryProps> = ({ images, selectedMetal } ) => {
-  const [imageIndex, setImageIndex] = useState<ImageGalleryIndex>(0);
-  const [imageGallery, setImageGallery] = useState<string[]>([]);
+const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({ images, selectedMetal }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+  const [ProductImageGallery, setProductImageGallery] = useState<string[]>([]);
 
   const changeImageHandler = (index: number) => {
     setImageIndex(index);
@@ -27,28 +22,34 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, selectedMetal } ) =
 
   useEffect(() => {
     if (selectedMetal === METAL.WHITE) {
-      setImageGallery(images.slice(0, 3));
+      setProductImageGallery(images.slice(0, 3));
     }
     if (selectedMetal === METAL.YELLOW) {
-      setImageGallery(images.slice(3, 6));
+      setProductImageGallery(images.slice(3, 6));
     }
     if (selectedMetal === METAL.ROSE) {
-      setImageGallery(images.slice(6, 9));
+      setProductImageGallery(images.slice(6, 9));
     }
   }, [selectedMetal, images]);
 
   return (
     <React.Fragment>
-      <div className={classes.imageGallery}>
-        <div className={classes.gallery}>
-          {imageGallery.map((image: string, index: number) => {
+      <div className={classes.ProductImageGallery}>
+        <div className={classes.ProductImageGallery__gallery}>
+          {ProductImageGallery.map((image: string, index: number) => {
             return (
               <img
                 key={index}
                 className={
                   imageIndex === index
-                    ? cn(classes.galleryImage, classes.galleryImage__Selected)
-                    : cn(classes.galleryImage, classes.galleryImage__Unselected)
+                    ? cn(
+                        classes.ProductImageGallery__image,
+                        classes.ProductImageGallery__image_selected
+                      )
+                    : cn(
+                        classes.ProductImageGallery__image,
+                        classes.ProductImageGallery__image_unselected
+                      )
                 }
                 src={image}
                 alt="ring"
@@ -57,10 +58,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, selectedMetal } ) =
             );
           })}
         </div>
-        <img className={classes.mainImage} src={imageGallery[imageIndex]} alt="ring" />
+        <img
+          className={classes.ProductImageGallery__mainImage}
+          src={ProductImageGallery[imageIndex]}
+          alt="ring"
+        />
       </div>
     </React.Fragment>
   );
 };
 
-export default ImageGallery;
+export default ProductImageGallery;

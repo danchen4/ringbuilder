@@ -1,0 +1,15 @@
+@import '../../../sass/abstracts/abstracts';
+
+.ToggleSort {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__label {
+    margin-right: 0.5rem;
+  }
+}
+
+.icon_chevron {
+  color: $color-primary-dark;
+}

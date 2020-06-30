@@ -1,26 +1,42 @@
 @import '../../../sass/abstracts/abstracts';
 
 .DiamondCatalogFilter {
-  border: 1px solid orangered;
-  margin: 1rem 0;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-}
+  @include bp(tab-port) {
+    margin: 2rem 0;
+  }
 
-.DiamondCatalogFilter> div {
-  text-align: left;
-}
+  &__filter {
+    display: inline-block;
+    margin: 0 2rem;
 
-.FilterBar {
-  width: 100%;
-  height: 5rem;
-  margin: 2rem 0;
-  border: 1px solid $color-grey-dark-2;
-}
+    @include bp(tab-port) {
+      margin: 0;
+    }
+  }
 
-.filterGroup {
-  display: inline-block;
-  margin: 0 2rem;
+  & > div {
+    text-align: left;
+  }
+
+  &_desktop {
+    margin: 1rem 0;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    @include bp(tab-port) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  &_mobile {
+    grid-template-columns: 1fr;
+    display: none;
+
+    @include bp(tab-port) {
+      display: grid;
+      visibility: visible;
+    }
+  }
 }

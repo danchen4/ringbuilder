@@ -24,17 +24,16 @@ const ProductMetalSelection: React.FC<ProductMetalSelectionProps> = ({
   metalChange,
 }) => {
   return (
-    <div className={classes.metalSelection}>
-      <div className={classes.metalName}>
-        <span className={classes.emphasis}>Metal:</span> {selectedMetal}
+    <div className={classes.ProductMetalSelection}>
+      <div className={classes.ProductMetalSelection__name}>
+        <span className={classes.ProductMetalSelection__label}>Metal:</span> {selectedMetal}
       </div>
       {metals.map((metal: string) => {
         return (
           <div
             key={metal}
-            className={cn({
-              [classes.rectangle]: true,
-              [classes.rectangle_selected]: metal === selectedMetal,
+            className={cn(classes.ProductMetalSelection__options, {
+              [classes.ProductMetalSelection__options_selected]: metal === selectedMetal,
               [classes.wg]: metal === METAL.WHITE,
               [classes.yg]: metal === METAL.YELLOW,
               [classes.rg]: metal === METAL.ROSE,

@@ -3,70 +3,86 @@
 .DiamondProduct {
   margin-top: 4rem;
   width: 100%;
-}
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 'left right';
-  gap: 1rem;
-}
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin: 2rem 0 4rem 0;
 
-.diamond_image {
-    width: 80%;
-}
-
-.diamond_details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.diamond_details > * {
-  text-align: left;
-}
-
-.description {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.description > * {
-  margin-bottom: 2rem;
-}
-
-.data {
-  font-size: 1.4rem;
-  margin-bottom: 0.4rem;
-}
-
-.label {
-  font-weight: 600;
-  padding-right: 0.4rem;
-}
-
-.addToRing {
-  padding: 1rem 2rem;
-  width: 50%;
-  background-color: $color-primary;
-  color: $color-grey-dark-3;
-  border: 2px solid $color-black;
-  transition: all 0.1s;
-  box-shadow: $shadow-sm;
-
-  &:hover {
-    background-color: $color-primary-light;
-    color: $color-grey-dark-2;
-    transform: translateY(-0.2rem);
-    box-shadow: $shadow-md;
+    @include bp(tab-port) {
+      grid-template-columns: 1fr;
+      margin: 2rem 0 8rem 0;
+      padding: 0 2rem;
+    }
   }
 
-  &:focus {
-    outline: none;
-    transform: translateY(0);
+  &__diamond_image {
+    width: 80%;
+  }
+
+  &__header {
+    font-size: 2rem;
+  }
+
+  &__description {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+
+    & > * {
+      text-align: center;
+    }
+  }
+
+  &__data {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__label {
+    font-weight: 600;
+    padding-right: 0.4rem;
+  }
+
+  &__price {
+    font-size: 3rem;
+    color: $color-primary-dark;
+  }
+
+  &__btn_shop {
+    padding: 1rem 2rem;
+    width: 50%;
+    background-color: $color-primary;
+    color: $color-grey-dark-3;
+    border: 2px solid $color-black;
+    transition: all 0.1s;
     box-shadow: $shadow-sm;
+
+    &:hover {
+      background-color: $color-primary-light;
+      color: $color-grey-dark-2;
+      transform: translateY(-0.2rem);
+      box-shadow: $shadow-md;
+    }
+
+    &:focus {
+      outline: none;
+      transform: translateY(0);
+      box-shadow: $shadow-sm;
+    }
   }
 }

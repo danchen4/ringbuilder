@@ -7,17 +7,17 @@ import CatalogMetalSelection from '../../RingCatalog/CatalogMetalSelection/Catal
 // Misc.
 import { METAL } from '../../../constants/rings';
 
-interface ImageGalleryProps {
+interface CatalogImageGalleryProps {
   /** An array of url paths of images */
   images: string[];
   /** An array of avaiable metals for each ring */
   metals: string[];
 }
 
-const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
+const CatalogImageGallery = ({ images, metals }: CatalogImageGalleryProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [metal, setMetal] = useState(METAL.WHITE);
-  const [imageGallery, setImageGallery] = useState<string[]>([]);
+  const [CatalogImageGallery, setCatalogImageGallery] = useState<string[]>([]);
 
   const changeImageHandler = (index: number) => {
     setImageIndex(index);
@@ -29,13 +29,13 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
 
   useEffect(() => {
     if (metal === METAL.WHITE) {
-      setImageGallery(images.slice(0, 3));
+      setCatalogImageGallery(images.slice(0, 3));
     }
     if (metal === METAL.YELLOW) {
-      setImageGallery(images.slice(3, 6));
+      setCatalogImageGallery(images.slice(3, 6));
     }
     if (metal === METAL.ROSE) {
-      setImageGallery(images.slice(6, 9));
+      setCatalogImageGallery(images.slice(6, 9));
     }
   }, [metal, images]);
 
@@ -43,11 +43,11 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
     <div className={classes.CatalogImageGallery}>
       <img
         className={classes.CatalogImageGallery__mainImage}
-        src={imageGallery[imageIndex]}
+        src={CatalogImageGallery[imageIndex]}
         alt="ring"
       />
       <div className={classes.CatalogImageGallery__gallery}>
-        {imageGallery.map((image: string, index: number) => {
+        {CatalogImageGallery.map((image: string, index: number) => {
           return (
             <img
               key={index}
@@ -78,4 +78,4 @@ const ImageGallery = ({ images, metals }: ImageGalleryProps) => {
   );
 };
 
-export default ImageGallery;
+export default CatalogImageGallery;

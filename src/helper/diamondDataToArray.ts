@@ -1,35 +1,34 @@
-import { formatCurrency } from './formatCurrency'
 import { costMarkup } from './costMarkup';
-import { DIAMOND_COST_MARKUP } from '../constants'
+import { DIAMOND_COST_MARKUP } from '../constants';
 
 export interface DiamondDataFromDatabase {
-  carats: number,
-  certNumber: number,
-  clarity: string,
-  color: string,
-  cost: number,
-  cut: string,
-  depth: number,
-  depthper: number,
-  flourescence: string,
-  lab: string,
-  length: number,
-  polish: string,
-  shape: string,
-  symmetry: string,
-  tableper: number,
-  width: number,
+  carats: number;
+  certNumber: number;
+  clarity: string;
+  color: string;
+  cost: number;
+  cut: string;
+  depth: number;
+  depthper: number;
+  flourescence: string;
+  lab: string;
+  length: number;
+  polish: string;
+  shape: string;
+  symmetry: string;
+  tableper: number;
+  width: number;
 }
 
 export interface DiamondTableData {
-  certNumber: number,
-  shape: string,
-  carats: number,
-  color: string,
-  clarity: string,
-  cut: string,
-  report: string,
-  price: number,
+  certNumber: number;
+  shape: string;
+  carats: string;
+  color: string;
+  clarity: string;
+  cut: string;
+  report: string;
+  price: number;
 }
 
 export function diamondDataToTableArray(catalog: DiamondDataFromDatabase[]): DiamondTableData[] {
@@ -38,7 +37,7 @@ export function diamondDataToTableArray(catalog: DiamondDataFromDatabase[]): Dia
     diamondTable.push({
       certNumber: catalog[product].certNumber,
       shape: catalog[product].shape,
-      carats: catalog[product].carats,
+      carats: catalog[product].carats.toFixed(2),
       color: catalog[product].color,
       clarity: catalog[product].clarity,
       cut: catalog[product].cut,

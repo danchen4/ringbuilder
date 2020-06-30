@@ -37,11 +37,10 @@ const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
       >
         <h3 className={classes.CheckboxDropDown__header}>{header}</h3>
         <span>
-          {showDropDown ? (
-            <FontAwesomeIcon className={classes.icon_chevron} icon={faChevronUp} />
-          ) : (
-            <FontAwesomeIcon className={classes.icon_chevron} icon={faChevronDown} />
-          )}
+          <FontAwesomeIcon
+            className={classes.icon_chevron}
+            icon={showDropDown ? faChevronUp : faChevronDown}
+          />
         </span>
         <CSSTransition
           in={showDropDown}
