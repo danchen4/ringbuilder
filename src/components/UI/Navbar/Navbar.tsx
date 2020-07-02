@@ -1,23 +1,20 @@
 import React from 'react';
+// Router
 import { Link } from 'react-router-dom';
+// CSS
 import classes from './Navbar.module.scss';
 
 export const Navbar = () => {
   return (
     <div className={classes.Navbar}>
-      <ul>
-        <li>
-          <Link to="/rings">Rings</Link>
-        </li>
-        <li>
-          <Link to="/diamonds">Diamonds</Link>
-        </li>
-        <li>
-          <Link to="/cart">Cart</Link>
-        </li>
-      </ul>
+      <div className={classes.Navbar__nav}>
+        <div className={classes.Navbar__nav_item}>
+          <Link to="/rings">Start With A Ring</Link>
+        </div>
+        <div className={classes.Navbar__nav_item}>
+          <Link to="/diamonds">Start With A Diamond</Link>
+        </div>
+      </div>
     </div>
   );
 };
-
-export default Navbar;

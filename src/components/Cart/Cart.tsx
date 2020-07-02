@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { loadCartFromLocal, removeFromCart } from '../../store/actions';
-import {CartItem} from '../../store/reducers/cart'
+import { CartItem } from '../../store/reducers/cart';
 // Router
 import { useHistory } from 'react-router';
 //CSS
@@ -11,7 +11,6 @@ import classes from './Cart.module.scss';
 import Totals from './Totals/Totals';
 // Misc
 import { formatCurrency } from '../../helper/formatCurrency';
-
 
 interface CartProps {}
 
@@ -44,45 +43,54 @@ const Cart: React.FC<CartProps> = () => {
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if (cart) dispatch(loadCartFromLocal());
-  }, [dispatch])
+  }, [dispatch]);
 
   const removeCartItemHandler = (certNumber: number) => {
     dispatch(removeFromCart(certNumber));
-  }
+  };
 
   const checkOutHandler = () => {
-    history.push({pathname:'/checkout'})
-  }
+    history.push({ pathname: '/checkout' });
+  };
 
   const subTotal = cartItems.reduce((subTotal: number, cartItem: CartItem) => {
     return subTotal + cartItem.price;
   }, 0);
 
-  console.log(cartItems)
+  console.log(cartItems);
 
-  let cartCard = <p>You're cart is empty</p>;
+  let cartTable = <p>You're cart is empty</p>;
   if (cartItems.length) {
-    cartCard = (
+    cartTable = (
       <>
-        <div className={classes.card}>
+        <div className={classes.Cart__table}>
           {cartItems.map((cartItem: CartItem) => {
             return (
-              <div key={cartItem.certNumber} className={classes.grid}>
-                <div className={classes.column}>
-                  <img className={classes.cartImage} src={cartItem.image} alt="ring" />
+              <div key={cartItem.certNumber} className={classes.Cart__grid}>
+                <div className={classes.Cart__column}>
+                  <img className={classes.Cart__productImage} src={cartItem.image} alt="ring" />
                 </div>
-                <div className={classes.column}>
-                  <div className={classes.cartDesc}>
-                    <h2>{cartItem.metal} {cartItem.name} {cartItem.style !== 'Solitaire' ? 'Diamond' : null} Ring</h2>
-                    <p>{cartItem.sku}</p>
+                <div className={classes.Cart__column}>
+                  <div className={classes.Cart__description}>
+                    <h2>
+                      {cartItem.metal} {cartItem.name}{' '}
+                      {cartItem.style !== 'Solitaire' ? 'Diamond' : null} Ring
+                    </h2>
+                    <p>SKU: {cartItem.sku}</p>
                     <p>Ring Size: {cartItem.size}</p>
-                    <br/>
-                    <p>{cartItem.carats} Carats {cartItem.shape} Diamond</p>
-                    <button className={classes.cartRemove} onClick={() => removeCartItemHandler(cartItem.certNumber)}>remove</button>
+                    <p>
+                      {cartItem.carats} Carats {cartItem.shape} Diamond
+                    </p>
+                    <button
+                      className={classes.Cart__btn_remove}
+                      onClick={() => removeCartItemHandler(cartItem.certNumber)}
+                    >
+                      remove
+                    </button>
                   </div>
                 </div>
-                <div className={classes.column}>
-                  <span className={classes.price}>{formatCurrency(cartItem.price)}</span>
+                <div className={classes.Cart__column}>
+                  <span className={classes.Cart__price}>{formatCurrency(cartItem.price)}</span>
                 </div>
               </div>
             );
@@ -96,7 +104,7 @@ const Cart: React.FC<CartProps> = () => {
     );
   }
 
-  return <div className={classes.Cart}>{cartCard}</div>;
+  return <div className={classes.Cart}>{cartTable}</div>;
 };
 
 export default Cart;

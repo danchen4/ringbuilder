@@ -10,11 +10,10 @@ import { ringBuilderCheckData, removeRing, removeDiamond } from '../../store/act
 
 // Misc.
 import { formatCurrency, ringImageSelector } from '../../helper';
-import ovalIcon from '../../images/Oval.svg';
-import roundIcon from '../../images/Round.svg';
 import ringIcon from '../../images/solitaire.svg';
-import { RoundDiamond } from '../UI/SVG/RoundDiamond';
-import { OvalDiamond } from '../UI/SVG/OvalDiamond';
+import { RoundDiamond } from '../Icons/RoundDiamond';
+import { OvalDiamond } from '../Icons/OvalDiamond';
+import { SolitaireRing } from '../Icons/SolitaireRing';
 
 interface ProgressBarProps {}
 
@@ -44,7 +43,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
         <h4 className={classes.ProgressBar__header_empty}>Choose Ring</h4>
       </div>
       <div className={classes.ProgressBar__image}>
-        <img className={classes.ProgressBar__image_ring} src={ringIcon} alt="ring" />
+        <SolitaireRing />
       </div>
     </React.Fragment>
   );

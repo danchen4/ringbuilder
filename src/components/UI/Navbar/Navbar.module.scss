@@ -1,24 +1,32 @@
 @import '../../../sass/abstracts/abstracts';
 
 .Navbar {
-  ul {
-    padding: 0 2rem;
-    list-style: none;
-    display: flex;
-    background-color: $color-grey-dark-1;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid $color-grey-light-3;
+
+  @include bp(tab-port) {
+    display: none;
   }
 
-  li {
-    font-size: 1.2rem;
-    padding: 1rem 0;
+  &__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    &:not(:last-child) {
-      margin-right: 2rem;
-    }
+    &_item {
+      flex-basis: 30%;
+      font-size: 2rem;
+      padding: 1rem 3rem;
 
-    a {
-      text-decoration: none;
-      color: $color-white;
+      a {
+        text-decoration: none;
+        color: $color-tertiary-dark;
+
+        &:hover {
+          color: $color-primary-dark;
+        }
+      }
     }
   }
 }

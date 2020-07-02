@@ -1,7 +1,7 @@
 import React, { useState, ReactElement } from 'react';
 import classes from './IconCheckboxGroup.module.scss';
-import { RoundDiamond } from '../SVG/RoundDiamond';
-import { OvalDiamond } from '../SVG/OvalDiamond';
+import { RoundDiamond } from '../../Icons/RoundDiamond';
+import { OvalDiamond } from '../../Icons/OvalDiamond';
 
 interface IconCheckboxGroupProps {
   //** Header for the radio button group */

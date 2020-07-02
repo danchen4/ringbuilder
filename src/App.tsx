@@ -1,15 +1,15 @@
 import React, { Suspense } from 'react';
 // Router
 import { Switch, Route, Redirect } from 'react-router-dom';
-// Stripe 
+// Stripe
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 // CSS
 import './App.scss';
 // Components
-import Navbar from './components/UI/Navbar/Navbar';
 import Spinner from './components/UI/Spinner/Spinner';
 import Backdrop from './components/UI/BackDrop/Backdrop';
+import { Header } from './components/Header/Header';
 
 // Lazy load
 const RingCatalog = React.lazy(() => {
@@ -29,8 +29,8 @@ const DiamondProduct = React.lazy(() => {
 });
 
 const Review = React.lazy(() => {
-  return import('./components/Review/Review')
-})
+  return import('./components/Review/Review');
+});
 
 const Cart = React.lazy(() => {
   return import('./components/Cart/Cart');
@@ -41,8 +41,9 @@ const Checkout = React.lazy(() => {
 });
 
 // Stripe
-const stripePromise = loadStripe('pk_test_51GwwiaDWXOI2lyGirOeBNp5dd8VLcbePcvTuCxEIUWmVUXxaj39YYghL8MaWUjW2yZFGKdDKQkQcZp7PYHU1Y45P00uLIiyCGs');
-
+const stripePromise = loadStripe(
+  'pk_test_51GwwiaDWXOI2lyGirOeBNp5dd8VLcbePcvTuCxEIUWmVUXxaj39YYghL8MaWUjW2yZFGKdDKQkQcZp7PYHU1Y45P00uLIiyCGs'
+);
 
 function App() {
   const routes = (
@@ -68,9 +69,9 @@ function App() {
   return (
     <div className="App">
       <Elements stripe={stripePromise}>
-      <Navbar />
-      <div className="App__section">
-        <Suspense fallback={loading}>{routes}</Suspense>
+        <Header />
+        <div className="App__section">
+          <Suspense fallback={loading}>{routes}</Suspense>
         </div>
       </Elements>
     </div>

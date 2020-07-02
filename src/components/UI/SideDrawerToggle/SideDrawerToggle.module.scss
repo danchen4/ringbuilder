@@ -1,0 +1,24 @@
+@import '../../../sass/abstracts/abstracts';
+
+.DrawerToggle {
+  display: none;
+  width: 40px;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  & > div {
+    border-radius: 4px;
+    width: 90%;
+    height: 4px;
+    background-color: $color-grey-dark-2;
+  }
+
+  @include bp(tab-port) {
+    display: flex;
+  }
+}

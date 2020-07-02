@@ -1,0 +1,53 @@
+@import '../../sass/abstracts/abstracts';
+
+.Header {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 4rem;
+
+  &__top {
+    display: flex;
+    padding-bottom: 1rem;
+
+    &_column {
+      flex: 1;
+    }
+  }
+
+  &__logo {
+    position: relative;
+
+    &_icon {
+      position: absolute;
+      top: -1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+
+    &_name {
+      z-index: 20;
+      font-size: 3rem;
+      cursor: pointer;
+
+      @include bp(tab-port) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include bp(tab-port) {
+      display: none;
+    }
+
+    &_icon {
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+  }
+}

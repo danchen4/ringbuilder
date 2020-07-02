@@ -2,17 +2,23 @@
 
 .Totals {
   margin: 1rem 0;
-}
 
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-}
+  &__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+  }
 
-.column {
-  align-self: center;
-}
+  &__column {
+    align-self: center;
+  }
 
-.price {
-  font-size: 2rem;
+  &__description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  &__price {
+    font-size: 2rem;
+    color: $color-grey-dark-1;
+  }
 }
