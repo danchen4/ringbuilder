@@ -1,1 +1,24 @@
 @import '../../../sass/abstracts/abstracts';
+
+.Button {
+  padding: 1rem 2rem;
+  // width: 50%;
+  background-color: $color-primary;
+  color: $color-grey-dark-3;
+  border: 2px solid $color-black;
+  transition: all 0.1s;
+  box-shadow: $shadow-sm;
+
+  &:hover {
+    background-color: $color-primary-light;
+    color: $color-grey-dark-2;
+    transform: translateY(-0.2rem);
+    box-shadow: $shadow-md;
+  }
+
+  &:focus {
+    outline: none;
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+}

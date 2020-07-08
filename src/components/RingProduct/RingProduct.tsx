@@ -13,14 +13,14 @@ import ProductImageGallery from './ProductImageGallery/ProductImageGallery';
 import ProductMetalSelection from './ProductMetalSelection/ProductMetalSelection';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import Spinner from '../UI/Spinner/Spinner';
-import Backdrop from '../UI/BackDrop/Backdrop';
+import { Backdrop } from '../UI/BackDrop/Backdrop';
 // Helpers, constants
 import { METAL } from '../../constants';
 import { formatCurrency, ringDataToArray } from '../../helper';
 
 interface RingProductProps {}
 
-const RingProduct: React.FC<RingProductProps> = () => {
+export const RingProduct: React.FC<RingProductProps> = () => {
   // const [ringData, setRingData] = useState<any>({ gallery: [], metals: [] });
   const [metal, setMetal] = useState(METAL.WHITE);
 

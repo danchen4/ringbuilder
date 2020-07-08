@@ -62,13 +62,15 @@ h4 {
   &__section {
     max-width: 80%;
     margin: 0 auto;
+    margin-top: 1rem;
 
     @include bp(tab-port) {
       max-width: 100%;
+      margin: 0.2rem;
+      margin-top: $top-menu-height + 4rem;
     }
 
     @include bp(phone) {
-      margin: 0 0.2rem;
     }
   }
 

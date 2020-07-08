@@ -4,6 +4,21 @@
   width: 80%;
   margin: 0 auto;
   padding-top: 4rem;
+  margin-bottom: 6rem;
+
+  @include bp(tab-port) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $top-menu-height;
+    padding: 2rem 0 1rem;
+    z-index: 500;
+
+    background-color: white;
+    opacity: 1;
+    border-bottom: 1px solid $color-grey-light-3;
+  }
 
   &__top {
     display: flex;
@@ -11,6 +26,12 @@
 
     &_column {
       flex: 1;
+    }
+  }
+
+  &__bottom {
+    @include bp(tab-port) {
+      display: none;
     }
   }
 
@@ -41,9 +62,9 @@
     justify-content: flex-end;
     align-items: center;
 
-    @include bp(tab-port) {
-      display: none;
-    }
+    // @include bp(tab-port) {
+    //   display: none;
+    // }
 
     &_icon {
       padding: 0 1rem;

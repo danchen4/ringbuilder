@@ -1,0 +1,63 @@
+@import '../../../sass/abstracts/abstracts';
+
+.SideDrawerToggle {
+  display: none;
+  width: 4rem;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+
+  &__icon {
+    position: relative;
+
+    &,
+    &::before,
+    &::after {
+      display: inline-block;
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-2;
+      border-radius: $border-radius-sm;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      transition: all 0.3s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
+    }
+
+    &_open {
+      background-color: transparent;
+
+      &::before {
+        top: 0;
+        transform: rotate(135deg);
+      }
+
+      &::after {
+        top: 0;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  @include bp(tab-port) {
+    display: flex;
+    padding: 0.2rem 0;
+    margin: 0 1rem;
+  }
+}

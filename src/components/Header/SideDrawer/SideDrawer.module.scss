@@ -1,0 +1,28 @@
+@import '../../../sass/abstracts/abstracts';
+
+.SideDrawer {
+  display: none;
+  position: fixed;
+  width: 28rem;
+  max-width: 70%;
+  height: 100%;
+  top: $top-menu-height;
+  left: 0;
+  z-index: 200;
+  background-color: $color-white;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+
+  @include bp(tab-port) {
+    display: block;
+  }
+
+  &_open {
+    transform: translateX(0);
+  }
+
+  &_close {
+    transform: translateX(-100%);
+  }
+}

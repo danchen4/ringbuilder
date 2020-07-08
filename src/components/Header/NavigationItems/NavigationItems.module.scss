@@ -1,12 +1,12 @@
 @import '../../../sass/abstracts/abstracts';
 
-.Navbar {
+.NavigationItems {
   display: inline-block;
   width: 100%;
   border-bottom: 1px solid $color-grey-light-3;
 
   @include bp(tab-port) {
-    display: none;
+    border-bottom: none;
   }
 
   &__nav {
@@ -14,10 +14,20 @@
     justify-content: center;
     align-items: center;
 
+    @include bp(tab-port) {
+      flex-direction: column;
+      text-align: left;
+    }
+
     &_item {
       flex-basis: 30%;
       font-size: 2rem;
       padding: 1rem 3rem;
+
+      @include bp(tab-port) {
+        width: 100%;
+        padding: 1rem 1rem;
+      }
 
       a {
         text-decoration: none;

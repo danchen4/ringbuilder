@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { loadCartFromLocal, removeFromCart } from '../../store/actions';
+import { loadCartFromLocal, removeFromCart, checkLoginState } from '../../store/actions';
 import { CartItem } from '../../store/reducers/cart';
 // Router
 import { useHistory } from 'react-router';
@@ -11,6 +11,7 @@ import classes from './Cart.module.scss';
 import Totals from './Totals/Totals';
 // Misc
 import { formatCurrency } from '../../helper/formatCurrency';
+import { Button } from '../UI/Button/Button';
 
 interface CartProps {}
 
@@ -40,6 +41,8 @@ const Cart: React.FC<CartProps> = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const isAuthenticated = useSelector((state: any) => state.auth.token !== null);
+
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if (cart) dispatch(loadCartFromLocal());
@@ -50,7 +53,11 @@ const Cart: React.FC<CartProps> = () => {
   };
 
   const checkOutHandler = () => {
-    history.push({ pathname: '/checkout' });
+    if (isAuthenticated) {
+      history.push({ pathname: '/signup' });
+    } else {
+      history.push({ pathname: '/checkout' });
+    }
   };
 
   const subTotal = cartItems.reduce((subTotal: number, cartItem: CartItem) => {
@@ -97,9 +104,10 @@ const Cart: React.FC<CartProps> = () => {
           })}
         </div>
         <Totals subTotal={subTotal} />
-        <button className={classes.addToCart} onClick={checkOutHandler}>
+        <Button clicked={checkOutHandler}>Checkout</Button>
+        {/* <button className={classes.Cart__btn_shop} onClick={checkOutHandler}>
           Checkout
-        </button>
+        </button> */}
       </>
     );
   }

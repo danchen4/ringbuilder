@@ -1,0 +1,11 @@
+@import '../../sass/abstracts/abstracts';
+
+.Checkout {
+  &__steps {
+    display: flex;
+
+    &_step {
+      flex: 1;
+    }
+  }
+}

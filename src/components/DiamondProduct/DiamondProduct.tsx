@@ -18,21 +18,21 @@ import roundIcon from '../../images/Round.svg';
 interface DiamondProductProps {}
 
 const initialState = {
-  lab: { label: '', value: '' },
-  certNumber: { label: '', value: '' },
-  shape: { label: '', value: '' },
-  carats: { label: '', value: '' },
-  color: { label: '', value: '' },
-  clarity: { label: '', value: '' },
-  cut: { label: '', value: '' },
-  symmetry: { label: '', value: '' },
-  polish: { label: '', value: '' },
-  length: { label: '', value: '' },
-  width: { label: '', value: '' },
-  depth: { label: '', value: '' },
-  tablePer: { label: '', value: '' },
-  depthPer: { label: '', value: '' },
-  price: { label: '', value: '' },
+  lab: { label: 'Lab', value: '' },
+  certNumber: { label: 'Certificate Number', value: '' },
+  shape: { label: 'Shape', value: '' },
+  carats: { label: 'Carats', value: '' },
+  color: { label: 'Color', value: '' },
+  clarity: { label: 'Clarity', value: '' },
+  cut: { label: 'Cut', value: '' },
+  symmetry: { label: 'Symmetry', value: '' },
+  polish: { label: 'Polish', value: '' },
+  length: { label: 'Length', value: '' },
+  width: { label: 'Width', value: '' },
+  depth: { label: 'Depth', value: '' },
+  tablePer: { label: 'Table %', value: '' },
+  depthPer: { label: 'Depth %', value: '' },
+  price: { label: 'Price', value: '' },
 };
 
 export const DiamondProduct: React.FC<DiamondProductProps> = ({}) => {
@@ -97,14 +97,14 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({}) => {
             {diamondData
               ? Object.values(diamondData).map((detail: any) => {
                   return (
-                    <>
+                    <div key={detail.label}>
                       {detail.label === 'Price' ? null : (
-                        <div key={detail.label} className={classes.DiamondProduct__data}>
+                        <div className={classes.DiamondProduct__data}>
                           <span className={classes.DiamondProduct__label}>{detail.label}: </span>
                           {detail.value}
                         </div>
                       )}
-                    </>
+                    </div>
                   );
                 })
               : null}

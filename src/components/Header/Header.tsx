@@ -4,22 +4,28 @@ import { useHistory } from 'react-router';
 // CSS
 import classes from './Header.module.scss';
 // Components
-import { Navbar } from '../UI/Navbar/Navbar';
+import { NavigationItems } from './NavigationItems/NavigationItems';
 import { ShoppingCart } from '../Icons/ShoppingCart';
 import { Account } from '../Icons/Account';
 import { Logo } from '../Icons/Logo';
-import { SideDrawerToggle } from '../UI/SideDrawerToggle/SideDrawerToggle';
+import { SideDrawerToggle } from './SideDrawerToggle/SideDrawerToggle';
+import SideDrawer from './SideDrawer/SideDrawer';
 
 interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = ({}) => {
+  const [showSideDrawer, setShowSiderDrawer] = useState(false);
   const history = useHistory();
+
+  const sideDrawerToggleHandler = () => {
+    setShowSiderDrawer(!showSideDrawer);
+  };
 
   return (
     <div className={classes.Header}>
       <div className={classes.Header__top}>
         <div className={classes.Header__top_column}>
-          <SideDrawerToggle />
+          <SideDrawerToggle toggle={showSideDrawer} clicked={sideDrawerToggleHandler} />
         </div>
         <div className={classes.Header__top_column}>
           <div className={classes.Header__logo}>
@@ -39,7 +45,10 @@ export const Header: React.FC<HeaderProps> = ({}) => {
         </div>
         <div className={classes.Header__top_column}>
           <div className={classes.Header__icons}>
-            <div className={classes.Header__icons_icon}>
+            <div
+              className={classes.Header__icons_icon}
+              onClick={() => history.push({ pathname: '/login' })}
+            >
               <Account fillColor="#c9bc1f" width="4rem" height="4rem" />
             </div>
             <div
@@ -51,7 +60,10 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           </div>
         </div>
       </div>
-      <Navbar />
+      <div className={classes.Header__bottom}>
+        <NavigationItems />
+      </div>
+      <SideDrawer toggle={showSideDrawer} clicked={sideDrawerToggleHandler} />
     </div>
   );
 };
