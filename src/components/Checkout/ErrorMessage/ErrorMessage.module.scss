@@ -1,0 +1,21 @@
+@import '../../../sass/abstracts/abstracts';
+
+.ErrorMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  color: $color-rg;
+  padding: 0 15px;
+  font-size: 1.6rem;
+  width: 100%;
+  opacity: 0;
+  animation: fade 150ms ease-out;
+  animation-delay: 50ms;
+  animation-fill-mode: forwards;
+  will-change: opacity, transform;
+}
+
+.ErrorMessage svg {
+  margin-right: 10px;
+}

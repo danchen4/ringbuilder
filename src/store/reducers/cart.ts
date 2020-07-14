@@ -1,17 +1,5 @@
 import { ActionTypes, CartActions } from '../actions/types';
-
-export interface CartItem {
-  sku: string;
-  image: string;
-  name: string;
-  style: string;
-  metal: string;
-  size: string,
-  price: number;
-  certNumber: number,
-  carats: number,
-  shape: string,
-}
+import { CartItem } from '../../types';
 
 export interface CartState {
   cartItems: CartItem[];
@@ -29,7 +17,9 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
         cartItems: state.cartItems.concat(action.payload),
       };
     case ActionTypes.removeFromCart:
-      const updatedCart = state.cartItems.filter((cartItem) => cartItem.certNumber !== action.payload);
+      const updatedCart = state.cartItems.filter(
+        (cartItem) => cartItem.certNumber !== action.payload
+      );
       return {
         ...state,
         cartItems: updatedCart,
@@ -38,6 +28,11 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
       return {
         ...state,
         cartItems: action.payload,
+      };
+    case ActionTypes.clearCart:
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;

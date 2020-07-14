@@ -1,21 +1,9 @@
 import { ActionTypes, RingActions } from '../actions/types';
 import { AxiosError } from 'axios';
-
-export interface RingData {
-  sku: string;
-  name: string;
-  description: string;
-  price: number;
-  center: string;
-  style: string;
-  accent: number;
-  thickness: number;
-  metals: string[];
-  gallery: string[];
-}
+import { RingData } from '../../types';
 
 export interface RingProductState {
-  ringProductData: RingData  | null;
+  ringProductData: RingData | null;
   loading: boolean;
   error: AxiosError | null;
 }
@@ -31,7 +19,7 @@ const initialState = {
     accent: 0,
     thickness: 0,
     metals: [],
-    gallery: [],  
+    gallery: [],
   },
   loading: false,
   error: null,

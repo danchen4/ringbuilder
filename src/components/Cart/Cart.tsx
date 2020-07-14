@@ -1,40 +1,28 @@
 import React, { useEffect } from 'react';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { loadCartFromLocal, removeFromCart, checkLoginState } from '../../store/actions';
-import { CartItem } from '../../store/reducers/cart';
+import { loadCartFromLocal, removeFromCart } from '../../store/actions';
+import { CartItem } from '../../types';
 // Router
 import { useHistory } from 'react-router';
 //CSS
 import classes from './Cart.module.scss';
 // Components
 import Totals from './Totals/Totals';
+import { PageContent } from '../StyledUI/PageContent';
+import { MyGrid } from '../StyledUI/MyGrid';
+import { Spacer } from '../StyledUI/Spacer';
+import { CustomButton } from '../StyledUI/CustomButton';
+import { Label } from '../StyledUI/Label';
+import { Attribute } from '../StyledUI/Attribute';
+import { ProductName } from '../StyledUI/ProductName';
+import { ProductType } from '../StyledUI/ProductType';
+import { MyImage } from '../StyledUI/MyImage';
 // Misc
 import { formatCurrency } from '../../helper/formatCurrency';
-import { Button } from '../UI/Button/Button';
+import { Description } from '../StyledUI/Description';
 
 interface CartProps {}
-
-const sampleCart = [
-  {
-    sku: 'sku 1',
-    image:
-      'https://cdn-images.gabrielny.com/is/image/GabrielCo/Medium/Gabriel-14K-White-Gold-Oval-Diamond-Engagement-Ring~ER14982O8W4JJJ-1.jpg',
-    name: 'ring name 1',
-    style: 'Solitaire',
-    metal: '14K White Gold',
-    price: 1000,
-  },
-  {
-    sku: 'sku 2',
-    image:
-      'https://cdn-images.gabrielny.com/is/image/GabrielCo/Medium/Gabriel-14K-White-Gold-Oval-Diamond-Engagement-Ring~ER14982O8W4JJJ-1.jpg',
-    name: 'ring name 2',
-    style: 'Solitaire',
-    metal: '14K White Gold',
-    price: 2000,
-  },
-];
 
 const Cart: React.FC<CartProps> = () => {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
@@ -44,7 +32,7 @@ const Cart: React.FC<CartProps> = () => {
   const isAuthenticated = useSelector((state: any) => state.auth.token !== null);
 
   useEffect(() => {
-    const cart = localStorage.getItem('cart');
+    const cart = sessionStorage.getItem('cart');
     if (cart) dispatch(loadCartFromLocal());
   }, [dispatch]);
 
@@ -64,51 +52,53 @@ const Cart: React.FC<CartProps> = () => {
     return subTotal + cartItem.price;
   }, 0);
 
-  console.log(cartItems);
-
-  let cartTable = <p>You're cart is empty</p>;
+  let cartTable = <Description>You're cart is empty</Description>;
   if (cartItems.length) {
     cartTable = (
-      <>
+      <PageContent>
         <div className={classes.Cart__table}>
           {cartItems.map((cartItem: CartItem) => {
             return (
-              <div key={cartItem.certNumber} className={classes.Cart__grid}>
-                <div className={classes.Cart__column}>
-                  <img className={classes.Cart__productImage} src={cartItem.image} alt="ring" />
-                </div>
-                <div className={classes.Cart__column}>
-                  <div className={classes.Cart__description}>
-                    <h2>
+              <Spacer mTop={1} key={cartItem.certNumber}>
+                <MyGrid columns="2fr 1fr 1fr">
+                  <div className={classes.Cart__column}>
+                    <MyImage width={40} alt="ring" src={cartItem.image} />
+                  </div>
+                  <div className={classes.Cart__column}>
+                    <ProductName fontSize={1.6}>
                       {cartItem.metal} {cartItem.name}{' '}
                       {cartItem.style !== 'Solitaire' ? 'Diamond' : null} Ring
-                    </h2>
-                    <p>SKU: {cartItem.sku}</p>
-                    <p>Ring Size: {cartItem.size}</p>
-                    <p>
+                    </ProductName>
+                    <Spacer mTop={0.5} mBot={0.5}>
+                      <Label fontSize={1.4}>SKU: </Label>
+                      <Attribute fontSize={1.4}>{cartItem.sku}</Attribute>
+                    </Spacer>
+                    <Spacer mTop={0.5} mBot={0.5}>
+                      <Label fontSize={1.4}>Ring Size: </Label>
+                      <Attribute fontSize={1.4}>{cartItem.size}</Attribute>
+                    </Spacer>
+                    <ProductType fontSize={1.4}>
                       {cartItem.carats} Carats {cartItem.shape} Diamond
-                    </p>
-                    <button
-                      className={classes.Cart__btn_remove}
-                      onClick={() => removeCartItemHandler(cartItem.certNumber)}
-                    >
+                    </ProductType>
+                    <CustomButton text clicked={() => removeCartItemHandler(cartItem.certNumber)}>
                       remove
-                    </button>
+                    </CustomButton>
                   </div>
-                </div>
-                <div className={classes.Cart__column}>
-                  <span className={classes.Cart__price}>{formatCurrency(cartItem.price)}</span>
-                </div>
-              </div>
+                  <div className={classes.Cart__column}>
+                    <span className={classes.Cart__price}>{formatCurrency(cartItem.price)}</span>
+                  </div>
+                </MyGrid>
+              </Spacer>
             );
           })}
         </div>
         <Totals subTotal={subTotal} />
-        <Button clicked={checkOutHandler}>Checkout</Button>
-        {/* <button className={classes.Cart__btn_shop} onClick={checkOutHandler}>
-          Checkout
-        </button> */}
-      </>
+        <Spacer mTop={8}>
+          <CustomButton primary width="50%" clicked={checkOutHandler}>
+            Check Out
+          </CustomButton>
+        </Spacer>
+      </PageContent>
     );
   }
 

@@ -1,6 +1,12 @@
 import React from 'react';
+// CSS
 import cn from 'classnames';
 import classes from './ProductMetalSelection.module.scss';
+// Components
+import { Label } from '../../StyledUI/Label';
+import { Attribute } from '../../StyledUI/Attribute';
+import { Spacer } from '../../StyledUI/Spacer';
+// Misc
 import { METAL, METAL_SHORTNAME } from '../../../constants';
 
 interface ProductMetalSelectionProps {
@@ -18,16 +24,17 @@ const metalShortened = {
   [METAL.ROSE]: METAL_SHORTNAME.ROSE,
 };
 
-const ProductMetalSelection: React.FC<ProductMetalSelectionProps> = ({
+export const ProductMetalSelection: React.FC<ProductMetalSelectionProps> = ({
   selectedMetal,
   metals,
   metalChange,
 }) => {
   return (
     <div className={classes.ProductMetalSelection}>
-      <div className={classes.ProductMetalSelection__name}>
-        <span className={classes.ProductMetalSelection__label}>Metal:</span> {selectedMetal}
-      </div>
+      <Spacer>
+        <Label>Metal:</Label>
+        <Attribute>{selectedMetal}</Attribute>
+      </Spacer>
       {metals.map((metal: string) => {
         return (
           <div
@@ -47,5 +54,3 @@ const ProductMetalSelection: React.FC<ProductMetalSelectionProps> = ({
     </div>
   );
 };
-
-export default ProductMetalSelection;

@@ -8,7 +8,7 @@ interface CardProps {
   pathName?: string;
 }
 
-const Card: React.FC<CardProps> = ({ pathName, children }) => {
+export const Card: React.FC<CardProps> = ({ pathName, children }) => {
   const history = useHistory();
 
   const clickedHandler = () => {
@@ -21,5 +21,3 @@ const Card: React.FC<CardProps> = ({ pathName, children }) => {
     </div>
   );
 };
-
-export default Card;

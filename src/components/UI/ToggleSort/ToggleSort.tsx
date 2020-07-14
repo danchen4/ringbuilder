@@ -28,5 +28,3 @@ export const ToggleSort: React.FC<ToggleSortProps> = ({ label, clicked }) => {
     </div>
   );
 };
-
-export default ToggleSort;

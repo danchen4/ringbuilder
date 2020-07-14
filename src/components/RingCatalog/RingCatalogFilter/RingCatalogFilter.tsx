@@ -5,8 +5,8 @@ import cn from 'classnames';
 //MISC
 import { RING_ATTRIBUTES, RING_PRICE_SORT_LABEL } from '../../../constants';
 // Components
-import CheckboxDropDown from '../../UI/CheckboxDropDown/CheckboxDropDown';
-import SortDropDown from '../../UI/SortDropDown/SortDropDown';
+import { CheckboxDropDown } from '../../UI/CheckboxDropDown/CheckboxDropDown';
+import { SortDropDown } from '../../UI/SortDropDown/SortDropDown';
 import { MobileDropDownSelect } from '../../UI/MobileDropDownSelect/MobileDropDownSelect';
 
 interface RingCatalogFilterProps {
@@ -20,6 +20,8 @@ interface RingCatalogFilterProps {
   ringStyleSelected: string;
   /** Value of ring center shape selected*/
   ringShapeSelected: string;
+  /** Values allowed for ring center shape.  Based on diamond shape chosen*/
+  diamondShapes: string[];
 }
 
 const priceSortValues = [RING_PRICE_SORT_LABEL.LOWTOHIGH, RING_PRICE_SORT_LABEL.HIGHTOLOW];
@@ -30,12 +32,13 @@ const toggleDropDowns: { [key: string]: boolean } = {
   sortPrice: false,
 };
 
-const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
+export const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
   filterStyle,
   filterShape,
   selectSort,
   ringStyleSelected,
   ringShapeSelected,
+  diamondShapes,
 }) => {
   const [toggle, setToggle] = useState(toggleDropDowns);
 
@@ -62,7 +65,7 @@ const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
         <CheckboxDropDown
           header="Diamond Shape"
           name={RING_ATTRIBUTES.CENTER}
-          values={['All', 'Round', 'Oval']}
+          values={diamondShapes}
           checked={filterShape}
           selected={ringShapeSelected}
         />
@@ -93,7 +96,7 @@ const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
       <div className={cn(classes.FilterBar__filter)}>
         <MobileDropDownSelect
           header="Diamond Shape"
-          values={['All', 'Round', 'Oval']}
+          values={diamondShapes}
           name="shape"
           selected={ringShapeSelected}
           dropdown={toggle.shape}
@@ -122,5 +125,3 @@ const RingCatalogFilter: React.FC<RingCatalogFilterProps> = ({
     </div>
   );
 };
-
-export default RingCatalogFilter;

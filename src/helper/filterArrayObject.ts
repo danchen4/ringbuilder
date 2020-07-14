@@ -10,12 +10,12 @@ export function filterArrayObject(array: any[], filters: any) {
   });
 }
 
-
 /*
 
   item = { 
     shape: 'Round',
-    color: 'H'
+    color: 'H',
+    ...
   }
 
   filters = {

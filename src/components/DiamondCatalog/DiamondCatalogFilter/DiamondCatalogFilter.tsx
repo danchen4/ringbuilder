@@ -6,7 +6,6 @@ import classes from './DiamondCatalogFilter.module.scss';
 import { IconCheckboxGroup } from '../../UI/IconCheckboxGroup/IconCheckboxGroup';
 import { DiscreteRangeSlider } from '../../UI/DiscreteRangeSlider/DiscreteRangeSlider';
 import { RangeSlider } from '../../UI/RangeSlider/RangeSlider';
-import { MobileDropDownSelect } from '../../UI/MobileDropDownSelect/MobileDropDownSelect';
 import { MobileDropDownWrapper } from '../../UI/MobileDropDownWrapper/MobileDropDownWrapper';
 
 // Misc.
@@ -32,10 +31,11 @@ interface DiamondCatalogFilterProps {
   filterColor(filterMinMax: { [key: string]: string }): void;
   /** Handler callback function for filtering diamond clarity*/
   filterClarity(filterMinMax: { [key: string]: string }): void;
-  /** Value of center shape(s) selected*/
-  ringShapeSelected: string | string[];
+  /** Values allowed for ring center shape.  Based on diamond shape chosen*/
+  diamondShapes: string[];
 }
 
+// Object is used to determine which filter to expand on mobile.  Only one filter can be expanded on mobile at one time.
 const toggleDropDowns: { [key: string]: boolean } = {
   shape: false,
   price: false,
@@ -44,7 +44,7 @@ const toggleDropDowns: { [key: string]: boolean } = {
 };
 
 export const DiamondCatalogFilter: React.FC<DiamondCatalogFilterProps> = React.memo(
-  ({ filterPrice, filterShape, filterColor, filterClarity, ringShapeSelected }) => {
+  ({ filterPrice, filterShape, filterColor, filterClarity, diamondShapes }) => {
     const [priceRange, setPriceRange] = useState<FilterNumRange>({ min: 0, max: 99999 });
     const [toggle, setToggle] = useState(toggleDropDowns);
 
@@ -54,31 +54,34 @@ export const DiamondCatalogFilter: React.FC<DiamondCatalogFilterProps> = React.m
         ...toggleDropDowns,
         [name]: !toggle[name],
       });
-      console.log(toggle);
     };
 
+    // Get min and max price of all diamonds in database to use for price range filter
     useEffect(() => {
       (async function () {
         const url = 'https://ring-commerce.firebaseio.com/diamondCatalog.json';
         const queryMinCost = `?orderBy="cost"&limitToFirst=1`;
         const queryMaxCost = `?orderBy="cost"&limitToLast=1`;
 
-        const [responseMin, responseMax] = await Promise.all([
-          axios.get(url + queryMinCost),
-          axios.get(url + queryMaxCost),
-        ]);
-        const [minCostDiamond, maxCostDiamond] = await Promise.all([
-          responseMin.data,
-          responseMax.data,
-        ]);
+        try {
+          const [responseMin, responseMax] = await Promise.all([
+            axios.get(url + queryMinCost),
+            axios.get(url + queryMaxCost),
+          ]);
+          const [minCostDiamond, maxCostDiamond] = await Promise.all([
+            responseMin.data,
+            responseMax.data,
+          ]);
+          const minPrice = diamondDataToTableArray(minCostDiamond)[0].price;
+          const maxPrice = diamondDataToTableArray(maxCostDiamond)[0].price;
 
-        const minPrice = diamondDataToTableArray(minCostDiamond)[0].price;
-        const maxPrice = diamondDataToTableArray(maxCostDiamond)[0].price;
-
-        setPriceRange({
-          min: minPrice,
-          max: maxPrice,
-        });
+          setPriceRange({
+            min: minPrice,
+            max: maxPrice,
+          });
+        } catch (err) {
+          console.log(err);
+        }
       })();
     }, []);
 
@@ -86,7 +89,7 @@ export const DiamondCatalogFilter: React.FC<DiamondCatalogFilterProps> = React.m
     let desktopOutput = (
       <div className={classes.DiamondCatalogFilter_desktop}>
         <div className={classes.DiamondCatalogFilter__filter}>
-          <IconCheckboxGroup header="Shape" values={['Round', 'Oval']} checked={filterShape} />
+          <IconCheckboxGroup header="Shape" values={diamondShapes} checked={filterShape} />
         </div>
         <div className={classes.DiamondCatalogFilter__filter}>
           <h4>Price: </h4>
@@ -186,5 +189,3 @@ export const DiamondCatalogFilter: React.FC<DiamondCatalogFilterProps> = React.m
     );
   }
 );
-
-export default DiamondCatalogFilter;

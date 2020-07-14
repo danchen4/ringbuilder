@@ -19,7 +19,7 @@ interface CheckboxDropDownProps {
   checked(e: any): void;
 }
 
-const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
+export const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
   header,
   values,
   name,
@@ -75,5 +75,3 @@ const CheckboxDropDown: React.FC<CheckboxDropDownProps> = ({
     </div>
   );
 };
-
-export default CheckboxDropDown;

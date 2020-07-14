@@ -3,30 +3,4 @@
 .RingCatalog {
   width: 100%;
   @include clearfix;
-
-  &__name {
-    font-size: 1.7rem;
-    font-weight: 700;
-  }
-
-  &__style {
-    font-size: 1.2rem;
-  }
-
-  &__price {
-    margin: 0.5rem 0;
-    color: $color-primary-dark;
-    font-size: 1.6rem;
-    font-weight: 500;
-  }
-
-  &__btn_text {
-    text-decoration: none;
-    color: $color-secondary;
-    font-size: 1.4rem;
-
-    &:hover {
-      color: $color-secondary-light;
-    }
-  }
 }

@@ -4,6 +4,8 @@ import cn from 'classnames';
 import classes from './CatalogMetalSelection.module.scss';
 // Misc.
 import { METAL } from '../../../constants/rings';
+import { Spacer } from '../../StyledUI/Spacer';
+import { Attribute } from '../../StyledUI/Attribute';
 
 interface CatalogMetalSelectionProps {
   /** An string to indicate the selected metal */
@@ -14,7 +16,7 @@ interface CatalogMetalSelectionProps {
   metalChange(metal: string): void;
 }
 
-const CatalogMetalSelection: React.FC<CatalogMetalSelectionProps> = ({
+export const CatalogMetalSelection: React.FC<CatalogMetalSelectionProps> = ({
   selectedMetal,
   metals,
   metalChange,
@@ -35,9 +37,9 @@ const CatalogMetalSelection: React.FC<CatalogMetalSelectionProps> = ({
           />
         );
       })}
-      <div className={classes.MetalSelection__name}>{selectedMetal}</div>
+      <Spacer mTop={1} mBot={0.1}>
+        <Attribute fontSize={1.3}>{selectedMetal}</Attribute>
+      </Spacer>
     </div>
   );
 };
-
-export default CatalogMetalSelection;

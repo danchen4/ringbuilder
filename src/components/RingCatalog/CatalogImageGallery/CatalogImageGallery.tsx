@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './CatalogImageGallery.module.scss';
 import cn from 'classnames';
 // Components
-import CatalogMetalSelection from '../../RingCatalog/CatalogMetalSelection/CatalogMetalSelection';
+import { CatalogMetalSelection } from '../../RingCatalog/CatalogMetalSelection/CatalogMetalSelection';
 // Misc.
 import { METAL } from '../../../constants/rings';
 
@@ -14,7 +14,7 @@ interface CatalogImageGalleryProps {
   metals: string[];
 }
 
-const CatalogImageGallery = ({ images, metals }: CatalogImageGalleryProps) => {
+export const CatalogImageGallery = ({ images, metals }: CatalogImageGalleryProps) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [metal, setMetal] = useState(METAL.WHITE);
   const [CatalogImageGallery, setCatalogImageGallery] = useState<string[]>([]);
@@ -77,5 +77,3 @@ const CatalogImageGallery = ({ images, metals }: CatalogImageGalleryProps) => {
     </div>
   );
 };
-
-export default CatalogImageGallery;

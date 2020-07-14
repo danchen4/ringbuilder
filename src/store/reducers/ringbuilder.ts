@@ -1,27 +1,10 @@
 import { ActionTypes, RingBuilderActions } from '../actions/types';
 
-export interface RingBuilderRingData {
-  sku: string;
-  gallery: string[];
-  name: string;
-  style: string;
-  metal: string;
-  price: number;
-}
-
-export interface RingBuilderDiamondData {
-  certNumber: string;
-  lab: string,
-  carats: number,
-  shape: string,
-  clarity: string,
-  color: string,
-  price: number,
-}
+import { RingBuilderDiamondData, RingBuilderRingData } from './../../types';
 
 export interface RingBuilderState {
-  ringData: RingBuilderRingData | null,
-  diamondData: RingBuilderDiamondData | null,
+  ringData: RingBuilderRingData | null;
+  diamondData: RingBuilderDiamondData | null;
 }
 
 const initialState = {
@@ -29,7 +12,10 @@ const initialState = {
   diamondData: null,
 };
 
-export const ringBuilderReducer = (state: RingBuilderState = initialState, action: RingBuilderActions) => {
+export const ringBuilderReducer = (
+  state: RingBuilderState = initialState,
+  action: RingBuilderActions
+) => {
   switch (action.type) {
     case ActionTypes.addRing:
       return {
@@ -49,6 +35,12 @@ export const ringBuilderReducer = (state: RingBuilderState = initialState, actio
     case ActionTypes.removeDiamond:
       return {
         ...state,
+        diamondData: null,
+      };
+    case ActionTypes.clearRingBuilder:
+      return {
+        ...state,
+        ringData: null,
         diamondData: null,
       };
     default:

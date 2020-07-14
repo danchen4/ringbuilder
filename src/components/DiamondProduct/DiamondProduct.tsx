@@ -1,62 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, ReactNode } from 'react';
 // Router
 import { useParams, useHistory } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { addDiamond } from '../../store/actions';
-import { RingBuilderDiamondData } from '../../store/reducers/ringbuilder';
+import { fetchDiamondProduct } from '../../store/actions';
 // CSS
 import classes from './DiamondProduct.module.scss';
 // Components
-import ProgressBar from '../ProgressBar/ProgressBar';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { PageContent } from '../StyledUI/PageContent';
+import { ProductContent } from '../StyledUI/ProductContent';
+import { ProductName } from '../StyledUI/ProductName';
+import { Price } from '../StyledUI/Price';
+import { CustomButton } from '../StyledUI/CustomButton';
+import { Label } from '../StyledUI/Label';
+import { Attribute } from '../StyledUI/Attribute';
+import { Spacer } from '../StyledUI/Spacer';
 // Misc
-import { diamondDataToProductObj, formatCurrency } from '../../helper';
-import ovalIcon from '../../images/Oval.svg';
-import roundIcon from '../../images/Round.svg';
+import { formatCurrency } from '../../helper';
+import { RoundDiamond } from '../Icons/RoundDiamond';
+import { OvalDiamond } from '../Icons/OvalDiamond';
+import { MyGrid } from '../StyledUI/MyGrid';
+import { Backdrop } from '../UI/BackDrop/Backdrop';
+import { Spinner } from '../UI/Spinner/Spinner';
 
 interface DiamondProductProps {}
 
-const initialState = {
-  lab: { label: 'Lab', value: '' },
-  certNumber: { label: 'Certificate Number', value: '' },
-  shape: { label: 'Shape', value: '' },
-  carats: { label: 'Carats', value: '' },
-  color: { label: 'Color', value: '' },
-  clarity: { label: 'Clarity', value: '' },
-  cut: { label: 'Cut', value: '' },
-  symmetry: { label: 'Symmetry', value: '' },
-  polish: { label: 'Polish', value: '' },
-  length: { label: 'Length', value: '' },
-  width: { label: 'Width', value: '' },
-  depth: { label: 'Depth', value: '' },
-  tablePer: { label: 'Table %', value: '' },
-  depthPer: { label: 'Depth %', value: '' },
-  price: { label: 'Price', value: '' },
-};
-
 export const DiamondProduct: React.FC<DiamondProductProps> = ({}) => {
-  const [diamondData, setDiamondData] = useState<any>(initialState);
-  const ringData = useSelector((state: any) => state.ringBuilder.ringData);
-
-  const dispatch = useDispatch();
-  const onAddToRing = (diamondData: RingBuilderDiamondData) => {
-    dispatch(addDiamond(diamondData));
-  };
-
-  let { certNumber } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
+  let { certNumber } = useParams();
+  const ringData = useSelector((state: any) => state.ringBuilder.ringData);
+  const diamondData = useSelector((state: any) => state.diamondProduct.diamondProductData);
+  const loading = useSelector((state: any) => state.diamondProduct.loading);
 
+  // Load diamond from firebase based on certNumber in teh Router params
   useEffect(() => {
-    (async function () {
-      const queryParams = `?orderBy="$key"&equalTo="${certNumber}"`;
-      const url = 'https://ring-commerce.firebaseio.com/diamondCatalog.json';
-      const response = await axios.get(url + queryParams);
-      const data = await response.data;
-      const diamondCatalog = diamondDataToProductObj(data);
-      setDiamondData(diamondCatalog);
-    })();
-  }, [certNumber]);
+    dispatch(fetchDiamondProduct(certNumber));
+  }, [dispatch, certNumber]);
 
   const addToRingHandler = () => {
     const ringBuilderDiamondData = {
@@ -68,7 +50,7 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({}) => {
       color: diamondData.color.value,
       price: diamondData.price.value,
     };
-    onAddToRing(ringBuilderDiamondData);
+    dispatch(addDiamond(ringBuilderDiamondData));
     // if a diamond has not been selected, then direct to ring catalog page, else review page
     if (!ringData) {
       history.push({ pathname: '/rings' });
@@ -77,46 +59,61 @@ export const DiamondProduct: React.FC<DiamondProductProps> = ({}) => {
     }
   };
 
-  console.log('diamondData', diamondData);
-
-  let imageSource = '';
+  let diamondImage: ReactNode | null = null;
   if (diamondData) {
-    imageSource = diamondData.shape.value === 'Round' ? roundIcon : ovalIcon;
+    diamondImage =
+      diamondData.shape.value === 'Round' ? (
+        <RoundDiamond width="100%" height="100%" />
+      ) : (
+        <OvalDiamond width="100%" height="100%" />
+      );
   }
 
-  return (
-    <div className={classes.DiamondProduct}>
-      <ProgressBar />
-      <div className={classes.DiamondProduct__grid}>
-        <img className={classes.DiamondProduct__image} src={imageSource} alt="diamond" />
-        <div className={classes.DiamondProduct__description}>
-          <h2 className={classes.DiamondProduct__header}>
-            {diamondData.carats.value} Carat {diamondData.shape.value} Diamond{' '}
-          </h2>
-          <div className={classes.DiamondProduct__details}>
-            {diamondData
-              ? Object.values(diamondData).map((detail: any) => {
-                  return (
-                    <div key={detail.label}>
-                      {detail.label === 'Price' ? null : (
-                        <div className={classes.DiamondProduct__data}>
-                          <span className={classes.DiamondProduct__label}>{detail.label}: </span>
-                          {detail.value}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })
-              : null}
-          </div>
-          <p className={classes.DiamondProduct__price}>{formatCurrency(diamondData.price.value)}</p>
-          <button className={classes.DiamondProduct__btn_shop} onClick={addToRingHandler}>
-            Add To Ring
-          </button>
-        </div>
-      </div>
-    </div>
+  let diamondProduct = (
+    <React.Fragment>
+      <Backdrop />
+      <Spinner />
+    </React.Fragment>
   );
+  if (!loading) {
+    diamondProduct = (
+      <div className={classes.DiamondProduct}>
+        <ProgressBar />
+        <PageContent>
+          <MyGrid>
+            <div className={classes.DiamondProduct__image}>{diamondImage}</div>
+            <ProductContent>
+              <ProductName>
+                {diamondData.carats.value} Carat {diamondData.shape.value} Diamond{' '}
+              </ProductName>
+              <MyGrid mobileColumns="1fr 1fr">
+                {diamondData
+                  ? Object.values(diamondData).map((detail: any) => {
+                      return (
+                        <div key={detail.label}>
+                          {detail.label === 'Price' ? null : (
+                            <Spacer mBot={0.5}>
+                              <Label>{detail.label}:</Label>
+                              <Attribute>{detail.value}</Attribute>
+                            </Spacer>
+                          )}
+                        </div>
+                      );
+                    })
+                  : null}
+              </MyGrid>
+              <Price>{formatCurrency(diamondData.price.value)}</Price>
+              <CustomButton primary width="80%" clicked={addToRingHandler}>
+                Add To Ring
+              </CustomButton>
+            </ProductContent>
+          </MyGrid>
+        </PageContent>
+      </div>
+    );
+  }
+
+  return diamondProduct;
 };
 
 export default DiamondProduct;

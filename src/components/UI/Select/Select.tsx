@@ -15,12 +15,15 @@ const useStyles = makeStyles({
   select: {
     fontSize: '1.6rem',
   },
+  label: {
+    fontSize: '1.6rem',
+    paddingRight: '1rem',
+    backgroundColor: 'white',
+  },
   menuItem: {
     fontSize: '2rem',
   },
 });
-
-interface Props {}
 
 interface SelectOptions {
   value: string;
@@ -39,7 +42,7 @@ interface SelectProps {
 }
 
 export const MySelect: React.FC<SelectProps> = ({ header, values, name, selected }) => {
-  const classMUI = useStyles();
+  const classesMUI = useStyles();
   const [value, setValue] = useState('');
 
   const changeHandler = (e: any) => {
@@ -48,15 +51,20 @@ export const MySelect: React.FC<SelectProps> = ({ header, values, name, selected
   };
 
   return (
-    <FormControl className={classMUI.formControl} variant="outlined">
-      {/* <InputLabel>{header}</InputLabel> */}
-      <Select value={value} className={classMUI.select} onChange={changeHandler} displayEmpty>
-        <MenuItem value="" disabled>
+    <FormControl className={classesMUI.formControl} variant="outlined">
+      <InputLabel className={classesMUI.label}>{header}</InputLabel>
+      <Select
+        className={classesMUI.select}
+        value={value}
+        onChange={changeHandler}
+        label="Ring Size"
+      >
+        {/* <MenuItem value="" disabled>
           {header}
-        </MenuItem>
+        </MenuItem> */}
         {values.map((menuItem: any) => {
           return (
-            <MenuItem key={menuItem.value} value={menuItem.value} className={classMUI.select}>
+            <MenuItem key={menuItem.value} value={menuItem.value} className={classesMUI.select}>
               {menuItem.label}
             </MenuItem>
           );

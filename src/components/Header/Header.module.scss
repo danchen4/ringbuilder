@@ -61,6 +61,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
 
     // @include bp(tab-port) {
     //   display: none;
@@ -69,6 +70,19 @@
     &_icon {
       padding: 0 1rem;
       cursor: pointer;
+    }
+
+    &_notification {
+      position: absolute;
+      top: 0;
+      right: 1.1rem;
+
+      width: 1.75rem;
+      height: 1.75rem;
+
+      background-color: $color-primary-dark;
+      color: $color-white;
+      border-radius: 10rem;
     }
   }
 }

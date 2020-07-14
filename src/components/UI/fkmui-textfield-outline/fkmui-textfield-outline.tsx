@@ -10,9 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   textField: {
     width: (customStyle: any) => customStyle.width || undefined,
-  },
-  resize: {
-    fontSize: '4rem',
+    margin: '1.5rem 0',
   },
 });
 
@@ -35,7 +33,7 @@ export const MyTextField: React.FC<MyTextFieldProps> = ({
   name,
   label,
   required,
-  fontSize = '1.6rem',
+  fontSize = '1.4rem',
   type = 'text',
   autoFocus = false,
   customStyle = { width: '100%' },

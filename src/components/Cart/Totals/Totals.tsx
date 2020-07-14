@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-// Redux
-import { useSelector } from 'react-redux';
-import { CartItem } from '../../../store/reducers/cart';
 // CSS
 import classes from './Totals.module.scss';
 

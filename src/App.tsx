@@ -1,17 +1,16 @@
 import React, { Suspense } from 'react';
 // Router
-import { Switch, Route, Redirect } from 'react-router-dom';
-// Stripe
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import { Switch, Route } from 'react-router-dom';
 // CSS
 import './App.scss';
 // Components
-import Spinner from './components/UI/Spinner/Spinner';
-import { Backdrop } from './components/UI/BackDrop/Backdrop';
+import { Spinner } from './components/UI/Spinner/Spinner';
 import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
+// MUI
 
 // Lazy load
+// #region
 const RingCatalog = React.lazy(() => {
   return import('./components/RingCatalog/RingCatalog');
 });
@@ -40,22 +39,12 @@ const Checkout = React.lazy(() => {
   return import('./components/Checkout/Checkout');
 });
 
-const Login = React.lazy(() => {
-  return import('./components/Auth/Login/Login');
-});
-
-const Signup = React.lazy(() => {
-  return import('./components/Auth/Signup/Signup');
-});
-
 const Home = React.lazy(() => {
   return import('./components/Home/Home');
 });
+// #endregion
 
 // Stripe
-const stripePromise = loadStripe(
-  'pk_test_51GwwiaDWXOI2lyGirOeBNp5dd8VLcbePcvTuCxEIUWmVUXxaj39YYghL8MaWUjW2yZFGKdDKQkQcZp7PYHU1Y45P00uLIiyCGs'
-);
 
 function App() {
   const routes = (
@@ -64,31 +53,27 @@ function App() {
       <Route path="/rings/:sku" render={() => <RingProduct />} />
       <Route exact path="/diamonds" render={() => <DiamondCatalog />} />
       <Route path="/diamonds/:certNumber" render={() => <DiamondProduct />} />
-      <Route exact path="/review" render={() => <Review />} />
+      <Route path="/review" render={() => <Review />} />
       <Route exact path="/cart" render={() => <Cart />} />
       <Route path="/checkout" render={() => <Checkout />} />
-      <Route exact path="/login" render={() => <Login />} />
-      <Route exact path="/signup" render={() => <Signup />} />
       <Route exact path="/" render={() => <Home />} />
-      {/* <Route exact path="/" component={RingCatalog} /> */}
+      <Route exact path="*" render={() => <Home />} />
     </Switch>
   );
 
   const loading = (
     <React.Fragment>
-      <Backdrop />
       <Spinner />
     </React.Fragment>
   );
 
   return (
     <div className="App">
-      <Elements stripe={stripePromise}>
-        <Header />
-        <div className="App__section">
-          <Suspense fallback={loading}>{routes}</Suspense>
-        </div>
-      </Elements>
+      <Header />
+      <div className="App__section">
+        <Suspense fallback={loading}>{routes}</Suspense>
+      </div>
+      <Footer />
     </div>
   );
 }

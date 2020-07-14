@@ -25,5 +25,3 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({ toggle, clicked }) => {
     </React.Fragment>
   );
 };
-
-export default SideDrawer;

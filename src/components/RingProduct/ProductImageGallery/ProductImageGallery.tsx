@@ -12,7 +12,10 @@ interface ProductImageGalleryProps {
   selectedMetal?: string;
 }
 
-const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({ images, selectedMetal }) => {
+export const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
+  images,
+  selectedMetal,
+}) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [ProductImageGallery, setProductImageGallery] = useState<string[]>([]);
 
@@ -67,5 +70,3 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({ images, selec
     </React.Fragment>
   );
 };
-
-export default ProductImageGallery;

@@ -19,9 +19,11 @@ const useStyles = makeStyles({
   },
   label: {
     fontSize: '1.6rem',
+    paddingRight: '1rem',
+    backgroundColor: 'white',
   },
   errorMessage: {
-    color: 'rgba(164, 49, 41, 1)',
+    color: '#f44336',
     margin: '3px 14px 0 14px',
     fontSize: '1.6rem',
     textAlign: 'left',

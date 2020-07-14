@@ -16,7 +16,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 // Misc
 import { formatCurrency } from '../../../helper';
-import ToggleSort from '../../UI/ToggleSort/ToggleSort';
+import { ToggleSort } from '../../UI/ToggleSort/ToggleSort';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -170,5 +170,3 @@ export const DiamondTable: React.FC<DiamondTableProps> = ({ diamondArray, sortTa
     </Paper>
   );
 };
-
-export default DiamondTable;

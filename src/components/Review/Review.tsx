@@ -3,17 +3,24 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, ringBuilderCheckData } from '../../store/actions';
-import { CartItem } from '../../store/reducers/cart';
+import { addToCart, ringBuilderCheckData, clearRingBuilder } from '../../store/actions';
+import { CartItem } from '../../types';
 // CSS
 import classes from './Review.module.scss';
 // Components
 import { ProgressBar } from '../ProgressBar/ProgressBar';
-import ProductImageGallery from '../RingProduct/ProductImageGallery/ProductImageGallery';
+import { ProductImageGallery } from '../RingProduct/ProductImageGallery/ProductImageGallery';
 import { MySelect } from '../UI/Select/Select';
+import { ProductName } from '../StyledUI/ProductName';
+import { ProductContent } from '../StyledUI/ProductContent';
+import { CustomButton } from '../StyledUI/CustomButton';
+import { Price } from '../StyledUI/Price';
+import { PageContent } from '../StyledUI/PageContent';
+import { MyGrid } from '../StyledUI/MyGrid';
 // Misc.
 import { formatCurrency, ringImageSelector } from '../../helper';
 import { RING_SIZES } from '../../constants';
+import { Spacer } from '../StyledUI/Spacer';
 
 interface ReviewProps {}
 
@@ -30,6 +37,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
   const onAddToCart = (cartItems: CartItem[]) => {
     dispatch(addToCart(cartItems));
+    dispatch(clearRingBuilder());
   };
 
   const addToCartHandler = () => {
@@ -48,7 +56,6 @@ export const Review: React.FC<ReviewProps> = ({}) => {
         shape: diamondData.shape,
       },
     ];
-    console.log('cartItem', cartItem);
     onAddToCart(cartItem);
     history.push({ pathname: '/cart' });
   };
@@ -58,37 +65,35 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     setRingSize(target.value);
   };
 
-  console.log('ringData', ringData);
-
   let review = <p>Add Ring and Diamond</p>;
   if (ringData && diamondData) {
     review = (
       <div className={classes.Review}>
         <ProgressBar />
-        <div className={classes.Review__grid}>
-          <ProductImageGallery images={ringData.gallery} selectedMetal={ringData.metal} />
-          <div className={classes.Review__content}>
-            <h2 className={classes.Review__header}>
-              {ringData.name} {ringData.metal} {ringData.style}{' '}
-              {ringData.style !== 'Solitaire' ? 'Diamond' : null} Ring with {diamondData.carats}{' '}
-              Carat {diamondData.shape} Diamond
-            </h2>
-            <div className={classes.Review__select}>
-              <MySelect
-                header="Ring Size"
-                values={RING_SIZES}
-                name="ringSize"
-                selected={selectRingSizeHandler}
-              />
-            </div>
-            <p className={classes.Review__price}>
-              {formatCurrency(ringData.price + diamondData.price)}
-            </p>
-            <button className={classes.Review__btn_shop} onClick={addToCartHandler}>
-              Add To Cart
-            </button>
-          </div>
-        </div>
+        <PageContent>
+          <MyGrid>
+            <ProductImageGallery images={ringData.gallery} selectedMetal={ringData.metal} />
+            <ProductContent>
+              <ProductName>
+                {ringData.name} {ringData.metal} {ringData.style}{' '}
+                {ringData.style !== 'Solitaire' ? 'Diamond' : null} Ring with {diamondData.carats}{' '}
+                Carat {diamondData.shape} Diamond
+              </ProductName>
+              <Spacer mTop={1} mBot={2}>
+                <MySelect
+                  header="Ring Size"
+                  values={RING_SIZES}
+                  name="ringSize"
+                  selected={selectRingSizeHandler}
+                />
+              </Spacer>
+              <Price>{formatCurrency(ringData.price + diamondData.price)}</Price>
+              <CustomButton primary width="50%" clicked={addToCartHandler}>
+                Add to Cart
+              </CustomButton>
+            </ProductContent>
+          </MyGrid>
+        </PageContent>
       </div>
     );
   }

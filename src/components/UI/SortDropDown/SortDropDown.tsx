@@ -15,7 +15,11 @@ interface SortDropDownProps {
   checked(e: any): void;
 }
 
-const SortDropDown: React.FC<SortDropDownProps> = ({ values, defaultSortHeader, checked }) => {
+export const SortDropDown: React.FC<SortDropDownProps> = ({
+  values,
+  defaultSortHeader,
+  checked,
+}) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [sortSelection, setSortSelection] = useState(defaultSortHeader);
 
@@ -69,5 +73,3 @@ const SortDropDown: React.FC<SortDropDownProps> = ({ values, defaultSortHeader, 
     </div>
   );
 };
-
-export default SortDropDown;

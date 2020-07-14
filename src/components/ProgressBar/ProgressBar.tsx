@@ -7,10 +7,8 @@ import { Link, useLocation } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { ringBuilderCheckData, removeRing, removeDiamond } from '../../store/actions';
-
 // Misc.
 import { formatCurrency, ringImageSelector } from '../../helper';
-import ringIcon from '../../images/solitaire.svg';
 import { RoundDiamond } from '../Icons/RoundDiamond';
 import { OvalDiamond } from '../Icons/OvalDiamond';
 import { SolitaireRing } from '../Icons/SolitaireRing';
@@ -40,7 +38,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
   let ringProgress = (
     <React.Fragment>
       <div className={classes.ProgressBar__content}>
-        <h4 className={classes.ProgressBar__header_empty}>Choose Ring</h4>
+        <h4 className={classes.ProgressBar__header_empty}>
+          <Link to={`/rings`}>Choose Ring</Link>
+        </h4>
       </div>
       <div className={classes.ProgressBar__image}>
         <SolitaireRing />
@@ -79,7 +79,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
   let diamondProgress = (
     <React.Fragment>
       <div className={classes.ProgressBar__content}>
-        <h4 className={classes.ProgressBar__header_empty}>Choose Diamond</h4>
+        <h4 className={classes.ProgressBar__header_empty}>
+          <Link to={`/diamonds`}>Choose Diamond</Link>
+        </h4>
       </div>
       <div className={classes.ProgressBar__image}>
         <RoundDiamond />
@@ -109,7 +111,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
     );
   }
 
-  // diamond progress bar if diamond has NOT been selected
+  // review progress bar if ring or diamond have not been selected
   let reviewProgress = (
     <React.Fragment>
       <div className={classes.ProgressBar__content_last}>
@@ -117,7 +119,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
       </div>
     </React.Fragment>
   );
-  // diamond progress bar if diamond has been selected
+  // review progress bar if both ring and diamond have been selected
   if (ringData && diamondData) {
     reviewProgress = (
       <React.Fragment>
@@ -168,5 +170,3 @@ export const ProgressBar: React.FC<ProgressBarProps> = () => {
     </div>
   );
 };
-
-export default ProgressBar;

@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 // Router
 import { useParams, useHistory } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRingProduct, addRing } from '../../store/actions';
-import { RingBuilderRingData } from '../../store/reducers/ringbuilder';
+import { RingBuilderRingData } from '../../types';
 // CSS
 import classes from './RingProduct.module.scss';
 // Components
-import ProductImageGallery from './ProductImageGallery/ProductImageGallery';
-import ProductMetalSelection from './ProductMetalSelection/ProductMetalSelection';
-import ProgressBar from '../ProgressBar/ProgressBar';
-import Spinner from '../UI/Spinner/Spinner';
+import { ProductImageGallery } from './ProductImageGallery/ProductImageGallery';
+import { ProductMetalSelection } from './ProductMetalSelection/ProductMetalSelection';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { Spinner } from '../UI/Spinner/Spinner';
 import { Backdrop } from '../UI/BackDrop/Backdrop';
+import { Price } from '../StyledUI/Price';
+import { Description } from '../StyledUI/Description';
+import { ProductName } from '../StyledUI/ProductName';
+import { ProductType } from '../StyledUI/ProductType';
+import { PageContent } from '../StyledUI/PageContent';
+import { CustomButton } from '../StyledUI/CustomButton';
+import { MyGrid } from '../StyledUI/MyGrid';
+import { ProductContent } from '../StyledUI/ProductContent';
 // Helpers, constants
 import { METAL } from '../../constants';
-import { formatCurrency, ringDataToArray } from '../../helper';
+import { formatCurrency } from '../../helper';
 
 interface RingProductProps {}
 
@@ -32,10 +39,7 @@ export const RingProduct: React.FC<RingProductProps> = () => {
   let { sku } = useParams();
   const history = useHistory();
 
-  const onAddToRing = (ringData: RingBuilderRingData) => {
-    dispatch(addRing(ringData));
-  };
-
+  // Loading ring from database based on sku from Router params
   useEffect(() => {
     dispatch(fetchRingProduct(sku));
   }, [dispatch, sku]);
@@ -52,9 +56,10 @@ export const RingProduct: React.FC<RingProductProps> = () => {
       style: ringData.style,
       metal: metal,
       price: ringData.price,
+      center: ringData.center,
     };
 
-    onAddToRing(ringBuilderRingData);
+    dispatch(addRing(ringBuilderRingData));
     // if a diamond has not been selected, then direct to diamonds catalog page, else to review page
     if (!diamondData) {
       history.push({ pathname: '/diamonds' });
@@ -73,25 +78,27 @@ export const RingProduct: React.FC<RingProductProps> = () => {
     ringProduct = (
       <div className={classes.RingProduct}>
         <ProgressBar />
-        <div className={classes.RingProduct__grid}>
-          <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
-          <div className={classes.RingProduct__content}>
-            <h2 className={classes.RingProduct__header}>{ringData.name}</h2>
-            <p className={classes.RingProduct__name}>
-              {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
-            </p>
-            <p className={classes.RingProduct__description}>{ringData.description}</p>
-            <ProductMetalSelection
-              selectedMetal={metal}
-              metals={ringData.metals}
-              metalChange={metalChangeHandler}
-            />
-            <p className={classes.RingProduct__price}>{formatCurrency(ringData.price)}</p>
-            <button className={classes.RingProduct__btn_shop} onClick={addToRingHandler}>
-              Add To Ring
-            </button>
-          </div>
-        </div>
+        <PageContent>
+          <MyGrid>
+            <ProductImageGallery images={ringData.gallery} selectedMetal={metal} />
+            <ProductContent>
+              <ProductName>{ringData.name}</ProductName>
+              <ProductType>
+                {ringData.style !== 'Solitaire' ? 'Diamond' : null} {ringData.style} Ring
+              </ProductType>
+              <Description>{ringData.description}</Description>
+              <ProductMetalSelection
+                selectedMetal={metal}
+                metals={ringData.metals}
+                metalChange={metalChangeHandler}
+              />
+              <Price>{formatCurrency(ringData.price)}</Price>
+              <CustomButton primary width="50%" clicked={addToRingHandler}>
+                Add To Ring
+              </CustomButton>
+            </ProductContent>
+          </MyGrid>
+        </PageContent>
       </div>
     );
   }

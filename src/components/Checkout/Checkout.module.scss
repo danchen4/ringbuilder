@@ -1,11 +1,82 @@
 @import '../../sass/abstracts/abstracts';
 
 .Checkout {
-  &__steps {
-    display: flex;
+}
 
-    &_step {
-      flex: 1;
-    }
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale3D(0.95, 0.95, 0.95);
   }
+  to {
+    opacity: 1;
+    transform: scale3D(1, 1, 1);
+  }
+}
+
+.Form {
+  animation: fade 200ms ease-out;
+}
+
+.FormGroup {
+  margin: 1rem 0;
+  padding: 1.6rem 1.4rem;
+  border-style: none;
+  background-color: $color-white;
+  will-change: opacity, transform;
+  border: 1px solid rgb(195, 195, 195);
+  border-radius: 4px;
+}
+
+.FormRow {
+}
+
+.FormRow:first-child {
+  border-top: none;
+}
+
+.FormRowLabel {
+  font-size: 1.4rem;
+  width: 15%;
+  min-width: 70px;
+  padding: 11px 0;
+  color: #c4f0ff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes void-animation-out {
+  0%,
+  to {
+    opacity: 1;
+  }
+}
+.FormRowInput:-webkit-autofill {
+  -webkit-text-fill-color: #fce883;
+  /* Hack to hide the default webkit autofill */
+  transition: background-color 100000000s;
+  animation: 1ms void-animation-out;
+}
+
+.FormRowInput {
+  font-size: 1rem;
+  width: 100%;
+  padding: 11px 15px 11px 0;
+  color: #fff;
+  background-color: transparent;
+  animation: 1ms void-animation-out;
+}
+
+.FormRowInput::placeholder {
+  color: #87bbfd;
+}
+
+.StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.StripeElement {
+  width: 100%;
+  padding: 11px 15px 11px 0;
 }

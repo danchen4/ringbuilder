@@ -1,44 +1,12 @@
-export interface RingDataFromDatabase {
-  sku: string;
-  name: string;
-  description: string;
-  price: number;
-  center_shape: string;
-  ring_style: string;
-  accent_weight: number;
-  band_thickness: number;
-  metals: string;
-  image_wg_1: string;
-  image_wg_2: string;
-  image_wg_3: string;
-  image_yg_1: string;
-  image_yg_2: string;
-  image_yg_3: string;
-  image_rg_1: string;
-  image_rg_2: string;
-  image_rg_3: string;
-}
+import { RingDataFromDatabase, RingData } from '../types';
 
-export interface RingData {
-  sku: string;
-  name: string;
-  description: string;
-  price: number;
-  center: string;
-  style: string;
-  accent: number;
-  thickness: number;
-  metals: string[];
-  gallery: string[];
-}
-
-// catalog looks like
+// data from firebase in following format:
 // catalog: {
-//ER12876: {
-// accent_weight: 0.27
-// band_thickness: 1.5
-// ...
-// }
+//   ER12876: {
+//     accent_weight: 0.27
+//     band_thickness: 1.5
+//      ...
+//   }
 // }
 
 export function ringDataToArray(catalog: RingDataFromDatabase[]): RingData[] {
