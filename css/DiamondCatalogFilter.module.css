@@ -5,8 +5,28 @@ md: 900 - 1200px: Tablet landscape
 [1200 - 1800px]: normal styling
 lg: 1800px +:  Big desktop
 */
-.DiamondCatalogFilter {
-  border: 1px solid orangered;
+@media (max-width: 56.25em) {
+  .DiamondCatalogFilter {
+    margin: 2rem 0;
+  }
+}
+
+.DiamondCatalogFilter__filter {
+  display: inline-block;
+  margin: 0 2rem;
+}
+
+@media (max-width: 56.25em) {
+  .DiamondCatalogFilter__filter {
+    margin: 0;
+  }
+}
+
+.DiamondCatalogFilter > div {
+  text-align: left;
+}
+
+.DiamondCatalogFilter_desktop {
   margin: 1rem 0;
   padding: 2rem;
   display: -ms-grid;
@@ -16,19 +36,24 @@ lg: 1800px +:  Big desktop
   grid-gap: 1rem;
 }
 
-.DiamondCatalogFilter > div {
-  text-align: left;
+@media (max-width: 56.25em) {
+  .DiamondCatalogFilter_desktop {
+    display: none;
+    visibility: hidden;
+  }
 }
 
-.FilterBar {
-  width: 100%;
-  height: 5rem;
-  margin: 2rem 0;
-  border: 1px solid #999;
+.DiamondCatalogFilter_mobile {
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  display: none;
 }
 
-.filterGroup {
-  display: inline-block;
-  margin: 0 2rem;
+@media (max-width: 56.25em) {
+  .DiamondCatalogFilter_mobile {
+    display: -ms-grid;
+    display: grid;
+    visibility: visible;
+  }
 }
 /*# sourceMappingURL=DiamondCatalogFilter.module.css.map */

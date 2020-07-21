@@ -1,0 +1,42 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.SideDrawer {
+  display: none;
+  position: fixed;
+  width: 28rem;
+  max-width: 70%;
+  height: 100%;
+  top: 7rem;
+  left: 0;
+  z-index: 200;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+@media (max-width: 56.25em) {
+  .SideDrawer {
+    display: block;
+  }
+}
+
+.SideDrawer_open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.SideDrawer_close {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+/*# sourceMappingURL=SideDrawer.module.css.map */

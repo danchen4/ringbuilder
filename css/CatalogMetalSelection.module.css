@@ -9,7 +9,6 @@ lg: 1800px +:  Big desktop
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  margin-bottom: 1rem;
   border-radius: 50%;
 }
 
@@ -19,11 +18,6 @@ lg: 1800px +:  Big desktop
 
 .MetalSelection__options:not(:last-child) {
   margin-right: 1rem;
-}
-
-.MetalSelection__name {
-  font-size: 1.2rem;
-  color: #777;
 }
 
 .wg {

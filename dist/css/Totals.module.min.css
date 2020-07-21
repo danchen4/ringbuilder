@@ -1,2 +1,2 @@
-.Totals{margin:1rem 0}.grid{display:-ms-grid;display:grid;-ms-grid-columns:2fr 1fr 1fr;grid-template-columns:2fr 1fr 1fr}.column{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.price{font-size:2rem}
+.Totals{margin:1rem 0}.Totals__grid{display:-ms-grid;display:grid;-ms-grid-columns:2fr 1fr 1fr;grid-template-columns:2fr 1fr 1fr}.Totals__column{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.Totals__description{font-size:1.4rem;line-height:1.7}.Totals__price{font-size:2rem;color:#777}
 /*# sourceMappingURL=Totals.module.min.css.map */

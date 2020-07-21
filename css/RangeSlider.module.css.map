@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACmBA;;;;;;EAME;ADvBF,AAAA,YAAY,CAAC;EACX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAC/B;;AAED,AAAA,MAAM,CAAC;EACL,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,IAAI;CACZ",
+    "mappings": "ACmBA;;;;;;EAME;ADtBC,AAAD,yBAAc,CAAC;EACb,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAC/B;;AAEA,AAAD,mBAAQ,CAAC;EACP,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,IAAI;CAMZ;;ACsBC,MAAM,EAAE,SAAS,EAAE,OAAO;ED9B3B,AAAD,mBAAQ,CAAC;IAKL,KAAK,EAAE,IAAI;IACX,SAAS,EAAE,MAAM;GAEpB",
     "sources": [
         "../src/components/UI/RangeSlider/RangeSlider.module.scss",
         "../src/sass/abstracts/_abstracts.scss"

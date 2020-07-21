@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAGG,AACC,mBADK,AACJ,KAAK,CADP,mBAAM,AAEJ,QAAQ,AAAC,CACR,eAAe,CAAE,IAAI,CACrB,KAAK,CCgEU,OAAO,CD/DtB,OAAO,CAAE,QAAQ,CAClB,AANF,AAQC,mBARK,AAQJ,OAAO,CART,mBAAM,AASJ,MAAM,AAAC,CACN,eAAe,CAAE,SAAS,CAC1B,KAAK,CCuDK,OAAO,CDtDlB",
+    "sources": [
+        "../../src/components/DiamondCatalog/DiamondTable/DiamondTable.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "DiamondTable.module.min.css"
+}

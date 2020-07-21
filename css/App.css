@@ -55,6 +55,11 @@ body {
   }
 }
 
+h4 {
+  font-size: 1.4rem;
+  color: #777;
+}
+
 .App {
   position: fixed;
   top: 0;
@@ -70,12 +75,14 @@ body {
 .App__section {
   max-width: 80%;
   margin: 0 auto;
+  margin-top: 1rem;
 }
 
-@media (max-width: 37.5em) {
+@media (max-width: 56.25em) {
   .App__section {
     max-width: 100%;
-    margin: 0 1rem;
+    margin: 0.2rem;
+    margin-top: 11rem;
   }
 }
 

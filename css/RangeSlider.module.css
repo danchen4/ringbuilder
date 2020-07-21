@@ -5,7 +5,7 @@ md: 900 - 1200px: Tablet landscape
 [1200 - 1800px]: normal styling
 lg: 1800px +:  Big desktop
 */
-.rangeInputs {
+.RangeSlider__rangeInputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,8 +14,15 @@ lg: 1800px +:  Big desktop
           justify-content: space-between;
 }
 
-.input {
+.RangeSlider__input {
   font-size: 1.2rem;
   width: 7rem;
+}
+
+@media (max-width: 56.25em) {
+  .RangeSlider__input {
+    width: 8rem;
+    font-size: 1.4rem;
+  }
 }
 /*# sourceMappingURL=RangeSlider.module.css.map */

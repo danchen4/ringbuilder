@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACmBA;;;;;;EAME;ADvBF,AAAA,OAAO,CAAC;EACN,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,MAAM;EACd,UAAU,EAAE,KAAK;EACjB,UAAU,EAAE,GAAG,CAAC,KAAK,CC0DF,OAAO;EDzD1B,MAAM,EAAE,KAAK;CAMd;;ACyBG,MAAM,EAAE,SAAS,EAAE,OAAO;EDpC9B,AAAA,OAAO,CAAC;IAQJ,MAAM,EAAE,IAAI;IACZ,KAAK,EAAE,IAAI;GAEd",
+    "sources": [
+        "../src/components/Footer/Footer.module.scss",
+        "../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "Footer.module.css"
+}

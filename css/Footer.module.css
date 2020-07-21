@@ -1,0 +1,22 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.Footer {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10rem;
+  border-top: 1px solid #cccccc;
+  height: 10rem;
+}
+
+@media (max-width: 56.25em) {
+  .Footer {
+    height: 5rem;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=Footer.module.css.map */

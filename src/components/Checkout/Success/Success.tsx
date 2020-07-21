@@ -8,17 +8,11 @@ import { MyHeader } from '../../StyledUI/MyHeader';
 import { Label } from '../../StyledUI/Label';
 import { Attribute } from '../../StyledUI/Attribute';
 import { Spacer } from '../../StyledUI/Spacer';
-import { MyCard } from '../../StyledUI/MyCard';
 
 interface SuccessProps {}
 
 export const Success: React.FC<SuccessProps> = ({}) => {
   const orderData = useSelector((state: any) => state.order.orderData);
-  const cartData = useSelector((state: any) => state.cart.cartItems);
-
-  useEffect(() => {
-    console.log({ orderData, cartData });
-  }, []);
 
   return (
     <div className={classes.Success}>

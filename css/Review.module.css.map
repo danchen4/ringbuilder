@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACmBA;;;;;;EAME;ADvBF,AAAA,OAAO,CAAC;EACN,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,OAAO;EAC9B,QAAQ,EAAE,IAAI;CACf;;AAED,AAAA,YAAY,CAAC;EACX,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACpB",
+    "mappings": "ACmBA;;;;;;EAME",
     "sources": [
         "../src/components/Review/Review.module.scss",
         "../src/sass/abstracts/_abstracts.scss"

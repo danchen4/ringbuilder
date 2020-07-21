@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACmBA;;;;;;EAME",
+    "sources": [
+        "../src/components/UI/Select/Select.module.scss",
+        "../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "Select.module.css"
+}

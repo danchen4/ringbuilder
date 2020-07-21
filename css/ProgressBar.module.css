@@ -9,15 +9,28 @@ lg: 1800px +:  Big desktop
   padding: 0 2rem;
 }
 
-.bar {
+@media (max-width: 56.25em) {
+  .ProgressBar {
+    padding: 0;
+  }
+}
+
+.ProgressBar__bar {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 3fr 3fr 2fr;
       grid-template-columns: 1fr 3fr 3fr 2fr;
-  border: 1px solid #d9d9d9;
+  border: 0.3rem solid #f7f7f7;
 }
 
-.block {
+@media (max-width: 56.25em) {
+  .ProgressBar__bar {
+    -ms-grid-columns: 2fr 2fr 1fr;
+        grid-template-columns: 2fr 2fr 1fr;
+  }
+}
+
+.ProgressBar__block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,74 +38,136 @@ lg: 1800px +:  Big desktop
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  height: 6rem;
-  padding: 1rem 0 1rem 0.5rem;
-  -webkit-clip-path: polygon(0 0, 100% 0, 150% 100%, 0% 100%);
-          clip-path: polygon(0 0, 100% 0, 150% 100%, 0% 100%);
+  height: 9rem;
+  padding: 1rem;
 }
 
-.block_highlight {
-  background-color: #eeeeee;
-}
-
-.arrow {
+.ProgressBar__block:not(:first-child)::before {
+  content: '';
   position: absolute;
-  right: -3rem;
-  width: 6rem;
-  height: 6rem;
-  -webkit-transform: rotate(45deg) skew(25deg, 25deg);
-          transform: rotate(45deg) skew(25deg, 25deg);
-  border-top: 1px solid #d9d9d9;
-  border-right: 1px solid #d9d9d9;
-  z-index: 10;
-  background-color: #fff;
+  top: 0;
+  left: -0.6rem;
+  width: 0;
+  height: 0;
+  border-top: 4.5rem solid #f7f7f7;
+  border-left: 0.6rem solid transparent;
+  border-bottom: 4.5rem solid #f7f7f7;
 }
 
-.arrow_highlight {
-  background-color: #eeeeee;
+.ProgressBar__block:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -0.6rem;
+  width: 0;
+  height: 0;
+  border-top: 4.5rem solid transparent;
+  border-left: 0.6rem solid #f7f7f7;
+  border-bottom: 4.5rem solid transparent;
 }
 
-.step {
-  width: 10%;
+@media (max-width: 56.25em) {
+  .ProgressBar__block_first {
+    display: none;
+  }
+}
+
+.ProgressBar__block_highlight {
+  background-color: #f7f7f7;
+}
+
+.ProgressBar__block_highlight:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -0.6rem;
+  width: 0;
+  height: 0;
+  border-top: 4.5rem solid transparent;
+  border-left: 0.6rem solid #f7f7f7;
+  border-bottom: 4.5rem solid transparent;
+}
+
+.ProgressBar__step {
+  -ms-flex-preferred-size: 14%;
+      flex-basis: 14%;
   font-size: 3rem;
   color: #333;
 }
 
-.content {
-  width: 60%;
+@media (max-width: 56.25em) {
+  .ProgressBar__step {
+    display: none;
+  }
 }
 
-.content_last {
-  width: 90%;
+.ProgressBar__content {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
-.image {
+.ProgressBar__content_last {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.ProgressBar__image {
   z-index: 20;
-  width: 30%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 5rem;
 }
 
-.image__ring {
+@media (max-width: 56.25em) {
+  .ProgressBar__image {
+    display: none;
+  }
+}
+
+.ProgressBar__image_ring {
+  width: 5rem;
+}
+
+.ProgressBar__image_diamond {
   width: 4rem;
 }
 
-.image__diamond {
-  width: 3rem;
-}
-
-.header_empty {
+.ProgressBar__header {
   font-size: 1.5rem;
 }
 
-.links a:link,
-.links a:visited {
+.ProgressBar__header_empty {
+  font-size: 1.7rem;
+}
+
+.ProgressBar__header_empty a {
   text-decoration: none;
-  color: #c9bc1f;
+  color: #777;
+}
+
+@media (max-width: 56.25em) {
+  .ProgressBar__description {
+    display: none;
+  }
+}
+
+.ProgressBar__links {
+  font-size: 1.2rem;
+}
+
+.ProgressBar__links a:link,
+.ProgressBar__links a:visited {
+  text-decoration: none;
+  color: #c6a700;
   padding: 0 0.5rem;
 }
 
-.links a:active,
-.links a:hover {
+.ProgressBar__links a:active,
+.ProgressBar__links a:hover {
   text-decoration: underline;
-  color: #ffee58;
+  color: #fdd835;
 }
 /*# sourceMappingURL=ProgressBar.module.css.map */

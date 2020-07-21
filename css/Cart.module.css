@@ -9,30 +9,20 @@ lg: 1800px +:  Big desktop
   margin: 2rem 0;
 }
 
-.card {
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+.Cart__table {
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
 
-.grid {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 2fr 1fr 1fr;
-      grid-template-columns: 2fr 1fr 1fr;
-}
-
-.column {
+.Cart__column {
   padding: 1rem 0;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
 
-.cartImage {
-  width: 20rem;
-}
-
-.price {
+.Cart__price {
   font-size: 2rem;
+  color: #777;
 }
 /*# sourceMappingURL=Cart.module.css.map */

@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,SAAS,AAAC,CACR,QAAQ,CAAE,KAAK,CACf,GAAG,CAAE,CAAC,CACN,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,gBAAgB,CCoDJ,eAAI,CDnDhB,OAAO,CAAE,GAAG,CAKb,ACwBG,MAAM,EAAE,SAAS,EAAE,OAAO,EDpC9B,AAAA,SAAS,AAAC,CAUN,GAAG,CCkGW,IAAI,CDhGrB",
+    "sources": [
+        "../../src/components/UI/BackDrop/Backdrop.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "Backdrop.module.min.css"
+}

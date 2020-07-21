@@ -207,7 +207,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
           valuesCopy = { ...values };
         }
         dispatch(addOrderData(valuesCopy));
-        // dispatch(clearCart());
+        dispatch(clearCart());
         handleSubmit();
       }}
     >
@@ -311,9 +311,9 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
               </Description>
             </Spacer>
             <Success />
-            <Spacer mTop={2}>
+            {/* <Spacer mTop={2}>
               <ResetButton onClick={reset} />
-            </Spacer>
+            </Spacer> */}
           </MyCard>
         </PageContent>
       ) : (

@@ -1,1 +1,120 @@
-/* No CSS *//*# sourceMappingURL=Checkout.module.css.map */
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3D(0.95, 0.95, 0.95);
+            transform: scale3D(0.95, 0.95, 0.95);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3D(0.95, 0.95, 0.95);
+            transform: scale3D(0.95, 0.95, 0.95);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  }
+}
+
+.Form {
+  -webkit-animation: fade 200ms ease-out;
+          animation: fade 200ms ease-out;
+}
+
+.FormGroup {
+  margin: 1rem 0;
+  padding: 1.6rem 1.4rem;
+  border-style: none;
+  background-color: #fff;
+  will-change: opacity, transform;
+  border: 1px solid #c3c3c3;
+  border-radius: 4px;
+}
+
+.FormRow:first-child {
+  border-top: none;
+}
+
+.FormRowLabel {
+  font-size: 1.4rem;
+  width: 15%;
+  min-width: 70px;
+  padding: 11px 0;
+  color: #c4f0ff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@-webkit-keyframes void-animation-out {
+  0%,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes void-animation-out {
+  0%,
+  to {
+    opacity: 1;
+  }
+}
+
+.FormRowInput:-webkit-autofill {
+  -webkit-text-fill-color: #fce883;
+  /* Hack to hide the default webkit autofill */
+  -webkit-transition: background-color 100000000s;
+  transition: background-color 100000000s;
+  -webkit-animation: 1ms void-animation-out;
+          animation: 1ms void-animation-out;
+}
+
+.FormRowInput {
+  font-size: 1rem;
+  width: 100%;
+  padding: 11px 15px 11px 0;
+  color: #fff;
+  background-color: transparent;
+  -webkit-animation: 1ms void-animation-out;
+          animation: 1ms void-animation-out;
+}
+
+.FormRowInput::-webkit-input-placeholder {
+  color: #87bbfd;
+}
+
+.FormRowInput:-ms-input-placeholder {
+  color: #87bbfd;
+}
+
+.FormRowInput::-ms-input-placeholder {
+  color: #87bbfd;
+}
+
+.FormRowInput::placeholder {
+  color: #87bbfd;
+}
+
+.StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.StripeElement {
+  width: 100%;
+  padding: 11px 15px 11px 0;
+}
+/*# sourceMappingURL=Checkout.module.css.map */

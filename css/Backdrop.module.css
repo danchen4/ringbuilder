@@ -1,0 +1,23 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.Backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 200;
+}
+
+@media (max-width: 56.25em) {
+  .Backdrop {
+    top: 7rem;
+  }
+}
+/*# sourceMappingURL=Backdrop.module.css.map */

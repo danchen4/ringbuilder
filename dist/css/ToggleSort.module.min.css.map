@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,WAAW,AAAC,CACV,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,OAAO,CAKhB,AAHE,AAAD,kBAAQ,AAAC,CACP,YAAY,CAAE,MAAM,CACrB,AAGH,AAAA,aAAa,AAAC,CACZ,KAAK,CC0Dc,OAAO,CDzD1B,cAAc,CAAE,IAAI,CACrB",
+    "sources": [
+        "../../src/components/UI/ToggleSort/ToggleSort.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "ToggleSort.module.min.css"
+}

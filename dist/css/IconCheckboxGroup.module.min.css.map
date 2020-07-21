@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAGG,AAAD,6BAAY,AAAC,CACX,OAAO,CAAE,IAAI,CACb,UAAU,CAAE,MAAM,CACnB,AAEA,AAAD,4BAAW,AAAC,CACV,OAAO,CAAE,IAAI,CACb,UAAU,CAAE,MAAM,CAQnB,AAVA,AAIC,4BAJS,CAIL,KAAK,AAAC,CACR,OAAO,CAAE,KAAK,CACd,GAAG,CAAE,IAAI,CACT,YAAY,CAAE,IAAI,CAClB,MAAM,CAAE,OAAO,CAChB",
+    "sources": [
+        "../../src/components/UI/IconCheckboxGroup/IconCheckboxGroup.module.scss",
+        "../../src/sass/abstracts/_abstracts.scss"
+    ],
+    "names": [],
+    "file": "IconCheckboxGroup.module.min.css"
+}

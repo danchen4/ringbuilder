@@ -1,1 +1,2 @@
-/* No CSS *//*# sourceMappingURL=Button.module.min.css.map */
+.Button{padding:1rem 2rem;background-color:#fdd835;color:#333;border:2px solid #000;-webkit-transition:all 0.1s;transition:all 0.1s;-webkit-box-shadow:0 0.8rem 2.5rem rgba(0,0,0,0.1);box-shadow:0 0.8rem 2.5rem rgba(0,0,0,0.1)}.Button:hover{background-color:#ffff6b;color:#999;-webkit-transform:translateY(-0.2rem);transform:translateY(-0.2rem);-webkit-box-shadow:0 1.5rem 4rem rgba(0,0,0,0.15);box-shadow:0 1.5rem 4rem rgba(0,0,0,0.15)}.Button:focus{outline:none;-webkit-transform:translateY(0);transform:translateY(0);-webkit-box-shadow:0 0.8rem 2.5rem rgba(0,0,0,0.1);box-shadow:0 0.8rem 2.5rem rgba(0,0,0,0.1)}
+/*# sourceMappingURL=Button.module.min.css.map */

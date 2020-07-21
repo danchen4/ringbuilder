@@ -1,2 +1,2 @@
-.rangeInputs{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.input{font-size:1.2rem;width:7rem}
+.RangeSlider__rangeInputs{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.RangeSlider__input{font-size:1.2rem;width:7rem}@media (max-width: 56.25em){.RangeSlider__input{width:8rem;font-size:1.4rem}}
 /*# sourceMappingURL=RangeSlider.module.min.css.map */

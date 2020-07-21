@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,AAAC,CACL,SAAS,CAAE,sBAAsB,CAClC,AAED,AAAA,UAAU,AAAC,CACT,UAAU,CAAE,eAAe,CAC5B,AAED,UAAU,CAAV,KAAU,CACR,IAAI,CACJ,EAAE,CACA,SAAS,CAAE,oBAAoB,CAGjC,GAAG,CACH,GAAG,CACH,GAAG,CACH,GAAG,CACH,GAAG,CACD,SAAS,CAAE,wBAAwB,CAGrC,GAAG,CACH,GAAG,CACH,GAAG,CACH,GAAG,CACD,SAAS,CAAE,uBAAuB",
+    "sources": [
+        "../../src/components/UI/fkmui-checkbox/fkmui-checkbox.module.scss"
+    ],
+    "names": [],
+    "file": "fkmui-checkbox.module.min.css"
+}

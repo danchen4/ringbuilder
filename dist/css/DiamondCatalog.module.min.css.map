@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,eAAe,AAAC,CACd,UAAU,CAAE,IAAI,CAChB,OAAO,CAAE,IAAI,CACd",
+    "mappings": "",
     "sources": [
         "../../src/components/DiamondCatalog/DiamondCatalog.module.scss",
         "../../src/sass/abstracts/_abstracts.scss"

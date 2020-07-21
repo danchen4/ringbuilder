@@ -5,8 +5,4 @@ md: 900 - 1200px: Tablet landscape
 [1200 - 1800px]: normal styling
 lg: 1800px +:  Big desktop
 */
-.DiamondCatalog {
-  margin-top: 2rem;
-  padding: 2rem;
-}
 /*# sourceMappingURL=DiamondCatalog.module.css.map */

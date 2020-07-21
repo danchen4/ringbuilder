@@ -1,0 +1,36 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.ErrorMessage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2rem 0;
+  color: #ffab91;
+  padding: 0 15px;
+  font-size: 1.6rem;
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: fade 150ms ease-out;
+          animation: fade 150ms ease-out;
+  -webkit-animation-delay: 50ms;
+          animation-delay: 50ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  will-change: opacity, transform;
+}
+
+.ErrorMessage svg {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=ErrorMessage.module.css.map */

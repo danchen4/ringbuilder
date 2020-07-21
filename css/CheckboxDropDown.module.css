@@ -5,7 +5,7 @@ md: 900 - 1200px: Tablet landscape
 [1200 - 1800px]: normal styling
 lg: 1800px +:  Big desktop
 */
-.checkbox_dropdown {
+.CheckboxDropDown__anchor {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13,21 +13,16 @@ lg: 1800px +:  Big desktop
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem 3rem 1rem 2rem;
+  padding: 1rem;
   text-align: left;
 }
 
-.checkbox_header {
+.CheckboxDropDown__header {
   color: #333;
   font-weight: 500;
 }
 
-.icon_chevron {
-  margin-left: 1rem;
-  color: #c9bc1f;
-}
-
-.checkbox_group {
+.CheckboxDropDown__dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -40,20 +35,25 @@ lg: 1800px +:  Big desktop
   z-index: 10;
 }
 
-.checkbox {
+.CheckboxDropDown__checkbox {
   display: inline-block;
   width: 50%;
   margin-bottom: 0.5rem;
 }
 
-.checkbox > * {
-  cursor: pointer;
-}
-
-.checkbox_label {
+.CheckboxDropDown__checkbox_label {
   padding-left: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.CheckboxDropDown__checkbox > * {
+  cursor: pointer;
+}
+
+.icon_chevron {
+  margin-left: 1rem;
+  color: #c6a700;
 }
 
 .fadeEnter {

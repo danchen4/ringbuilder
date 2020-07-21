@@ -1,0 +1,86 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.MobileDropDownWrapper__anchor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 2rem;
+  text-align: left;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.MobileDropDownWrapper__anchor_mobile {
+  border-bottom: none;
+}
+
+.MobileDropDownWrapper__header {
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.MobileDropDownWrapper__icon {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #c6a700;
+}
+
+.MobileDropDownWrapper__dropdown {
+  width: 100%;
+  padding: 2rem 3rem 3rem 3rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.MobileDropDownWrapper__button {
+  width: calc(50% - 1rem);
+  margin: 0.5rem;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #eeeeee;
+  padding: 1rem 3rem;
+}
+
+.MobileDropDownWrapper__button_selected {
+  outline: 2px solid #c6a700;
+}
+
+.MobileDropDownWrapper__button:focus {
+  outline: 2px solid #c6a700;
+}
+
+.fadeEnter {
+  opacity: 0;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+.fadeExit {
+  opacity: 1;
+  /* transform: translateX(0%); */
+}
+
+.fadeExitActive {
+  opacity: 0;
+  /* transform: translateX(100%); */
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+/*# sourceMappingURL=MobileDropDownWrapper.module.css.map */

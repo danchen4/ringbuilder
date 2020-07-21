@@ -76,8 +76,6 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ pathNext }) => {
-  console.log('<Login /> RENDER');
-
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();

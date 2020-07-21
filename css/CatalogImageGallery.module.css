@@ -6,6 +6,7 @@ md: 900 - 1200px: Tablet landscape
 lg: 1800px +:  Big desktop
 */
 .CatalogImageGallery__mainImage {
+  display: block;
   max-width: 20rem;
 }
 
@@ -27,11 +28,11 @@ lg: 1800px +:  Big desktop
 }
 
 .CatalogImageGallery__image_selected {
-  border: 2px solid #c9bc1f;
+  border: 2px solid #c6a700;
 }
 
 .CatalogImageGallery__image_unselected {
-  border: 1px solid #d9d9d9;
+  border: 1px solid #cccccc;
 }
 
 .CatalogImageGallery__image:not(:last-child) {

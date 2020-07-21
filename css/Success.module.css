@@ -1,0 +1,37 @@
+/*
+xs: 0-600px: Phone 
+sm: 600 - 900px: Tablet portrat
+md: 900 - 1200px: Tablet landscape
+[1200 - 1800px]: normal styling
+lg: 1800px +:  Big desktop
+*/
+.Success__card {
+  max-width: 60rem;
+  padding: 2rem;
+  margin: 0 auto;
+  border: 1px solid #eeeeee;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+.Success__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.Success__address {
+  width: 50%;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+/*# sourceMappingURL=Success.module.css.map */
